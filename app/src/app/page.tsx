@@ -1,10 +1,20 @@
-import Image from "next/image";
+import Header from '@/components/Header/Header';
+import FirstArticle from '../components/Articles/FirstArticle';
+import { Button } from '@nextui-org/react';
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-     Order custom parts online, get them manufactured and shipped the next day.*
-
-    </main>
-  );
+	return (
+		<>
+			<Header />
+			<main className='overflow-hidden'>
+				<FirstArticle />
+			</main>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		</>
+	);
 }
