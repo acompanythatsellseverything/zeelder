@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Container from '../Container/Container';
-import subtractImage from '@/images/Subtract.png';
+import subtractImage from '@/images/subtract.png';
 import playIcon from '@/images/utils/play.svg';
 
 export default function SixthArticle() {
