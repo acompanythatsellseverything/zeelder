@@ -7,7 +7,7 @@ interface IProps {
 export default function ArrowButton({ to, text }: IProps) {
 	return (
 		<Link href={to} className={'overflow-visible relative'}>
-			<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
+			<div className={'w-full flex justify-center relative z-10 bg-accent px-12 rounded-sm'}>
 				<div
 					className={
 						'py-[16px] text-white text-sm flex gap-3.5 items-center '

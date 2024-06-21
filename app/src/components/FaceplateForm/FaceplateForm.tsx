@@ -3,7 +3,6 @@ import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Button, cn, Radio, RadioGroup } from '@nextui-org/react';
-import { useRef } from 'react';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 
 interface IFormData {

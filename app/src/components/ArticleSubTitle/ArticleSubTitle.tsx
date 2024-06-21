@@ -5,11 +5,11 @@ interface IProps {
 	className?: string;
 }
 
-export default function ArticleSubTitle({children}: IProps) {
+export default function ArticleSubTitle({children, className}: IProps) {
 	return (
 		<div className={'flex items-center mt-6'}>
 			<span className={'w-0.5 h-[26px] bg-accent'} />
-			<h3 className={'pl-3 text-[14px] md:text-lg max-w-[320px]'}>
+			<h3 className={`pl-3 text-[14px] md:text-lg max-w-[520px] ${className}`}>
 				{children}
 			</h3>
 		</div>

@@ -23,20 +23,20 @@ const listData = [
 
 export default function FourthArticle() {
 	return (
-		<Container className={'mt-16 relative bg-[#181818] bg-slide-4-bg bg-no-repeat overflow-visible bg-[50%_100%]`	'}>
+		<Container className={'mt-16 relative bg-[#181818] bg-slide-4-bg bg-no-repeat overflow-hidden bg-[50%_100%]'}>
 			<>
 				<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
-					<div className={'w-0.5 h-20 bg-light rounded-b-md'}></div>
+					<div className={'w-0.5 h-20 bg-dark-light rounded-b-md'}></div>
 					<span className={'text-white text-center text-xs mt-2.5'}>04</span>
 					<div className={'w-0.5 h-40 bg-white mt-2.5 rounded-t-md'}></div>
-					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
+					<div className={'w-0.5 h-full bg-dark-light rounded-b-md'}></div>
 				</div>
 				<div className={'hidden md:block absolute md:right-[-20px] lg:right-0 bottom-0'}>
 					<Image src={slideImage} alt='' className='md:max-w-64 lg:max-w-[580px]'/>
 				</div>
 
 				<article className={'relative py-16 lg:py-20 z-30'}>
-					<ArticleTitle className='text-white max-w-none'>
+					<ArticleTitle className='text-white max-w-3xl'>
 						Sheet metal working and 3D printing for enterprises, maintenance &
 						repair shops, and startups.
 					</ArticleTitle>
