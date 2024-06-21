@@ -4,30 +4,31 @@ import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Image from 'next/image';
 import checkIcon from '@/images/utils/check-square.svg';
 import UploadCADForm from '../UploadCADForm/UploadCADForm';
-import bgImage from '@/images/slide-01-bg.png';
+import ArticleSubTitle from '../ArticleSubTitle/ArticleSubTitle';
 
 export default function FirstArticle() {
 	return (
 		<Container
 			className={
-				'relative mt-[50px] bg-article-1-bg bg-no-repeat bg-right lg:bg-right-top bg-50'
+				'relative mt-[50px] bg-article-1-bg bg-no-repeat bg-right lg:bg-right-top bg-50 '
 			}
 		>
-			<>
+			<article>
+				<div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
+					<span className={'text-accent text-center text-xs'}>01</span>
+					<div className={'w-0.5 h-32 bg-accent mt-2.5 rounded-t-md'}></div>
+					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
+				</div>
 				<div className=''>
 					<ArticleTitle>
-						<span className={'text-[28px] md:text-[36px] lg:text-[40px]'}>
-							Order custom parts online, get them manufactured and shipped the
-							next day.*
-						</span>
+						Order custom parts online, get them manufactured and shipped the
+						next day.*
 					</ArticleTitle>
-					<div className={'flex items-center mt-6'}>
-						<span className={'w-0.5 h-[26px] bg-accent'} />
-						<h3 className={'pl-3 text-[14px] md:text-lg max-w-[320px]'}>
-							The fastest provider of online custom laser cutting, bending,
-							welding & digital prototyping services in Europe
-						</h3>
-					</div>
+					<ArticleSubTitle>
+						The fastest provider of online custom laser cutting, bending,
+						welding & digital prototyping services in Europe
+					</ArticleSubTitle>
+					
 					<div className={'mt-5 max-w-md'}>
 						<ul className='grid md:grid-cols-2 gap-3'>
 							<li className={'flex items-center max-w-[142px] md:max-w-200'}>
@@ -60,11 +61,7 @@ export default function FirstArticle() {
 						<UploadCADForm />
 					</div>
 				</div>
-				{/* <div
-					className='w-full h-full absolute top-0 left-0 z-40 article-1-bg'
-					
-				/> */}
-			</>
+			</article>
 		</Container>
 	);
 }
