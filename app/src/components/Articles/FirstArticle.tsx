@@ -20,7 +20,7 @@ export default function FirstArticle() {
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div>
 				<div className=''>
-					<ArticleTitle>
+					<ArticleTitle className='max-w-xl'>
 						Order custom parts online, get them manufactured and shipped the
 						next day.*
 					</ArticleTitle>

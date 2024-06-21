@@ -11,19 +11,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'light': 'rgba(238, 238, 238, 1)',
+        'light': '#eeeeee',
         'accent': {
           DEFAULT: '#B10C10',
           dark: '#740003'
         },
         'accent-dark': {
           DEFAULT: '#740003',
-        }
+        },
       },
       backgroundImage: {
         'logo': "url('../../public/zeelder-logo.svg')",
         'logo-icon': "url('../../public/logo.svg')",
         'article-1-bg': "url('../../public/slide-01-bg.png')",
+        'divider-1-bg': "url('../../public/divider-bg.png')",
+        'divider-1-cont': "url('../../public/divider-01.png')",
+        'slide-4-bg': "url('../../public/slide-04-bg.svg')"
+      
       },
 
       backgroundSize: {

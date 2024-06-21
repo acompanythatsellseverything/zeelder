@@ -29,18 +29,18 @@ export default function UploadCADForm() {
 				<RadioGroup
 					color='primary'
 					classNames={{
-						wrapper: cn('flex flex-row flex-nowrap '),
+						wrapper: cn('flex flex-col md:flex-row flex-nowrap '),
 					}}
 				>
 					<CustomRadio
 						description='Upload CAD files and receive your quote in minutes, not days		'
-						value='free'
+						value='1'
 					>
 						Get an instant quote online
 					</CustomRadio>
 					<CustomRadio
 						description='Get in touch with our engineering team and discuss your order'
-						value='pro'
+						value='2'
 					>
 						Collaborate with an engineer
 					</CustomRadio>

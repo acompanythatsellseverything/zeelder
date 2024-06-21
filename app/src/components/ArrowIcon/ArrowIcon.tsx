@@ -1,5 +1,5 @@
 interface IProps {
-	color: string
+	color?: string
 }
 
 export default function ArrowIcon({color}: IProps) {
