@@ -2,7 +2,7 @@ import { RadioGroup, Radio, cn } from '@nextui-org/react';
 import Image from 'next/image';
 import uploadImage from '@/images/utils/upload-cloud.png';
 
-const CustomRadio = (props) => {
+const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
 	return (
 		<Radio
