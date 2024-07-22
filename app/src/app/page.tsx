@@ -19,14 +19,14 @@ export default function Home() {
 			<main className='overflow-hidden'>
 				<FirstArticle />
 				<AutoPlaySlider/>
-				{/* <SecondArticle />
+				<SecondArticle />
 				<ThirdArticle />
 				<FourthArticle />
 				<FifthArticle />
 				<SixthArticle />
 				<SeventhArticle />
 				<EighthArticle />
-				<NinthArticle /> */}
+				<NinthArticle />
 			</main>
 			<Footer />
 		</>
