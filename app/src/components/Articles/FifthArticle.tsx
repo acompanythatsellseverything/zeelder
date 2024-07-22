@@ -70,8 +70,18 @@ export default function FifthArticle() {
 								</>
 							</ArticleTitle>
 							{/*TODO: Hhmm there is something wrong */}
-							<div className="mt-10 w-full">
-								<Image src={trustedByImage} alt='' width={840} className='w-[840px] md:w-full'/>
+							<div className='mt-10 w-full grid grid-cols-7 [&:nth-child(7n)]:bg-red-500'>
+								{Array.from(Array(35).keys()).map((index) => (
+									<div key={index} className='p-6 flex justify-center items-center  border-r-1 border-b-1 border-red-500'>
+										<Image
+											src={`/trusted-by/image-${index+1}.png`}
+											alt=''
+											width={100}
+											height={100}
+											className='object-cover'
+										/>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>

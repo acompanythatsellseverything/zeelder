@@ -17,16 +17,16 @@ export default function Home() {
 		<>
 			<Header />
 			<main className='overflow-hidden'>
-				<FirstArticle />
+				{/* <FirstArticle />
 				<AutoPlaySlider/>
 				<SecondArticle />
 				<ThirdArticle />
-				<FourthArticle />
+				<FourthArticle /> */}
 				<FifthArticle />
-				<SixthArticle />
+				{/* <SixthArticle />
 				<SeventhArticle />
 				<EighthArticle />
-				<NinthArticle />
+				<NinthArticle /> */}
 			</main>
 			<Footer />
 		</>
