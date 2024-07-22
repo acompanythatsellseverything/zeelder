@@ -24,10 +24,10 @@ const CustomRadio = (props: any) => {
 			{...otherProps}
 			classNames={{
 				base: cn(
-					'group border-1 border-light m-0 px-3 py-[10px] cursor-pointer data-[selected=true]:border-accent data-[selected=true]:bg-accent'
+					'max-w-none grow group border-1 border-light m-0 px-3 py-[10px] cursor-pointer data-[selected=true]:border-accent data-[selected=true]:bg-accent'
 				),
 				wrapper: cn('hidden'),
-				labelWrapper: cn('m-0 p-0'),
+				labelWrapper: cn('m-0 p-0 w-full text-center'),
 				description: cn('hidden'),
 				label: cn(`text-xs group-data-[selected=true]:text-white`),
 			}}
@@ -56,7 +56,7 @@ export default function FaceplateForm() {
 							className={'mt-2'}
 							label={'Complexity'}
 							classNames={{
-								wrapper: cn('flex flex-row gap-0 '),
+								wrapper: cn('flex flex-row gap-0 w-full '),
 							}}
 						>
 							<CustomRadio value='simple' {...register('complexity')}>
