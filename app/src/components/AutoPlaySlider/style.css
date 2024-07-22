@@ -1,0 +1,29 @@
+.embla {
+	@apply h-[120px] w-full bg-black;
+	background-image: url('../../../public/divider-bg.png');
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 10%;
+}
+.embla__viewport {
+  overflow: hidden;
+	height: 100%;
+}
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+  touch-action: pan-y pinch-zoom;
+	height: 100%;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  display: flex;
+  justify-content: center;
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+}
+  

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import slideImage from '@/images/slide-10-image.png';
 import ContactUsForm from '../ContactUsForm/ContactUsForm';
 
-export default function NinthhArticle() {
+export default function NinthArticle() {
 	return (
 		<Container
 			className={
