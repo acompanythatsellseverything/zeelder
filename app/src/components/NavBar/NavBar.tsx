@@ -63,7 +63,7 @@ export default function NavBar() {
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               className="w-full hover:text-red-500"
-              href={item.href}
+              href={'#'}
 							>
               {item.title}
             </Link>
