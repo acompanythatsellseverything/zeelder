@@ -1,40 +1,75 @@
+'use client';
 import Link from 'next/link';
 import ArrowButton from '../ArrowButton/ArrowButton';
 import Burger from '../Burger/Burger';
+import {
+	Navbar,
+	NavbarBrand,
+	NavbarContent,
+	NavbarMenu,
+	NavbarMenuItem,
+	NavbarMenuToggle,
+} from '@nextui-org/react';
+import { useState } from 'react';
 
 const navList = [
-	{ title: 'Hardware build', href: '#' },
-	{ title: 'Stages of work', href: '#' },
-	{ title: 'Quality record', href: '#' },
-	{ title: 'Founders', href: '#' },
-	{ title: 'Contact us', href: '#' },
+	{ title: 'Hardware build', href: '#hardware-build' },
+	{ title: 'Stages of work', href: '#stage-of-work' },
+	{ title: 'Quality record', href: '#quality' },
+	{ title: 'Founders', href: '#founder' },
+	{ title: 'Contact us', href: '#contact-us' },
 ];
 
 export default function NavBar() {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	return (
-		<nav>
-			<div className={'flex justify-between items-center'}>
+		<Navbar
+			isMenuOpen={isMenuOpen}
+			onMenuOpenChange={setIsMenuOpen}
+			classNames={{
+				base: 'w-full py-2 border-b-1 border-light',
+				wrapper: 'max-w-none px-4 sm:px-5 md:px-6 lg:px-10 xl:px-32',
+				brand: 'basis-[180px] shrink grow-0',
+				toggle: 'w-10 h-10 rounded-sm bg-accent cursor-pointer',
+			}}
+		>
+			<NavbarBrand>
 				<div className={'flex items-center'}>
 					{/* <div className={'md:hidden bg-logo-icon w-10 h-10'}/>
 					<div className={'md:hidden bg-accent w-[1px] h-10 mx-2.5'}/> */}
 					<div className={'bg-logo h-[30px] w-[180px] bg-no-repeat'} />
 				</div>
-				<div className={'max-[768px]:hidden'}>
-					<ul className={'flex gap-6 px-2'}>
+			</NavbarBrand>
+			<NavbarContent className={'max-[768px]:hidden'}>
+				<div className='w-full flex items-center justify-end gap-5 lg:gap-16'>
+					<ul className={'basis-full flex justify-center gap-3 lg:gap-6 px-2'}>
 						{navList.map((e) => (
 							<li key={e.title} className={'text-xs lg:text-base'}>
-								<Link href={e.href}>{e.title}</Link>
+								<Link href={e.href} className='hover:text-red-500'>{e.title}</Link>
 							</li>
 						))}
 					</ul>
+					<div className='shrink-0'>
+						<ArrowButton to={'#'} text={'Get quote'} />
+					</div>
 				</div>
-				<div className={'hidden lg:block'}>
-					<ArrowButton to={'#'} text={'Get quote'} />
-				</div>
-				<div className='md:hidden'>
-					<Burger/>
-				</div>
+			</NavbarContent>
+			<div className='md:hidden'>
+				<Burger isOpen={isMenuOpen} toggleOpen={() => setIsMenuOpen(prev => !prev)} />
 			</div>
-		</nav>
+
+			<NavbarMenu>
+        {navList.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              className="w-full hover:text-red-500"
+              href={item.href}
+							>
+              {item.title}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+		</Navbar>
 	);
 }

@@ -17,7 +17,7 @@ const fabricationStats = [
 ];
 export default function SecondArticle() {
 	return (
-		<Container className={'mt-16 relative'}>
+		<Container className={'mt-16 relative'} id='hardware-build'>
 			<>
 			<div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
 					<span className={'text-accent text-center text-xs'}>02</span>

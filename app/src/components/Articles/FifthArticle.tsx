@@ -7,7 +7,7 @@ import handshakeIcon from '@/images/utils/handshake.svg';
 
 export default function FifthArticle() {
 	return (
-		<Container className={'relative overflow-visible'}>
+		<Container className={'relative overflow-visible'} id='quality'>
 			<>
 				<div className='hidden xl:flex absolute h-full top-[-80px] left-16 flex-col justify-center items-center'>
 					<div className={'w-0.5 h-32 bg-light rounded-b-md'}></div>
