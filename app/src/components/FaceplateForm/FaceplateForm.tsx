@@ -118,7 +118,7 @@ export default function FaceplateForm() {
 					
 					<span className={'text-accent'}>€2.36</span>
 				</div>
-				<button type='submit' className={'w-full relative mt-10'}>
+				{/* <button type='submit' className={'w-full relative mt-10'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div
 							className={
@@ -134,7 +134,7 @@ export default function FaceplateForm() {
 							'w-full h-full absolute z-0 bg-accent-dark px-[48px] top-[4px] left-[4px] rounded-sm'
 						}
 					/>
-				</button>
+				</button> */}
 			</form>
 		</div>
 	);

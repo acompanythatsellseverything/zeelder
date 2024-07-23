@@ -20,6 +20,7 @@ const config: Config = {
           DEFAULT: '#740003',
         },
         'dark-bg': '#181818',
+        'gray-light': '#ECECEC'
       },
       backgroundImage: {
         'logo': "url('../../public/zeelder-logo.svg')",

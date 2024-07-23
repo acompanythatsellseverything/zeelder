@@ -1,27 +1,56 @@
 import Link from 'next/link';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
+import { useState } from 'react';
+import { Modal, ModalContent } from '@nextui-org/react';
+import CollaborateForm from '../CollaborateForm/CollaborateForm';
 interface IProps {
 	to: string;
 	text: string;
 }
 export default function ArrowButton({ to, text }: IProps) {
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	return (
-		<Link href={to} className={'overflow-visible relative'}>
-			<div className={'w-full flex justify-center relative z-10 bg-accent px-12 rounded-sm'}>
+		<>
+			<div
+				onClick={() => setIsOpen(true)}
+				className={'overflow-visible relative'}
+			>
 				<div
 					className={
-						'py-[16px] text-white text-sm flex gap-3.5 items-center '
+						'w-full flex justify-center relative z-10 bg-accent px-12 rounded-sm'
 					}
 				>
-					<span className={'font-medium'}>{text}</span>
-					<ArrowIcon color={'#FFFFFF'} />
+					<div
+						className={
+							'py-[16px] text-white text-sm flex gap-3.5 items-center '
+						}
+					>
+						<span className={'font-medium'}>{text}</span>
+						<ArrowIcon color={'#FFFFFF'} />
+					</div>
 				</div>
+				<div
+					className={
+						'w-full h-full absolute z-0 bg-accent-dark px-[48px] top-[4px] left-[4px] rounded-sm'
+					}
+				/>
 			</div>
-			<div
-				className={
-					'w-full h-full absolute z-0 bg-accent-dark px-[48px] top-[4px] left-[4px] rounded-sm'
-				}
-			/>
-		</Link>
+			<Modal
+				isOpen={isOpen}
+				size='xl'
+				onOpenChange={setIsOpen}
+				className='rounded-sm'
+			>
+				<ModalContent>
+					<div className='py-10 px-12'>
+						<p className='w-full text-center text-2xl font-semibold'>Collaborate with an engineer</p>
+						<p className='mt-4 w-full text-center'>
+							Get in touch with our engineering team and discuss your order{' '}
+						</p>
+						<CollaborateForm />
+					</div>
+				</ModalContent>
+			</Modal>
+		</>
 	);
 }

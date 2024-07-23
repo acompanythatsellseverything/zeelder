@@ -6,7 +6,7 @@ import { isMobilePhone } from 'validator';
 import { Input } from '@nextui-org/react';
 import Image from 'next/image';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import addFileIcon from '@/images/utils/add-file.svg'
+import addFileIcon from '@/images/utils/add-file.svg';
 
 interface IFormData {
 	name: string;
@@ -59,10 +59,13 @@ export default function ContactUsForm() {
 				/>
 				<div className='relative'>
 					<div className='flex gap-3 cursor-pointer'>
-						<Image src={addFileIcon} alt={''}/>
+						<Image src={addFileIcon} alt={''} />
 						<div>Add file</div>
 					</div>
-					<input type='file' className='absolute top-0 opacity-0 cursor-pointer w-full'/>
+					<input
+						type='file'
+						className='absolute top-0 opacity-0 cursor-pointer w-full'
+					/>
 				</div>
 				<button type='submit' className={'w-full relative'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
@@ -79,7 +82,7 @@ export default function ContactUsForm() {
 						className={
 							'w-full h-full absolute z-0 bg-accent-dark px-[48px] top-[4px] left-[4px] rounded-sm'
 						}
-					/>
+					></div>
 				</button>
 			</form>
 		</div>

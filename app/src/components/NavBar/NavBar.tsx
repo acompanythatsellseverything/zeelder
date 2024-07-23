@@ -45,7 +45,9 @@ export default function NavBar() {
 					<ul className={'basis-full flex justify-center gap-3 lg:gap-6 px-2'}>
 						{navList.map((e) => (
 							<li key={e.title} className={'text-xs lg:text-base'}>
-								<Link href={e.href} className='hover:text-red-500'>{e.title}</Link>
+								<Link href={e.href} className='hover:text-red-500'>
+									{e.title}
+								</Link>
 							</li>
 						))}
 					</ul>
@@ -55,21 +57,24 @@ export default function NavBar() {
 				</div>
 			</NavbarContent>
 			<div className='md:hidden'>
-				<Burger isOpen={isMenuOpen} toggleOpen={() => setIsMenuOpen(prev => !prev)} />
+				<Burger
+					isOpen={isMenuOpen}
+					toggleOpen={() => setIsMenuOpen((prev) => !prev)}
+				/>
 			</div>
 
-			<NavbarMenu>
-        {navList.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full hover:text-red-500"
-              href={'#'}
-							>
-              {item.title}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+			<NavbarMenu className='gap-0'>
+				{navList.map((item, index) => (
+					<NavbarMenuItem key={`${item}-${index}`} className={`py-4 ${ index != navList.length - 1 && 'border-b-1 border-gray-light'}`}>
+						<Link className='w-full hover:text-red-500' href={'#'}>
+							{item.title}
+						</Link>
+					</NavbarMenuItem>
+				))}
+				<NavbarMenuItem className='mt-10'>
+					<ArrowButton to={'#'} text={'Get quote'} />
+				</NavbarMenuItem>
+			</NavbarMenu>
 		</Navbar>
 	);
 }

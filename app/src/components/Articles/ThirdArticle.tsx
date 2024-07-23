@@ -64,7 +64,7 @@ export default function ThirdArticle() {
 						))}
 						<li
 							className={
-								'bg-black place-content-center py-6 px-5 border-1 border-black'
+								'bg-accent place-content-center py-6 px-5 border-1 border-accent'
 							}
 						>
 							<Link href={'#contact-us'}>
