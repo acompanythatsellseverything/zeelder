@@ -7,6 +7,7 @@ import { Input } from '@nextui-org/react';
 import Image from 'next/image';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import addFileIcon from '@/images/utils/add-file.svg'
+
 interface IFormData {
 	name: string;
 	email: string;

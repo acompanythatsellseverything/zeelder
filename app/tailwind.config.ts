@@ -37,6 +37,10 @@ const config: Config = {
         '16': '4rem',
       },
 
+      backgroundPosition: {
+        'mob-right-center' : 'right 250px'
+      },
+
       fontSize: {
         '3xl': ['2.5rem', {
           lineHeight: '48px',

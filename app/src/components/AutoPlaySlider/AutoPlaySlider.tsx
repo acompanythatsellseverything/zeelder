@@ -15,7 +15,7 @@ const slides = [image_1, image_2, image_3, image_4, image_5, image_1, image_2, i
 export default function AutoPlaySlider() {
 	const options = { loop: true };
 	const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-		AutoScroll({ playOnInit: true }),
+		AutoScroll({ playOnInit: true, speed: 1}),
 	]);
 
 	const [isPlaying, setIsPlaying] = useState(false);

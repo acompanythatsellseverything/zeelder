@@ -7,6 +7,7 @@ import ContactUsForm from '../ContactUsForm/ContactUsForm';
 export default function NinthArticle() {
 	return (
 		<Container
+		id='contact-us'
 			className={
 				'mt-16 relative bg-[#181818] bg-slide-10-bg bg-no-repeat overflow-hidden bg-cover'
 			}
@@ -14,7 +15,7 @@ export default function NinthArticle() {
 			<>
 				<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
 					<div className={'w-0.5 h-32 bg-dark-light rounded-b-md'}></div>
-					<span className={'text-white text-center text-xs mt-2.5'}>10</span>
+					<span className={'text-white text-center text-xs mt-2.5'}>9</span>
 					<div className={'w-0.5 h-16 bg-white mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-dark-light rounded-b-md'}></div>
 				</div>

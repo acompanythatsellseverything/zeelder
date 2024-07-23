@@ -20,7 +20,7 @@ export default function EighthArticle() {
 					<div
 						className={'w-0.5 grow basis-[15vh] bg-light rounded-b-md'}
 					></div>
-					<span className={'mt-2.5 text-accent text-center text-xs'}>05</span>
+					<span className={'mt-2.5 text-accent text-center text-xs'}>08</span>
 					<div className={'w-0.5 h-20 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div>

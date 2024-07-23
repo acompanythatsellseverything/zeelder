@@ -9,7 +9,7 @@ export default function SixthArticle() {
 		<Container className={'relative'}>
 			<>
 				<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
-					<span className={'text-accent text-center text-xs'}>07</span>
+					<span className={'text-accent text-center text-xs'}>06</span>
 					<div className={'w-0.5 h-32 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div>

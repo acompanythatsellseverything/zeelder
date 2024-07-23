@@ -2,6 +2,7 @@ import { title } from 'process';
 import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Container from '../Container/Container';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
+import Link from 'next/link';
 
 const gridData = [
 	{
@@ -43,7 +44,9 @@ export default function ThirdArticle() {
 							'md:row-start-1 md:col-start-1 md:col-span-6 md:row-span-2 lg:col-span-3'
 						}
 					>
-						<ArticleTitle className='max-w-xl'>What our process looks like</ArticleTitle>
+						<ArticleTitle className='max-w-xl'>
+							What our process looks like
+						</ArticleTitle>
 					</div>
 				</article>
 				<div className={'mt-8'}>
@@ -64,10 +67,12 @@ export default function ThirdArticle() {
 								'bg-black place-content-center py-6 px-5 border-1 border-black'
 							}
 						>
-							<div className='py-8 flex items-center justify-center gap-4 text-white font-semibold text-xl text-center'>
-								<span>Get an instant quote</span>
-								<ArrowIcon color='white' />
-							</div>
+							<Link href={'#contact-us'}>
+								<div className='py-8 flex items-center justify-center gap-4 text-white font-semibold text-xl text-center'>
+									<span>Get an instant quote</span>
+									<ArrowIcon color='white' />
+								</div>
+							</Link>
 						</li>
 					</ul>
 				</div>

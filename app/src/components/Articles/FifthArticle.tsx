@@ -4,7 +4,7 @@ import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Image from 'next/image';
 import premiumIcon from '@/images/utils/premium-quality.svg';
 import handshakeIcon from '@/images/utils/handshake.svg';
-import trustedByImage from '@/images/trusted-by.png';
+
 export default function FifthArticle() {
 	return (
 		<Container className={'relative overflow-visible'}>
@@ -63,18 +63,24 @@ export default function FifthArticle() {
 									</div>
 								</div>
 							</div>
-							<ArticleTitle className='mt-32'>
+							<ArticleTitle className='mt-14 md:mt-16 lg:mt-24'>
 								<>
 									<span className='text-accent'>Trusted by 1,500+ </span>
 									founders, CEOs, engineers, designers & scientists.
 								</>
 							</ArticleTitle>
 							{/*TODO: Hhmm there is something wrong */}
-							<div className='mt-10 w-full grid grid-cols-7 [&:nth-child(7n)]:bg-red-500'>
+							<div className='mt-10 w-full grid grid-cols-4 md:grid-cols-5 lg:grid-cols-7 [&:nth-child(7n)]:bg-red-500'>
 								{Array.from(Array(35).keys()).map((index) => (
-									<div key={index} className='p-6 flex justify-center items-center  border-r-1 border-b-1 border-red-500'>
+									<div
+										key={index}
+										className={`p-6 flex justify-center items-center 
+											${(index + 1) % 7 !== 0 && 'border-r-1'}
+											${index + 1 <= 7 * 4 && 'border-b-1'}
+											`}
+									>
 										<Image
-											src={`/trusted-by/image-${index+1}.png`}
+											src={`/trusted-by/image-${index + 1}.png`}
 											alt=''
 											width={100}
 											height={100}
