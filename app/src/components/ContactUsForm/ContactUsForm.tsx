@@ -30,32 +30,50 @@ export default function ContactUsForm() {
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
+	const action: () => void = handleSubmit(async (data: IFormData) => {console.log(data)});
+
 	return (
 		<div className={'p-10 bg-white rounded-sm'}>
-			<form className={'flex flex-col gap-7'}>
+			<form onSubmit={action} className={'flex flex-col gap-7'}>
 				<Input
 					type='string'
 					variant={'underlined'}
 					label='Name'
 					className='text-white'
+					required
+					errorMessage={errors.name?.message}
+					{...register('name')}
+		
 				/>
 				<Input
 					type='email'
 					variant={'underlined'}
 					label='Email'
 					className='text-white'
+					required
+					errorMessage={errors.email?.message}
+					{...register('email')}
+		
 				/>
 				<Input
 					type='string'
 					variant={'underlined'}
 					label='Phone number'
 					className='text-white'
+					required
+					errorMessage={errors.phoneNumber?.message}
+					{...register('phoneNumber')}
+		
 				/>
 				<Input
 					type='string'
 					variant={'underlined'}
 					label='Comment'
 					className='text-white'
+					required
+					errorMessage={errors.comment?.message}
+					{...register('comment')}
+		
 				/>
 				<div className='relative'>
 					<div className='flex gap-3 cursor-pointer'>

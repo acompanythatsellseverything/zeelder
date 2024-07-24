@@ -22,7 +22,7 @@ const schema: ZodType<IFormData> = z.object({
 });
 
 export default function CollaborateForm() {
-	let [date, setDate] = useState<any>(parseAbsoluteToLocal("2021-04-07T18:45:22Z"));
+	let [date, setDate] = useState<any>(now(getLocalTimeZone()));
 	const {
 		register,
 		handleSubmit,
@@ -39,6 +39,8 @@ export default function CollaborateForm() {
 			label='Enter your part material'
 			variant='underlined'
 			className='text-white'
+			required
+			errorMessage={errors.material?.message}
 			{...register('material')}
 		/>
 		<Input
@@ -46,7 +48,8 @@ export default function CollaborateForm() {
 			label='Enter your part quantity'
 			variant='underlined'
 			className='text-white'
-			
+			required
+			errorMessage={errors.quantity?.message}
 			{...register('quantity')}
 		/>
 		<Textarea
@@ -54,6 +57,8 @@ export default function CollaborateForm() {
 			label='Tell us about your part / needs'
 			variant='underlined'
 			className='text-white'
+			required
+			errorMessage={errors.about?.message}
 			{...register('about')}
 		/>
 		<Input
@@ -61,12 +66,18 @@ export default function CollaborateForm() {
 			label='Email'
 			variant='underlined'
 			className='text-white'
+			required
+			errorMessage={errors.email?.message}
 			{...register('email')}
 		/>
 		  <DatePicker
         label="Event Date"
         variant="underlined"
+				classNames={{
+					calendarContent: 'text-white'
+				}}
         hideTimeZone
+				isRequired={true}
 				value={date}
         onChange={setDate}
       />
@@ -77,7 +88,7 @@ export default function CollaborateForm() {
 					'py-[16px] text-white text-sm flex gap-3.5 justify-center items-center '
 				}
 			>
-				<span className={'font-medium'}>Get an instant quote</span>
+				<span className={'font-medium'}>Get custom quote</span>
 				<ArrowIcon color={'#FFFFFF'} />
 			</div>
 		</div>
