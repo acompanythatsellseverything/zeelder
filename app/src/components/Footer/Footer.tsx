@@ -5,8 +5,8 @@ import faceBookIcon from '@/images/utils/facebook.svg';
 import youTubeIcon from '@/images/utils/youTube.svg';
 import Link from 'next/link';
 import searchIcon from '@/images/utils/search.svg';
-import phoneIcon from '@/images/utils/phone.svg'
-import mailIcon from '@/images/utils/mail.svg'
+import phoneIcon from '@/images/utils/phone.svg';
+import mailIcon from '@/images/utils/mail.svg';
 import { Input } from '@nextui-org/react';
 
 export default function Footer() {
@@ -14,31 +14,38 @@ export default function Footer() {
 		<footer className={'py-16'}>
 			<Container>
 				<div className={'grid grid-cols-2 lg:grid-cols-8 md:grid-cols-3 gap-6'}>
-					<div className={'col-span-2 md:col-span-1 lg:col-span-3 lg:row-span-2 flex flex-col items-center lg:items-start'}>
+					<div
+						className={
+							'col-span-2 md:col-span-1 lg:col-span-3 lg:row-span-2 flex flex-col items-center lg:items-start'
+						}
+					>
 						<div className={'bg-logo h-[30px] w-[180px] bg-no-repeat'} />
 						<div className={'mt-5 text-[15px]'}>@2024 Zeelder.com</div>
 						<div className='mt-4 flex gap-4'>
-							<div
+							<Link
+								href={'https://www.facebook.com/zeelder.machinery'}
 								className={
 									'flex w-10 h-10 justify-center items-center border-1 border-light border-b-2 border-b-accent'
 								}
 							>
 								<Image src={faceBookIcon} alt='' />
-							</div>
-							<div
+							</Link>
+							<Link
+								href={'https://instagram.com/zeelder.machinery'}
 								className={
 									'flex w-10 h-10 justify-center items-center border-1 border-light border-b-2 border-b-accent'
 								}
 							>
 								<Image src={instIcon} alt='' />
-							</div>
-							<div
+							</Link>
+							<Link
+								href={'#'}
 								className={
 									'flex w-10 h-10 justify-center items-center border-1 border-light border-b-2 border-b-accent'
 								}
 							>
 								<Image src={youTubeIcon} alt='' />
-							</div>
+							</Link>
 						</div>
 					</div>
 
@@ -56,9 +63,9 @@ export default function Footer() {
 						<div>
 							<div className={'text-lg font-semibold'}>Information</div>
 							<div className='mt-5 grid grid-cols-1 gap-1'>
-								<Link href={''}>Privacy Policy</Link>
+								<Link href={'/privacy-policy'}>Privacy Policy</Link>
 								<Link href={''}>License Types</Link>
-								<Link href={''}>Terms and Conditions</Link>
+								<Link href={'terms-and-conditions'}>Terms and Conditions</Link>
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,5 @@
 interface IProps {
-	children: JSX.Element | string;
+	children: JSX.Element | string | JSX.Element[];
 	className?: string;
 	id?: string;
 }

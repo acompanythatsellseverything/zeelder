@@ -45,7 +45,7 @@ export default function NavBar() {
 					<ul className={'basis-full flex justify-center gap-3 lg:gap-6 px-2'}>
 						{navList.map((e) => (
 							<li key={e.title} className={'text-xs lg:text-base'}>
-								<Link href={e.href} className='hover:text-red-500'>
+								<Link href={`/${e.href}`} className='hover:text-red-500'>
 									{e.title}
 								</Link>
 							</li>
@@ -66,7 +66,7 @@ export default function NavBar() {
 			<NavbarMenu className='gap-0'>
 				{navList.map((item, index) => (
 					<NavbarMenuItem key={`${item}-${index}`} className={`py-4 ${ index != navList.length - 1 && 'border-b-1 border-gray-light'}`}>
-						<Link className='w-full hover:text-red-500' href={'#'}>
+						<Link className='w-full hover:text-red-500' href={`/${item.href}`}>
 							{item.title}
 						</Link>
 					</NavbarMenuItem>
