@@ -40,7 +40,15 @@ export default function page() {
 							otherwise constitutes use of the Site and your agreement to be
 							bound by these Terms of Use.
 						</p>
-						<ul className={`mt-10 flex flex-col gap-5 w-4/6 list-disc [&>li]:ml-5`}>
+						<h2 className='mt-8 text-2xl font-bold'>Summary of Key Terms</h2>
+						<div className='mt-4'>
+							It’s important that you read these entire Terms of Use; but, here
+							are some of the more significant terms that we want to bring to
+							your attention:
+						</div>
+						<ul
+							className={`mt-4 flex flex-col gap-5 md:w-4/6 list-disc [&>li]:ml-5`}
+						>
 							<li>
 								Each time you use the Site, this Terms of Use applies to your
 								use. Any updates to it will apply to you; so you should check
