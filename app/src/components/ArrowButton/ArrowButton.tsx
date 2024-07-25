@@ -39,7 +39,7 @@ export default function ArrowButton({ to, text }: IProps) {
 				isOpen={isOpen}
 				size='xl'
 				onOpenChange={setIsOpen}
-				className='rounded-sm'
+				className='rounded-sm lg:min-w-[560px]'
 			>
 				<ModalContent>
 					<div className='py-10 px-12'>
