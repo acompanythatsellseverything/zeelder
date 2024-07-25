@@ -6,6 +6,8 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import {DatePicker} from "@nextui-org/date-picker";
 import {now, getLocalTimeZone, parseAbsoluteToLocal} from "@internationalized/date";
 import { useState } from 'react';
+import { GTM_ID } from '@/constants/gtm';
+import TagManager, { TagManagerArgs } from 'react-gtm-module';
 
 interface IFormData {
 	material: string;
@@ -30,7 +32,20 @@ export default function CollaborateForm() {
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
-	const action: () => void = handleSubmit(async (data: IFormData) => {console.log(data)});
+	const action: () => void = handleSubmit(async (data: IFormData) => {
+		const tagManagerArgs: TagManagerArgs = {
+			gtmId: GTM_ID,
+			events: {
+				event: 'Collaborate_Form',
+				userData: {
+					...data,
+					date: date
+				},
+			},
+		};
+		
+		TagManager.initialize(tagManagerArgs);
+	});
 
 	return (
 		<form onSubmit={action} className={'mt-10 flex flex-col gap-7'}>

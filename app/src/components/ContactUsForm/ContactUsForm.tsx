@@ -7,6 +7,8 @@ import { Input } from '@nextui-org/react';
 import Image from 'next/image';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import addFileIcon from '@/images/utils/add-file.svg';
+import TagManager, { TagManagerArgs } from 'react-gtm-module';
+import { GTM_ID } from '@/constants/gtm';
 
 interface IFormData {
 	name: string;
@@ -30,7 +32,17 @@ export default function ContactUsForm() {
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
-	const action: () => void = handleSubmit(async (data: IFormData) => {console.log(data)});
+	const action: () => void = handleSubmit(async (data: IFormData) => {
+		const tagManagerArgs: TagManagerArgs = {
+			gtmId: GTM_ID,
+			events: {
+				event: 'Contact_Us',
+				userData: data,
+			},
+		};
+		
+		TagManager.initialize(tagManagerArgs);
+	});
 
 	return (
 		<div className={'p-10 bg-white rounded-sm'}>
@@ -43,7 +55,6 @@ export default function ContactUsForm() {
 					required
 					errorMessage={errors.name?.message}
 					{...register('name')}
-		
 				/>
 				<Input
 					type='email'
@@ -53,7 +64,6 @@ export default function ContactUsForm() {
 					required
 					errorMessage={errors.email?.message}
 					{...register('email')}
-		
 				/>
 				<Input
 					type='string'
@@ -63,7 +73,6 @@ export default function ContactUsForm() {
 					required
 					errorMessage={errors.phoneNumber?.message}
 					{...register('phoneNumber')}
-		
 				/>
 				<Input
 					type='string'
@@ -73,7 +82,6 @@ export default function ContactUsForm() {
 					required
 					errorMessage={errors.comment?.message}
 					{...register('comment')}
-		
 				/>
 				<div className='relative'>
 					<div className='flex gap-3 cursor-pointer'>

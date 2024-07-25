@@ -79,7 +79,7 @@ export default function Footer() {
 							}
 						/>
 					</div> */}
-					<div className='col-span-2 md:col-span-1 flex flex-col items-center gap-2 lg:items-start'>
+					<div className='col-span-2 md:col-span-1 lg:col-span-2 flex flex-col items-center gap-2 lg:items-start'>
 						<div className='flex gap-2'>
 							<div
 								className={
