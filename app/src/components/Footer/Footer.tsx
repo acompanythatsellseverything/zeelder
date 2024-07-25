@@ -64,7 +64,7 @@ export default function Footer() {
 							<div className={'text-lg font-semibold'}>Information</div>
 							<div className='mt-5 grid grid-cols-1 gap-1'>
 								<Link href={'/privacy-policy'}>Privacy Policy</Link>
-								<Link href={''}>License Types</Link>
+								{/* <Link href={''}>License Types</Link> */}
 								<Link href={'terms-and-conditions'}>Terms and Conditions</Link>
 							</div>
 						</div>
