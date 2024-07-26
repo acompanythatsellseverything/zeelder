@@ -43,6 +43,11 @@ export default function RootLayout({
         gtag('config', '${GA_ID}', {
         page_path: window.location.pathname,
       });`}
+
+					<Script
+						strategy='afterInteractive'
+						src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+					/>
 				</Script>
 				<Script id='clarity-script' strategy='afterInteractive'>
 					{`
