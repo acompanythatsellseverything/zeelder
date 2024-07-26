@@ -11,6 +11,7 @@ import img4 from '@/images/masonry/4.png';
 import img5 from '@/images/masonry/5.png';
 import img6 from '@/images/masonry/6.png';
 import img7 from '@/images/masonry/7.png';
+import Link from 'next/link';
 
 export default function EighthArticle() {
 	return (
@@ -18,7 +19,7 @@ export default function EighthArticle() {
 			<>
 				<div className='hidden xl:flex absolute h-full left-16 flex-col justify-center items-center top-0'>
 					<div
-						className={'w-0.5 grow basis-[15vh] bg-light rounded-b-md'}
+						className={'w-0.5 grow basis-[10vh] bg-light rounded-b-md'}
 					></div>
 					<span className={'mt-2.5 text-accent text-center text-xs'}>08</span>
 					<div className={'w-0.5 h-20 bg-accent mt-2.5 rounded-t-md'}></div>
@@ -35,7 +36,10 @@ export default function EighthArticle() {
 							}
 						>
 							<div className={'grid gap-2.5'}>
-								<div className='relative'>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative'
+								>
 									<Image
 										src={img0}
 										alt=''
@@ -49,8 +53,11 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
-								<div className='relative'>
+								</Link>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative'
+								>
 									<Image
 										src={img1}
 										alt=''
@@ -64,11 +71,14 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
+								</Link>
 							</div>
 
 							<div className={'grid gap-2.5'}>
-								<div className='relative'>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative'
+								>
 									<Image
 										src={img2}
 										alt=''
@@ -82,8 +92,11 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
-								<div className='relative'>
+								</Link>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative'
+								>
 									<Image
 										src={img3}
 										alt=''
@@ -97,11 +110,14 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
+								</Link>
 							</div>
 
 							<div className={'grid gap-2.5'}>
-								<div className='hidden md:block  relative'>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='hidden md:block  relative'
+								>
 									<Image
 										src={img4}
 										alt=''
@@ -115,8 +131,11 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
-								<div className='relative'>
+								</Link>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative'
+								>
 									<Image
 										src={img5}
 										alt=''
@@ -130,10 +149,13 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
+								</Link>
 							</div>
 							<div className={'grid gap-2.5'}>
-								<div className='relative'>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative'
+								>
 									<Image
 										src={img6}
 										alt=''
@@ -147,8 +169,11 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
-								<div className='hidden md:block relative'>
+								</Link>
+								<Link
+									href={'https://instagram.com/zeelder.machinery'}
+									className='hidden md:block relative'
+								>
 									<Image
 										src={img7}
 										alt=''
@@ -162,7 +187,7 @@ export default function EighthArticle() {
 										<div className='text-white'>zeelder.inst</div>
 										<Image src={insIcon} alt='' />
 									</div>
-								</div>
+								</Link>
 							</div>
 						</div>
 					</div>
