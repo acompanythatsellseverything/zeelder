@@ -3,8 +3,12 @@ import { z, ZodType } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import {DatePicker} from "@nextui-org/date-picker";
-import {now, getLocalTimeZone, parseAbsoluteToLocal} from "@internationalized/date";
+import { DatePicker } from '@nextui-org/date-picker';
+import {
+	now,
+	getLocalTimeZone,
+	parseAbsoluteToLocal,
+} from '@internationalized/date';
 import { useState } from 'react';
 import { GTM_ID } from '@/constants/analytics';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
@@ -32,88 +36,92 @@ export default function CollaborateForm() {
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
-	const action: () => void = handleSubmit(async (data: IFormData) => {
-		const tagManagerArgs: TagManagerArgs = {
-			gtmId: GTM_ID,
-			events: {
-				event: 'Collaborate_Form',
-				userData: {
-					...data,
-					date: date
+	const action: () => void = handleSubmit((data: IFormData) => {
+		fetch('https://hook.eu1.make.com/jusd51ydiv4xmgqgqrutwcjh2xob9o6t', {
+			method: 'POST',
+			body: JSON.stringify(data),
+		}).then((res) => {
+			const tagManagerArgs: TagManagerArgs = {
+				gtmId: GTM_ID,
+				events: {
+					event: 'Collaborate_Form',
+					userData: {
+						...data,
+						date: date,
+					},
 				},
-			},
-		};
-		
-		TagManager.initialize(tagManagerArgs);
+			};
+
+			TagManager.initialize(tagManagerArgs);
+		});
 	});
 
 	return (
 		<form onSubmit={action} className={'mt-10 flex flex-col gap-7'}>
-		<Input
-			type='string'
-			label='Enter your part material'
-			variant='underlined'
-			className='text-white'
-			required
-			errorMessage={errors.material?.message}
-			{...register('material')}
-		/>
-		<Input
-			type='string'
-			label='Enter your part quantity'
-			variant='underlined'
-			className='text-white'
-			required
-			errorMessage={errors.quantity?.message}
-			{...register('quantity')}
-		/>
-		<Textarea
-			type='string'
-			label='Tell us about your part / needs'
-			variant='underlined'
-			className='text-white'
-			required
-			errorMessage={errors.about?.message}
-			{...register('about')}
-		/>
-		<Input
-			type='email'
-			label='Email'
-			variant='underlined'
-			className='text-white'
-			required
-			errorMessage={errors.email?.message}
-			{...register('email')}
-		/>
-		  <DatePicker
-        label="Event Date"
-        variant="underlined"
+			<Input
+				type='string'
+				label='Enter your part material'
+				variant='underlined'
+				className='text-white'
+				required
+				errorMessage={errors.material?.message}
+				{...register('material')}
+			/>
+			<Input
+				type='string'
+				label='Enter your part quantity'
+				variant='underlined'
+				className='text-white'
+				required
+				errorMessage={errors.quantity?.message}
+				{...register('quantity')}
+			/>
+			<Textarea
+				type='string'
+				label='Tell us about your part / needs'
+				variant='underlined'
+				className='text-white'
+				required
+				errorMessage={errors.about?.message}
+				{...register('about')}
+			/>
+			<Input
+				type='email'
+				label='Email'
+				variant='underlined'
+				className='text-white'
+				required
+				errorMessage={errors.email?.message}
+				{...register('email')}
+			/>
+			<DatePicker
+				label='Event Date'
+				variant='underlined'
 				classNames={{
-					calendarContent: 'text-white'
+					calendarContent: 'text-white',
 				}}
-        hideTimeZone
+				hideTimeZone
 				isRequired={true}
 				value={date}
-        onChange={setDate}
-      />
-		<button type='submit' className={'w-full relative mt-5'}>
-		<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
-			<div
-				className={
-					'py-[16px] text-white text-sm flex gap-3.5 justify-center items-center '
-				}
-			>
-				<span className={'font-medium'}>Get custom quote</span>
-				<ArrowIcon color={'#FFFFFF'} />
-			</div>
-		</div>
-		<div
-			className={
-				'w-full h-full absolute z-0 bg-accent-dark px-[48px] top-[4px] left-[4px] rounded-sm'
-			}
-		/>
-	</button>
-
-	</form>
-	)
+				onChange={setDate}
+			/>
+			<button type='submit' className={'w-full relative mt-5'}>
+				<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
+					<div
+						className={
+							'py-[16px] text-white text-sm flex gap-3.5 justify-center items-center '
+						}
+					>
+						<span className={'font-medium'}>Get custom quote</span>
+						<ArrowIcon color={'#FFFFFF'} />
+					</div>
+				</div>
+				<div
+					className={
+						'w-full h-full absolute z-0 bg-accent-dark px-[48px] top-[4px] left-[4px] rounded-sm'
+					}
+				/>
+			</button>
+		</form>
+	);
 }

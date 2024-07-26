@@ -32,16 +32,21 @@ export default function ContactUsForm() {
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
-	const action: () => void = handleSubmit(async (data: IFormData) => {
-		const tagManagerArgs: TagManagerArgs = {
-			gtmId: GTM_ID,
-			events: {
-				event: 'Contact_Us',
-				userData: data,
-			},
-		};
-		
-		TagManager.initialize(tagManagerArgs);
+	const action: () => void = handleSubmit((data: IFormData) => {
+		fetch('https://hook.eu1.make.com/jusd51ydiv4xmgqgqrutwcjh2xob9o6t', {
+			method: 'POST',
+			body: JSON.stringify(data),
+		}).then((res) => {
+			const tagManagerArgs: TagManagerArgs = {
+				gtmId: GTM_ID,
+				events: {
+					event: 'Contact_Us',
+					userData: data,
+				},
+			};
+
+			TagManager.initialize(tagManagerArgs);
+		});
 	});
 
 	return (
