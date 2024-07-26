@@ -33,7 +33,7 @@ export default function ContactUsForm() {
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const action: () => void = handleSubmit((data: IFormData) => {
-		fetch('https://hook.eu1.make.com/jusd51ydiv4xmgqgqrutwcjh2xob9o6t', {
+		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
 			method: 'POST',
 			body: JSON.stringify(data),
 		}).then((res) => {

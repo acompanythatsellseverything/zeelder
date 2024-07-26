@@ -37,7 +37,7 @@ export default function CollaborateForm() {
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const action: () => void = handleSubmit((data: IFormData) => {
-		fetch('https://hook.eu1.make.com/jusd51ydiv4xmgqgqrutwcjh2xob9o6t', {
+		fetch('https://hook.us1.make.com/on6e3u9ued2d1x691d3bsdhjl8kesrsm', {
 			method: 'POST',
 			body: JSON.stringify(data),
 		}).then((res) => {
