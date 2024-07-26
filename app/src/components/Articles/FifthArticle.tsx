@@ -4,17 +4,19 @@ import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Image from 'next/image';
 import premiumIcon from '@/images/utils/premium-quality.svg';
 import handshakeIcon from '@/images/utils/handshake.svg';
+import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function FifthArticle() {
 	return (
 		<Container className={'relative overflow-visible'} id='quality'>
 			<>
-				<div className='hidden xl:flex absolute h-full top-[-80px] left-16 flex-col justify-center items-center'>
-					<div className={'w-0.5 h-32 bg-light rounded-b-md'}></div>
+				{/* <div className='hidden xl:flex absolute h-full top-[-80px] left-16 flex-col justify-center items-center'>
+					<div className={'w-0.5 h-[11vh] bg-light rounded-b-md'}></div>
 					<span className={'mt-2.5 text-accent text-center text-xs'}>05</span>
 					<div className={'w-0.5 h-44 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div>
+				</div> */}
+				<ArticleScroll title='05' coloredLineHeight='44'/>
 				<article className='mt-20'>
 					<div>
 						<ArticleTitle className=''>

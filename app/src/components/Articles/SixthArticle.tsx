@@ -3,16 +3,18 @@ import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Container from '../Container/Container';
 import subtractImage from '@/images/subtract.png';
 import playIcon from '@/images/utils/play.svg';
+import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function SixthArticle() {
 	return (
 		<Container className={'relative'}>
 			<>
-				<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
+				{/* <div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
 					<span className={'text-accent text-center text-xs'}>06</span>
 					<div className={'w-0.5 h-32 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div>
+				</div> */}
+				<ArticleScroll title='06' coloredLineHeight='8'/>
 				<article className='mt-16'>
 					<div className=''>
 						<ArticleTitle>Watch our production video</ArticleTitle>

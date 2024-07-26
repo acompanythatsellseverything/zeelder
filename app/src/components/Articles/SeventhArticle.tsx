@@ -4,6 +4,7 @@ import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Container from '../Container/Container';
 import Image from 'next/image';
 import raspberryPyImage from '@/images/slide-08-image.png'
+import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function SeventhArticle() {
 	return (
@@ -13,13 +14,13 @@ export default function SeventhArticle() {
 			}
 		>
 			<>
-				<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
-					<div className={'w-0.5 h-40 bg-dark-light rounded-b-md'}></div>
+				{/* <div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
+					<div className={'w-0.5 h-[13vh] bg-dark-light rounded-b-md'}></div>
 					<span className={'text-white text-center text-xs mt-2.5'}>07</span>
 					<div className={'w-0.5 h-40 bg-white mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-dark-light rounded-b-md'}></div>
-				</div>
-				
+				</div> */}
+				<ArticleScroll title='07' color='white' topLineHeight='[13vh]' coloredLineHeight='16'/>
 				<div className={'right-[-150px] bottom-32 md:block absolute md:right-[-20px] lg:right-0 md:bottom-12'}>
 					<Image src={raspberryPyImage} alt='' className='max-w-64 md:max-w-64 lg:max-w-[580px]'/>
 				</div>

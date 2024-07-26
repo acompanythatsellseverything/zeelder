@@ -5,6 +5,7 @@ import Image from 'next/image';
 import checkIcon from '@/images/utils/check-square.svg';
 import UploadCADForm from '../UploadCADForm/UploadCADForm';
 import ArticleSubTitle from '../ArticleSubTitle/ArticleSubTitle';
+import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function FirstArticle() {
 	return (
@@ -14,11 +15,7 @@ export default function FirstArticle() {
 			}
 		>
 			<article>
-				<div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
-					<span className={'text-accent text-center text-xs'}>01</span>
-					<div className={'w-0.5 h-32 bg-accent mt-2.5 rounded-t-md'}></div>
-					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div>
+				<ArticleScroll title='01' coloredLineHeight='32'/>
 				<div className=''>
 						<ArticleTitle className='max-w-xl'>
 							Order custom parts online, get them manufactured and shipped the

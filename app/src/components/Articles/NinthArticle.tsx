@@ -3,6 +3,7 @@ import Container from '../Container/Container';
 import Image from 'next/image';
 import slideImage from '@/images/slide-10-image.png';
 import ContactUsForm from '../ContactUsForm/ContactUsForm';
+import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function NinthArticle() {
 	return (
@@ -13,12 +14,14 @@ export default function NinthArticle() {
 			}
 		>
 			<>
-				<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
-					<div className={'w-0.5 h-32 bg-dark-light rounded-b-md'}></div>
+				{/* <div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
+					<div className={'w-0.5 h-[10vh] bg-dark-light rounded-b-md'}></div>
 					<span className={'text-white text-center text-xs mt-2.5'}>9</span>
 					<div className={'w-0.5 h-16 bg-white mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-dark-light rounded-b-md'}></div>
-				</div>
+				</div> */}
+				
+				<ArticleScroll title='09' color='white' topLineHeight='20' coloredLineHeight='8'/>
 				<div
 					className={
 						'md:block absolute top-14 md:left-0 lg:left-[100px] md:bottom-20'

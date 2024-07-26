@@ -12,19 +12,22 @@ import img5 from '@/images/masonry/5.png';
 import img6 from '@/images/masonry/6.png';
 import img7 from '@/images/masonry/7.png';
 import Link from 'next/link';
+import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function EighthArticle() {
 	return (
 		<Container className={'relative overflow-visible'}>
 			<>
-				<div className='hidden xl:flex absolute h-full left-16 flex-col justify-center items-center top-0'>
+				{/* <div className='hidden xl:flex absolute h-full left-16 flex-col justify-center items-center top-0'>
 					<div
 						className={'w-0.5 grow basis-[10vh] bg-light rounded-b-md'}
 					></div>
 					<span className={'mt-2.5 text-accent text-center text-xs'}>08</span>
 					<div className={'w-0.5 h-20 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div>
+				</div> */}
+				
+				<ArticleScroll title='08' topLineHeight='20' coloredLineHeight='8'/>
 				<article>
 					<div className='pt-20'>
 						<ArticleTitle>Our Instagram</ArticleTitle>
