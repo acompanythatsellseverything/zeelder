@@ -6,7 +6,7 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import {DatePicker} from "@nextui-org/date-picker";
 import {now, getLocalTimeZone, parseAbsoluteToLocal} from "@internationalized/date";
 import { useState } from 'react';
-import { GTM_ID } from '@/constants/gtm';
+import { GTM_ID } from '@/constants/analytics';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 
 interface IFormData {

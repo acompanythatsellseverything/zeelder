@@ -8,7 +8,7 @@ import Image from 'next/image';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import addFileIcon from '@/images/utils/add-file.svg';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
-import { GTM_ID } from '@/constants/gtm';
+import { GTM_ID } from '@/constants/analytics';
 
 interface IFormData {
 	name: string;

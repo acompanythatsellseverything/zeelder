@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",
     "@internationalized/date": "^3.5.5",
+    "@next/third-parties": "^14.2.5",
     "@nextui-org/react": "^2.4.2",
     "@types/react-gtm-module": "^2.0.3",
     "@types/validator": "^13.12.0",

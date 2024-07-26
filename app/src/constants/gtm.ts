@@ -1,1 +1,0 @@
-export const GTM_ID = 'GTM-5482CTS8'
