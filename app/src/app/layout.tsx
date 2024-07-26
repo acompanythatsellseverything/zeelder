@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { GoogleAnalytics } from '@next/third-parties/google';
+// import { GoogleAnalytics } from '@next/third-parties/google';
 import { Manrope } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/providers/Providers';
@@ -19,11 +19,11 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	console.log(GA_ID, GTM_ID, MICROSOFT_CLARITY_ID)
+	console.log(GA_ID, GTM_ID, MICROSOFT_CLARITY_ID);
 	return (
 		<html lang='en'>
 			<head>
-			<Script
+				<Script
 					id='gtm-config'
 					strategy='beforeInteractive'
 					dangerouslySetInnerHTML={{
@@ -36,20 +36,14 @@ export default function RootLayout({
             `,
 					}}
 				/>
-			
-			</head>
-			<body className={inter.className}>
-			<noscript>
-					<iframe
-						src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-						height='0'
-						width='0'
-						style={{ display: 'none', visibility: 'hidden' }}
-					></iframe>
-				</noscript>
-				<Providers>{children}</Providers>
-
-				<GoogleAnalytics gaId={GA_ID} />
+				<Script strategy='lazyOnload' id='data-layer'>
+					{`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}', {
+        page_path: window.location.pathname,
+      });`}
+				</Script>
 				<Script id='clarity-script' strategy='afterInteractive'>
 					{`
 					(function(c,l,a,r,i,t,y){
@@ -59,6 +53,19 @@ export default function RootLayout({
     			})(window, document, "clarity", "script", "${MICROSOFT_CLARITY_ID}");
 					`}
 				</Script>
+			</head>
+			<body className={inter.className}>
+				<noscript>
+					<iframe
+						src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+						height='0'
+						width='0'
+						style={{ display: 'none', visibility: 'hidden' }}
+					></iframe>
+				</noscript>
+				<Providers>{children}</Providers>
+
+				{/* <GoogleAnalytics gaId={GA_ID} /> */}
 			</body>
 		</html>
 	);
