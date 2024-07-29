@@ -37,9 +37,16 @@ export default function CollaborateForm() {
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const action: () => void = handleSubmit((data: IFormData) => {
+		const body = {
+			...data,
+			date,
+	};
 		fetch('https://hook.us1.make.com/on6e3u9ued2d1x691d3bsdhjl8kesrsm', {
 			method: 'POST',
-			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(body),
 		}).then((res) => {
 			const tagManagerArgs: TagManagerArgs = {
 				gtmId: GTM_ID,
