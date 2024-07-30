@@ -15,6 +15,7 @@ interface IFormData {
 	email: string;
 	phoneNumber: string;
 	comment: string;
+	// file?: any;
 }
 
 const schema: ZodType<IFormData> = z.object({
@@ -22,6 +23,7 @@ const schema: ZodType<IFormData> = z.object({
 	email: z.string().email('Incorrect email'),
 	phoneNumber: z.string().refine(isMobilePhone),
 	comment: z.string(),
+	// file: z.any()
 });
 
 export default function ContactUsForm() {
@@ -33,6 +35,7 @@ export default function ContactUsForm() {
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const action: () => void = handleSubmit((data: IFormData) => {
+		// console.log('data',data)
 		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
 			method: 'POST',
 			headers: {
@@ -97,6 +100,7 @@ export default function ContactUsForm() {
 						<div>Add file</div>
 					</div>
 					<input
+						// {...register('file')}
 						type='file'
 						className='absolute top-0 opacity-0 cursor-pointer w-full'
 					/>
