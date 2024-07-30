@@ -2,8 +2,7 @@
 import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Button, cn, Radio, RadioGroup } from '@nextui-org/react';
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
+import { cn, Radio, RadioGroup } from '@nextui-org/react';
 
 interface IFormData {
 	complexity: string;

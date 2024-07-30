@@ -7,7 +7,6 @@ import { DatePicker } from '@nextui-org/date-picker';
 import {
 	now,
 	getLocalTimeZone,
-	parseAbsoluteToLocal,
 } from '@internationalized/date';
 import { useState } from 'react';
 import { GTM_ID } from '@/constants/analytics';
@@ -93,11 +92,12 @@ export default function CollaborateForm() {
 				{...register('about')}
 			/>
 			<Input
-				type='email'
+				// type='email'
 				label='Email'
 				variant='underlined'
 				className='text-white'
 				required
+				isInvalid={Boolean(errors.email?.message)}
 				errorMessage={errors.email?.message}
 				{...register('email')}
 			/>

@@ -1,4 +1,3 @@
-'use client';
 import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -21,7 +20,7 @@ interface IFormData {
 const schema: ZodType<IFormData> = z.object({
 	name: z.string(),
 	email: z.string().email('Incorrect email'),
-	phoneNumber: z.string().refine(isMobilePhone),
+	phoneNumber: z.string().refine(isMobilePhone, "Invalid phone number"),
 	comment: z.string(),
 	// file: z.any()
 });
@@ -33,7 +32,7 @@ export default function ContactUsForm() {
 		setError,
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
-
+	console.log('errors',errors)
 	const action: () => void = handleSubmit((data: IFormData) => {
 		// console.log('data',data)
 		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
@@ -68,11 +67,11 @@ export default function ContactUsForm() {
 					{...register('name')}
 				/>
 				<Input
-					type='email'
 					variant={'underlined'}
 					label='Email'
 					className='text-white'
 					required
+					isInvalid={Boolean(errors.email?.message)}
 					errorMessage={errors.email?.message}
 					{...register('email')}
 				/>
@@ -82,6 +81,7 @@ export default function ContactUsForm() {
 					label='Phone number'
 					className='text-white'
 					required
+					isInvalid={Boolean(errors.phoneNumber?.message)}
 					errorMessage={errors.phoneNumber?.message}
 					{...register('phoneNumber')}
 				/>
