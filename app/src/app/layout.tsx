@@ -19,7 +19,6 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	console.log(GA_ID, GTM_ID, MICROSOFT_CLARITY_ID);
 	return (
 		<html lang='en'>
 			<head>

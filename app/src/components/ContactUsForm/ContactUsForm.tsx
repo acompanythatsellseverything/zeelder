@@ -32,7 +32,6 @@ export default function ContactUsForm() {
 		setError,
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
-	console.log('errors',errors)
 	const action: () => void = handleSubmit((data: IFormData) => {
 		// console.log('data',data)
 		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
