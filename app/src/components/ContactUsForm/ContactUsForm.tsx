@@ -14,15 +14,15 @@ interface IFormData {
 	email: string;
 	phoneNumber: string;
 	comment: string;
-	// file?: any;
+	file?: File[];
 }
 
 const schema: ZodType<IFormData> = z.object({
 	name: z.string(),
 	email: z.string().email('Incorrect email'),
-	phoneNumber: z.string().refine(isMobilePhone, "Invalid phone number"),
+	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number'),
 	comment: z.string(),
-	// file: z.any()
+	file: z.any(),
 });
 
 export default function ContactUsForm() {
@@ -33,13 +33,21 @@ export default function ContactUsForm() {
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 	const action: () => void = handleSubmit((data: IFormData) => {
-		// console.log('data',data)
+		const formData = new FormData();
+		if (data.file) {
+			formData.append('file', data.file[0]);
+		}
+		formData.append('name', data.name);
+		formData.append('email', data.email);
+		formData.append('phoneNumber', data.phoneNumber);
+		formData.append('comment', data.comment);
+
 		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(data),
+			body: formData,
 		}).then((res) => {
 			const tagManagerArgs: TagManagerArgs = {
 				gtmId: GTM_ID,
@@ -99,8 +107,10 @@ export default function ContactUsForm() {
 						<div>Add file</div>
 					</div>
 					<input
-						// {...register('file')}
+						{...register('file')}
 						type='file'
+						accept='image/*,.pdf'
+						multiple={false}
 						className='absolute top-0 opacity-0 cursor-pointer w-full'
 					/>
 				</div>
