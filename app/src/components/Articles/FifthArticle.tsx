@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import Container from '../Container/Container';
 import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Image from 'next/image';
@@ -7,6 +8,25 @@ import handshakeIcon from '@/images/utils/handshake.svg';
 import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function FifthArticle() {
+	const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+	const isTablet = windowDimensions.width > 768 && windowDimensions.width < 1024;
+	const isLaptop = windowDimensions.width > 1024;
+
 	return (
 		<Container className={'relative overflow-visible'} id='quality'>
 			<>
@@ -16,7 +36,7 @@ export default function FifthArticle() {
 					<div className={'w-0.5 h-44 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div> */}
-				<ArticleScroll title='05' coloredLineHeight='44'/>
+				<ArticleScroll title='05' coloredLineHeight='44' />
 				<article className='mt-20'>
 					<div>
 						<ArticleTitle className=''>
@@ -72,24 +92,28 @@ export default function FifthArticle() {
 								</>
 							</ArticleTitle>
 							{/*TODO: Hhmm there is something wrong */}
-							<div className='mt-10 w-full grid grid-cols-4 md:grid-cols-5 lg:grid-cols-7 [&:nth-child(7n)]:bg-red-500'>
-								{Array.from(Array(35).keys()).map((index) => (
-									<div
-										key={index}
-										className={`p-6 flex justify-center items-center 
-											${(index + 1) % 7 !== 0 && 'border-r-1'}
-											${index + 1 <= 7 * 4 && 'border-b-1'}
+							<div className='mt-10 w-full grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7'>
+								{Array.from(Array(35).keys()).map((index) => {
+									const cols = isLaptop ? 7 : (isTablet ? 5 : 3);
+									return (
+										<div
+											key={index}
+											className={`p-6 flex justify-center items-center 
+												${(index + 1) % cols !== 0 && 'border-r-1'}
+											${index + 1 <= cols * 4 && 'border-b-1'}
+											${index + 1 > cols * 5 ? 'hidden': ''}
 											`}
-									>
-										<Image
-											src={`/trusted-by/image-${index + 1}.png`}
-											alt=''
-											width={100}
-											height={100}
-											className='object-cover'
-										/>
-									</div>
-								))}
+										>
+											<Image
+												src={`/trusted-by/image-${index + 1}.png`}
+												alt=''
+												width={100}
+												height={100}
+												className='object-cover'
+											/>
+										</div>
+									);
+								})}
 							</div>
 						</div>
 					</div>
