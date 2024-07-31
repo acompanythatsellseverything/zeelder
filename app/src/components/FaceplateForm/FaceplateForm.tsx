@@ -2,6 +2,81 @@
 import { cn, Radio, RadioGroup } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 
+
+
+
+const costOfPlate = {
+	"simple" : {
+		"small": {
+			"1": 12.88,
+			"100": 0.85,
+			"500": 0.57,
+			"1000": 0.52,
+			"10000": 0.36
+		},
+		"medium": {
+			"1": 14.70,
+			"100": 1.80,
+			"500": 1.44,
+			"1000": 1.24,
+			"10000": 0.80
+		},
+		"large": {
+			"1": 17.57,
+			"100": 3.16,
+			"500": 2.47,
+			"1000": 2.29,
+			"10000": 1.43
+		},
+	},
+	"moderate": {
+		"small": {
+			"1": 13.55,
+			"100": 1.01,
+			"500": 0.81,
+			"1000": 0.71,
+			"10000": 0.46
+		},
+		"medium": {
+			"1": 16.05,
+			"100": 2.36,
+			"500": 1.81,
+			"1000": 1.61,
+			"10000": 0.96
+		},
+		"large": {
+			"1": 19.59,
+			"100": 3.92,
+			"500": 3.00,
+			"1000": 2.79,
+			"10000": 1.59
+		},
+	},
+	"heavy": {
+		"small": {
+			"1": 20.22,
+			"100": 3.45,
+			"500": 2.47,
+			"1000": 2.15,
+			"10000": 1.07
+		},
+		"medium": {
+			"1": 29.42,
+			"100": 6.33,
+			"500": 4.70,
+			"1000": 4.02,
+			"10000": 1.93
+		},
+		"large": {
+			"1": 30.39,
+			"100": 9.71,
+			"500": 6.92,
+			"1000": 5.88,
+			"10000": 3.15
+		},
+	}
+}
+
 const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
 	return (
@@ -23,17 +98,18 @@ const CustomRadio = (props: any) => {
 };
 
 export default function FaceplateForm() {
-	const [selectedW, setSelectedW] = useState('0');
-	const [selectedS, setSelectedS] = useState('0');
-	const [selectedC, setSelectedC] = useState('1');
+	const [selectedW, setSelectedW] = useState<'simple' | 'moderate' | 'heavy'>('simple');
+	const [selectedS, setSelectedS] = useState<'small' | 'medium' | 'large'>('small');
+	const [selectedC, setSelectedC] = useState<'1' | '100' | '500' | '1000' | '10000'>('1');
 	const baseCost = 12.88;
 	const [value, setValue] = useState(baseCost)
 	useEffect(() => {
-		const wCost = baseCost / 100 * Number(selectedW);
-		const sCost = baseCost / 100 * Number(selectedS);
-		const onePlateCost = baseCost + wCost + sCost;
-		const result = onePlateCost - (onePlateCost / 100 * Number(selectedC))
-		setValue(Math.ceil(result * 100) / 100);
+		// const wCost = baseCost / 100 * Number(selectedW);
+		// const sCost = baseCost / 100 * Number(selectedS);
+		// const onePlateCost = baseCost + wCost + sCost;
+		// const result = onePlateCost - (onePlateCost / 100 * Number(selectedC))
+		// setValue(Math.ceil(result * 100) / 100);
+		setValue(costOfPlate[selectedW][selectedS][selectedC])
 	}, [selectedW, selectedC, selectedS])
 
 	return (
@@ -48,11 +124,12 @@ export default function FaceplateForm() {
 							wrapper: cn('flex flex-row gap-0 w-full '),
 						}}
 						value={selectedW}
+						//@ts-ignore
 						onValueChange={setSelectedW}
 					>
-						<CustomRadio value='0'>Simple</CustomRadio>
-						<CustomRadio value='5.2'>Moderate</CustomRadio>
-						<CustomRadio value='57'>Heavy</CustomRadio>
+						<CustomRadio value='simple'>Simple</CustomRadio>
+						<CustomRadio value='moderate'>Moderate</CustomRadio>
+						<CustomRadio value='heavy'>Heavy</CustomRadio>
 					</RadioGroup>
 
 					<RadioGroup
@@ -62,11 +139,12 @@ export default function FaceplateForm() {
 							wrapper: cn('flex flex-row gap-0 '),
 						}}
 						value={selectedS}
+						//@ts-ignore
 						onValueChange={setSelectedS}
 					>
-						<CustomRadio value='0'>Small</CustomRadio>
-						<CustomRadio value='14.1'>Medium</CustomRadio>
-						<CustomRadio value='36.4'>Large</CustomRadio>
+						<CustomRadio value='small'>Small</CustomRadio>
+						<CustomRadio value='medium'>Medium</CustomRadio>
+						<CustomRadio value='large'>Large</CustomRadio>
 					</RadioGroup>
 
 					<RadioGroup
@@ -76,13 +154,14 @@ export default function FaceplateForm() {
 							wrapper: cn('flex flex-row gap-0 '),
 						}}
 						value={selectedC}
+						//@ts-ignore
 						onValueChange={setSelectedC}
 					>
 						<CustomRadio value='1'>1</CustomRadio>
-						<CustomRadio value='70'>100</CustomRadio>
-						<CustomRadio value='75'>500</CustomRadio>
-						<CustomRadio value='80'>1000</CustomRadio>
-						<CustomRadio value='85'>10 000</CustomRadio>
+						<CustomRadio value='100'>100</CustomRadio>
+						<CustomRadio value='500'>500</CustomRadio>
+						<CustomRadio value='1000'>1000</CustomRadio>
+						<CustomRadio value='10000'>10 000</CustomRadio>
 					</RadioGroup>
 				</div>
 			</div>
@@ -93,7 +172,7 @@ export default function FaceplateForm() {
 			>
 				<span>Estimated Cost Per Part:</span>
 
-				<span className={'text-accent'}>€{value}</span>
+				<span className={'text-accent'}>€{value.toFixed(2)}</span>
 			</div>
 			{/* <button type='submit' className={'w-full relative mt-10'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
