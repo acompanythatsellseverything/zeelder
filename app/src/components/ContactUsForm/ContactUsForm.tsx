@@ -1,3 +1,4 @@
+'use client'
 import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -8,6 +9,7 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import addFileIcon from '@/images/utils/add-file.svg';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { GTM_ID } from '@/constants/analytics';
+import { useState } from 'react';
 
 interface IFormData {
 	name: string;
@@ -28,10 +30,12 @@ const schema: ZodType<IFormData> = z.object({
 export default function ContactUsForm() {
 	const {
 		register,
+		getValues,
 		handleSubmit,
 		setError,
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
+	const [selectedFile, setSelectedFile] = useState('') 
 	const action: () => void = handleSubmit((data: IFormData) => {
 		// const formData = new FormData();
 		// if (data.file) {
@@ -41,19 +45,19 @@ export default function ContactUsForm() {
 		// formData.append('email', data.email);
 		// formData.append('phoneNumber', data.phoneNumber);
 		// formData.append('comment', data.comment);
-
+		const {...rest} = data;
 		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify(rest),
 		}).then((res) => {
 			const tagManagerArgs: TagManagerArgs = {
 				gtmId: GTM_ID,
 				events: {
 					event: 'Contact_Us',
-					userData: data,
+					userData: rest,
 				},
 			};
 
@@ -104,10 +108,11 @@ export default function ContactUsForm() {
 				<div className='relative'>
 					<div className='flex gap-3 cursor-pointer'>
 						<Image src={addFileIcon} alt={''} />
-						<div>Add file</div>
+						<div>{selectedFile || 'Add file'}</div>
 					</div>
 					<input
 						// {...register('file')}
+						onChange={(e) => setSelectedFile(e.target.value.split('\\')[2])}
 						type='file'
 						accept='image/*,.pdf'
 						multiple={false}
