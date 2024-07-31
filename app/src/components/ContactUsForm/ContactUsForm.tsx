@@ -45,7 +45,7 @@ export default function ContactUsForm() {
 		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'multipart/form-data'
 			},
 			body: formData,
 		}).then((res) => {
