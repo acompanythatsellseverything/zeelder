@@ -9,8 +9,8 @@ import ArticleScroll from '../ArticleScroll/ArticleScroll';
 
 export default function FifthArticle() {
 	const [windowDimensions, setWindowDimensions] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export default function FifthArticle() {
         height: window.innerHeight,
       });
     };
+		handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
