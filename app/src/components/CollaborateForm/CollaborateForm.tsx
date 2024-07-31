@@ -24,7 +24,7 @@ const schema: ZodType<IFormData> = z.object({
 });
 
 export default function CollaborateForm() {
-	let [date, setDate] = useState<any>(now(getLocalTimeZone()));
+	// let [date, setDate] = useState<any>(now(getLocalTimeZone()));
 	const {
 		register,
 		handleSubmit,
@@ -35,7 +35,6 @@ export default function CollaborateForm() {
 	const action: () => void = handleSubmit((data: IFormData) => {
 		const body = {
 			...data,
-			date,
 		};
 		fetch('https://hook.us1.make.com/on6e3u9ued2d1x691d3bsdhjl8kesrsm', {
 			method: 'POST',
@@ -50,7 +49,6 @@ export default function CollaborateForm() {
 					event: 'Collaborate_Form',
 					userData: {
 						...data,
-						date: date,
 					},
 				},
 			};
@@ -98,7 +96,7 @@ export default function CollaborateForm() {
 				errorMessage={errors.email?.message}
 				{...register('email')}
 			/>
-			<DatePicker
+			{/* <DatePicker
 				label='Event Date'
 				variant='underlined'
 				classNames={{
@@ -108,7 +106,7 @@ export default function CollaborateForm() {
 				isRequired={true}
 				value={date}
 				onChange={setDate}
-			/>
+			/> */}
 			<button type='submit' className={'w-full relative mt-5'}>
 				<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 					<div
