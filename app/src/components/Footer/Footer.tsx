@@ -4,10 +4,8 @@ import instIcon from '@/images/utils/instagram-red.svg';
 import faceBookIcon from '@/images/utils/facebook.svg';
 import youTubeIcon from '@/images/utils/youTube.svg';
 import Link from 'next/link';
-import searchIcon from '@/images/utils/search.svg';
 import phoneIcon from '@/images/utils/phone.svg';
 import mailIcon from '@/images/utils/mail.svg';
-import { Input } from '@nextui-org/react';
 
 export default function Footer() {
 	return (
@@ -87,7 +85,7 @@ export default function Footer() {
 						/>
 					</div> */}
 					<div className='col-span-2 md:col-span-1 lg:col-span-2 flex flex-col items-center gap-2 lg:items-start'>
-						<div className='flex gap-2'>
+						{/* <div className='flex gap-2'>
 							<div
 								className={
 									'flex w-7 h-7 justify-center items-center border-1 border-light border-b-2 border-b-accent'
@@ -96,7 +94,7 @@ export default function Footer() {
 								<Image src={phoneIcon} alt='' />
 							</div>
 							<span className='text-xl font-semibold'>+4(465)565-96-25</span>
-						</div>
+						</div> */}
 						<div className='flex gap-2'>
 							<div
 								className={
@@ -105,7 +103,7 @@ export default function Footer() {
 							>
 								<Image src={mailIcon} alt='' />
 							</div>
-							<span className='text-xl font-semibold'>infpq1@gmail.com</span>
+							<span className='text-xl font-semibold'>order@zeelder.com</span>
 						</div>
 					</div>
 				</div>
