@@ -4,10 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import { DatePicker } from '@nextui-org/date-picker';
-import {
-	now,
-	getLocalTimeZone,
-} from '@internationalized/date';
+import { now, getLocalTimeZone } from '@internationalized/date';
 import { useState } from 'react';
 import { GTM_ID } from '@/constants/analytics';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
@@ -39,11 +36,11 @@ export default function CollaborateForm() {
 		const body = {
 			...data,
 			date,
-	};
+		};
 		fetch('https://hook.us1.make.com/on6e3u9ued2d1x691d3bsdhjl8kesrsm', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(body),
 		}).then((res) => {

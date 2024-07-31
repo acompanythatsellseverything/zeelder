@@ -1,20 +1,6 @@
 'use client';
-import { z, ZodType } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { cn, Radio, RadioGroup } from '@nextui-org/react';
-
-interface IFormData {
-	complexity: string;
-	partSize: string;
-	quantity: string;
-}
-
-const schema: ZodType<IFormData> = z.object({
-	complexity: z.string(),
-	partSize: z.string(),
-	quantity: z.string(),
-});
+import { useEffect, useState } from 'react';
 
 const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
@@ -37,87 +23,79 @@ const CustomRadio = (props: any) => {
 };
 
 export default function FaceplateForm() {
-	const {
-		register,
-		handleSubmit,
-		setError,
-		formState: { errors },
-	} = useForm<IFormData>({ resolver: zodResolver(schema) });
-	const action: () => void = handleSubmit(async (data: IFormData) => {});
+	const [selectedW, setSelectedW] = useState('0');
+	const [selectedS, setSelectedS] = useState('0');
+	const [selectedC, setSelectedC] = useState('1');
+	const baseCost = 12.88;
+	const [value, setValue] = useState(baseCost)
+	useEffect(() => {
+		const wCost = baseCost / 100 * Number(selectedW);
+		const sCost = baseCost / 100 * Number(selectedS);
+		const onePlateCost = baseCost + wCost + sCost;
+		const result = onePlateCost - (onePlateCost / 100 * Number(selectedC))
+		setValue(Math.ceil(result * 100) / 100);
+	}, [selectedW, selectedC, selectedS])
 
 	return (
 		<div className={''}>
-			<form onSubmit={action}>
-				<div className={'border-1 border-light'}>
-					<div className={'px-6 py-4'}>
-						<h2 className={'text-xl font-semibold'}>Aluminum Faceplate</h2>
-						<RadioGroup
-							className={'mt-2'}
-							label={'Complexity'}
-							classNames={{
-								wrapper: cn('flex flex-row gap-0 w-full '),
-							}}
-						>
-							<CustomRadio value='simple' {...register('complexity')}>
-								Simple
-							</CustomRadio>
-							<CustomRadio value='moderate' {...register('complexity')}>
-								Moderate
-							</CustomRadio>
-							<CustomRadio value='heavy' {...register('complexity')}>
-								Heavy
-							</CustomRadio>
-						</RadioGroup>
+			<div className={'border-1 border-light'}>
+				<div className={'px-6 py-4'}>
+					<h2 className={'text-xl font-semibold'}>Aluminum Faceplate</h2>
+					<RadioGroup
+						className={'mt-2'}
+						label={'Complexity'}
+						classNames={{
+							wrapper: cn('flex flex-row gap-0 w-full '),
+						}}
+						value={selectedW}
+						onValueChange={setSelectedW}
+					>
+						<CustomRadio value='0'>Simple</CustomRadio>
+						<CustomRadio value='5.2'>Moderate</CustomRadio>
+						<CustomRadio value='57'>Heavy</CustomRadio>
+					</RadioGroup>
 
-						<RadioGroup
-							className={'mt-2'}
-							label={'Part Size'}
-							classNames={{
-								wrapper: cn('flex flex-row gap-0 '),
-							}}
-						>
-							<CustomRadio value='small' {...register('partSize')}>
-								Small
-							</CustomRadio>
-							<CustomRadio value='medium' {...register('partSize')}>
-								Medium
-							</CustomRadio>
-							<CustomRadio value='large' {...register('partSize')}>
-								Large
-							</CustomRadio>
-						</RadioGroup>
+					<RadioGroup
+						className={'mt-2'}
+						label={'Part Size'}
+						classNames={{
+							wrapper: cn('flex flex-row gap-0 '),
+						}}
+						value={selectedS}
+						onValueChange={setSelectedS}
+					>
+						<CustomRadio value='0'>Small</CustomRadio>
+						<CustomRadio value='14.1'>Medium</CustomRadio>
+						<CustomRadio value='36.4'>Large</CustomRadio>
+					</RadioGroup>
 
-						<RadioGroup
-							className={'mt-2'}
-							label={'Quantity'}
-							classNames={{
-								wrapper: cn('flex flex-row gap-0 '),
-							}}
-						>
-							<CustomRadio value='1' {...register('quantity')}>
-								1
-							</CustomRadio>
-							<CustomRadio value='100' {...register('quantity')}>
-								100
-							</CustomRadio>
-							<CustomRadio value='500' {...register('quantity')}>
-								500
-							</CustomRadio>
-							<CustomRadio value='1000' {...register('quantity')}>
-								1000
-							</CustomRadio>
-							<CustomRadio value='10000' {...register('quantity')}>
-								10 000
-							</CustomRadio>
-						</RadioGroup>
-					</div>
+					<RadioGroup
+						className={'mt-2'}
+						label={'Quantity'}
+						classNames={{
+							wrapper: cn('flex flex-row gap-0 '),
+						}}
+						value={selectedC}
+						onValueChange={setSelectedC}
+					>
+						<CustomRadio value='1'>1</CustomRadio>
+						<CustomRadio value='70'>100</CustomRadio>
+						<CustomRadio value='75'>500</CustomRadio>
+						<CustomRadio value='80'>1000</CustomRadio>
+						<CustomRadio value='85'>10 000</CustomRadio>
+					</RadioGroup>
 				</div>
-				<div className={'px-6 py-4 w-full flex justify-between border-l-1 border-r-1 border-light border-b-4 border-b-accent rounded-b-sm'}>
-					<span>Estimated Cost Per Part:</span>
-					
-					<span className={'text-accent'}>€2.36</span>
-				</div>
-				{/* <button type='submit' className={'w-full relative mt-10'}>
+			</div>
+			<div
+				className={
+					'px-6 py-4 w-full flex justify-between border-l-1 border-r-1 border-light border-b-4 border-b-accent rounded-b-sm'
+				}
+			>
+				<span>Estimated Cost Per Part:</span>
+
+				<span className={'text-accent'}>€{value}</span>
+			</div>
+			{/* <button type='submit' className={'w-full relative mt-10'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div
 							className={
@@ -134,7 +112,6 @@ export default function FaceplateForm() {
 						}
 					/>
 				</button> */}
-			</form>
 		</div>
 	);
 }
