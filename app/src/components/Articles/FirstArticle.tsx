@@ -11,7 +11,7 @@ export default function FirstArticle() {
 	return (
 		<Container
 			className={
-				'relative mt-[50px] bg-article-1-bg bg-no-repeat bg-mob-right-center md:bg-right lg:bg-right-top bg-50 '
+				'relative mt-[50px] pb-[80px] bg-article-1-bg bg-no-repeat bg-mob-right-center md:bg-right lg:bg-right-top bg-50 '
 			}
 		>
 			<article>

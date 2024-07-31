@@ -47,7 +47,7 @@ export default function AutoPlaySlider() {
 	}, [emblaApi]);
 
 	return (
-		<div className='mt-16'>
+		<div className=''>
 			<div className='embla'>
 				<div className='embla__viewport' ref={emblaRef}>
 					<div className='embla__container'>
