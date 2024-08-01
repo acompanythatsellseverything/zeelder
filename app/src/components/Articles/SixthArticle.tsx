@@ -25,21 +25,21 @@ export default function SixthArticle() {
 					<div className=''>
 						<ArticleTitle>Watch our production video</ArticleTitle>
 					</div>
-					<div className={'mt-[30px] w-full max-h-[500px] relative'}>
+					<div className={'mt-[30px] w-full max-h-[500px] relative overflow-hidden'}>
 						<video
 							src={require('../../../public/video.mp4')}
 							playsInline
 							autoPlay
 							muted
 							loop
-							className='object-fill w-full max-h-[500px]'
+							className='object-fill w-full relative bottom-40'
 						></video>
 						<button onClick={onOpen} className='py-2 px-4 md:py-3 md:px-10 mt-5 mr-5 absolute top-0 right-0 bg-white text-[14px] md:text-[18px] rounded-sm'>
 							<div className='flex gap-3'>
 								<Image src={playIcon} alt='' />
 								<span>Full review</span>
 							</div>
-						</button>
+						</button> 
 						<Modal isOpen={isOpen} size='5xl' onOpenChange={onOpenChange}>
 							<ModalContent className='py-10'>
 								{(onClose) => (
@@ -52,7 +52,7 @@ export default function SixthArticle() {
 												autoPlay
 												muted
 												loop
-												className='object-fill w-full max-h-[500px]'
+												className='object-fill w-full'
 											></video>
 										</ModalBody>
 									</>
