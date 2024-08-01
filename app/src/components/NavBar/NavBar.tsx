@@ -34,11 +34,11 @@ export default function NavBar() {
 			}}
 		>
 			<NavbarBrand>
-				<div className={'flex items-center'}>
+				<Link href={'/'} className={'flex items-center'}>
 					{/* <div className={'md:hidden bg-logo-icon w-10 h-10'}/>
 					<div className={'md:hidden bg-accent w-[1px] h-10 mx-2.5'}/> */}
 					<div className={'bg-logo h-[30px] w-[180px] bg-no-repeat'} />
-				</div>
+				</Link>
 			</NavbarBrand>
 			<NavbarContent className={'max-[768px]:hidden'}>
 				<div className='w-full flex items-center justify-end gap-5 lg:gap-16'>
