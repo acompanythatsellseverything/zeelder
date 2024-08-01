@@ -1,9 +1,10 @@
-import { title } from 'process';
 import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Container from '../Container/Container';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import Link from 'next/link';
 import ArticleScroll from '../ArticleScroll/ArticleScroll';
+import { useState } from 'react';
+import { Modal, ModalContent } from '@nextui-org/react';
+import CollaborateForm from '../CollaborateForm/CollaborateForm';
 
 const gridData = [
 	{
@@ -29,6 +30,39 @@ const gridData = [
 	},
 ];
 
+function InstantQuote() {
+	'use client'
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	return (
+		<>
+		<div className='py-6 px-5 cursor-pointer' onClick={() => setIsOpen(true)}>
+			<div className='py-8 flex items-center justify-center gap-4 text-white font-semibold text-xl text-center'>
+				<span>Get an instant quote</span>
+				<ArrowIcon color='white' />
+			</div>
+		</div>
+		{isOpen && (
+			<Modal
+			isOpen={isOpen}
+			size='xl'
+			onOpenChange={setIsOpen}
+			className='rounded-sm lg:min-w-[560px]'
+		>
+			<ModalContent>
+				<div className='py-10 px-12'>
+					<p className='w-full text-center text-2xl font-semibold'>Collaborate with an engineer</p>
+					<p className='mt-4 w-full text-center'>
+						Get in touch with our engineering team and discuss your order{' '}
+					</p>
+					<CollaborateForm />
+				</div>
+			</ModalContent>
+		</Modal>
+		)}
+		</>
+	);
+}
+
 export default function ThirdArticle() {
 	return (
 		<Container className={'mt-16 pb-16 relative'} id='stage-of-work'>
@@ -38,7 +72,7 @@ export default function ThirdArticle() {
 					<div className={'w-0.5 h-20 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div> */}
-				<ArticleScroll title='03' coloredLineHeight='8'/>
+				<ArticleScroll title='03' coloredLineHeight='8' />
 				<article className={'relative md:grid md:grid-cols-5'}>
 					<div
 						className={
@@ -65,15 +99,10 @@ export default function ThirdArticle() {
 						))}
 						<li
 							className={
-								'bg-accent place-content-center py-6 px-5 border-1 border-accent'
+								'bg-accent place-content-center border-1 border-accent'
 							}
 						>
-							<Link href={'#contact-us'}>
-								<div className='py-8 flex items-center justify-center gap-4 text-white font-semibold text-xl text-center'>
-									<span>Get an instant quote</span>
-									<ArrowIcon color='white' />
-								</div>
-							</Link>
+							<InstantQuote/>
 						</li>
 					</ul>
 				</div>

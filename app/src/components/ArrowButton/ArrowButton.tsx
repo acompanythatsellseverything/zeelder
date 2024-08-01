@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import { useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
 import CollaborateForm from '../CollaborateForm/CollaborateForm';
 interface IProps {
-	to: string;
+	to?: string;
 	text: string;
 }
 export default function ArrowButton({ to, text }: IProps) {
@@ -13,7 +12,7 @@ export default function ArrowButton({ to, text }: IProps) {
 		<>
 			<div
 				onClick={() => setIsOpen(true)}
-				className={'overflow-visible relative'}
+				className={'overflow-visible relative cursor-pointer'}
 			>
 				<div
 					className={
