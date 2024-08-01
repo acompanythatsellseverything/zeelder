@@ -19,7 +19,7 @@ export default function page() {
 							Privacy Policy Quantula Spółka Z Ograniczoną Odpowiedzialnością,
 							Inc.
 						</p>
-						<p>Last Updated: 5/27/2022</p>
+						<p>Last Updated: 8/1/2024</p>
 						<p>
 							Quantula Spółka Z Ograniczoną Odpowiedzialnością offers a range of
 							services to customers and prospective customers to assist them in
