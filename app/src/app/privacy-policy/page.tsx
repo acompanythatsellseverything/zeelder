@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Container from '../../components/Container/Container';
 import './style.css';
+import Link from 'next/link';
 
 export default function page() {
 	return (
@@ -783,10 +784,10 @@ export default function page() {
 									<br />
 								</p>
 								<p>
-									<a href='mailto:order@zeelder.com' className='a' target='_blank'>
+									<Link href='mailto:order@zeelder.com' className='a' target='_blank'>
 										If you want to exercise any of the rights described above,
 										please contact us by e-mail at{' '}
-									</a>
+									</Link>
 									order@zeelder.com or you can reach us by telephone at
 								</p>
 								<p>+4(465)565-96-25.</p>
@@ -843,11 +844,11 @@ export default function page() {
 								</p>
 								<h1>Complaints</h1>
 								<p>
-									<a href='mailto:order@zeelder.com' className='a' target='_blank'>
+									<Link href='mailto:order@zeelder.com' className='a' target='_blank'>
 										If you would like to make a complaint regarding this Privacy
 										Policy or our practices in relation to your Personal Data,
 										please contact us at:{' '}
-									</a>
+									</Link>
 									<a href='mailto:order@zeelder.com' className='s2' target='_blank'>
 										order@zeelder.com
 									</a>
@@ -955,10 +956,10 @@ export default function page() {
 							<br />
 						</p>
 						<p>
-							<a href='mailto:order@zeelder.com' className='a' target='_blank'>
+							<Link href='mailto:order@zeelder.com' className='a' target='_blank'>
 								You can submit a copy, deletion, or right-to-know request by
 								sending an email to{' '}
-							</a>
+							</Link>
 							order@zeelder.com or by contacting us at +4(465)565-96-25.
 						</p>
 					</div>
