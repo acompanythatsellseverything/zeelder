@@ -1,15 +1,12 @@
-'use client'
 import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { isMobilePhone } from 'validator';
 import { Input } from '@nextui-org/react';
-import Image from 'next/image';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import addFileIcon from '@/images/utils/add-file.svg';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { GTM_ID } from '@/constants/analytics';
-import { useState } from 'react';
+import InputFile from '../InputFile/InputFile';
 
 interface IFormData {
 	name: string;
@@ -35,7 +32,6 @@ export default function ContactUsForm() {
 		setError,
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
-	const [selectedFile, setSelectedFile] = useState('') 
 	const action: () => void = handleSubmit((data: IFormData) => {
 		// const formData = new FormData();
 		// if (data.file) {
@@ -105,20 +101,7 @@ export default function ContactUsForm() {
 					errorMessage={errors.comment?.message}
 					{...register('comment')}
 				/>
-				<div className='relative'>
-					<div className='flex gap-3 cursor-pointer'>
-						<Image src={addFileIcon} alt={''} />
-						<div>{selectedFile || 'Add file'}</div>
-					</div>
-					<input
-						// {...register('file')}
-						onChange={(e) => setSelectedFile(e.target.value.split('\\')[2])}
-						type='file'
-						accept='image/*,.pdf'
-						multiple={false}
-						className='absolute top-0 opacity-0 cursor-pointer w-full'
-					/>
-				</div>
+				<InputFile multiple={true}/>
 				<button type='submit' className={'w-full relative'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div
