@@ -25,7 +25,7 @@ const config: Config = {
       backgroundImage: {
         'logo': "url('../../public/zeelder-logo.svg')",
         'logo-icon': "url('../../public/logo.svg')",
-        'article-1-bg': "url('../../public/slide-01-bg.png')",
+        'article-1-bg': "url('../../public/slide-01-bg.webp')",
         'divider-1-bg': "url('../../public/divider-bg.png')",
         'divider-1-cont': "url('../../public/divider-01.png')",
         'slide-4-bg': "url('../../public/slide-04-bg.svg')",
