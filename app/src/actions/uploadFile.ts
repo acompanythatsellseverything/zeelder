@@ -31,7 +31,8 @@ export async function uploadPoster(formData: FormData) {
         await bucket.file(filePath).save(Buffer.from(buffer));
         await bucket.file(filePath).makePublic();
         return `https://storage.googleapis.com/${bucketName}/${filePath}`;
-    } catch {
+    } catch (err) {
+        console.log(err);
         return '';
     }
 }

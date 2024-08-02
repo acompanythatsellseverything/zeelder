@@ -1,11 +1,8 @@
 'use client';
 import { RadioGroup, Radio, cn } from '@nextui-org/react';
-import Image from 'next/image';
-import uploadImage from '@/images/utils/upload-cloud.png';
-import { ChangeEvent, useState } from 'react';
-import CollaborateForm from '../CollaborateForm/CollaborateForm';
-import { uploadPoster } from '@/actions/uploadFile';
 import ContactUsForm from '../ContactUsForm/ContactUsForm';
+import { useState } from 'react';
+import QuickFileDrop from '../QuickFileDrop/QuickFileDrop';
 
 const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
@@ -30,15 +27,7 @@ const CustomRadio = (props: any) => {
 
 export default function UploadCADForm() {
 	const [selected, setSelected] = useState('1');
-	const handleChange =async (e: ChangeEvent<HTMLInputElement>) => {
-		if(!e.target.files) {
-			return
-		}
-		let formData = new FormData();
-		const timestamp = Date.now();
-		formData.append('image', e.target.files[0], `${timestamp}.webp`);
-		return await uploadPoster(formData);
-	};
+	
 	return (
 		<div className={'text-base py'}>
 			<RadioGroup
@@ -63,28 +52,7 @@ export default function UploadCADForm() {
 				</CustomRadio>
 			</RadioGroup>
 			{selected === '1' ? (
-				<div className='w-full mt-2.5 py-3 bg-light rounded-sm relative cursor-pointer'>
-					<div className='flex flex-col justify-center items-center text-center'>
-						<Image src={uploadImage} alt='' />
-						<span className='text-lg mt-1 font-semibold'>
-							Upload or drop CAD files here
-						</span>
-						<span className='text-xs mt-2'>
-							File types: 3DM, 3DXML, 3MF, AI, DXF, EPS, IGES, IGS, IPT, OBJ,
-							PDF,
-							<br /> PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T.
-						</span>
-						<span className='text-[10px] mt-2 text-[rgba(203, 203, 203, 1)]'>
-							All uploads are secure and confidential
-						</span>
-						<span className='text-[10px] mt-2'>Read our design guides</span>
-					</div>
-					<input
-						onChange={(e) => handleChange(e)}
-						type='file'
-						className='block w-full h-full absolute top-0 opacity-0 cursor-pointer'
-					/>
-				</div>
+				<QuickFileDrop/>
 			) : (
 				<ContactUsForm fileInputIsDisabled={true} />
 			)}

@@ -37,9 +37,10 @@ const schema: ZodType<IFormData> = z.object({
 
 interface IProps {
 	fileInputIsDisabled?: boolean;
+	preUploadLinks?: string[]
 }
 
-export default function ContactUsForm({ fileInputIsDisabled }: IProps) {
+export default function ContactUsForm({ fileInputIsDisabled, preUploadLinks }: IProps) {
 	const {
 		register,
 		getValues,
@@ -52,7 +53,7 @@ export default function ContactUsForm({ fileInputIsDisabled }: IProps) {
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
 		const { fileList, ...rest } = data;
-		const linkLists: string[] = [];
+		let linkLists: string[] = [];
 		if (fileList) {
 			for (const file of fileList) {
 				const formData = new FormData();
@@ -61,8 +62,10 @@ export default function ContactUsForm({ fileInputIsDisabled }: IProps) {
 				const link = await uploadPoster(formData);
 				linkLists.push(link);
 			}
+		} else {
+			linkLists = preUploadLinks || []
 		}
-
+		
 		try {
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
