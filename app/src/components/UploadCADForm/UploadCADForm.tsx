@@ -5,6 +5,7 @@ import uploadImage from '@/images/utils/upload-cloud.png';
 import { ChangeEvent, useState } from 'react';
 import CollaborateForm from '../CollaborateForm/CollaborateForm';
 import { uploadPoster } from '@/actions/uploadFile';
+import ContactUsForm from '../ContactUsForm/ContactUsForm';
 
 const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
@@ -85,7 +86,7 @@ export default function UploadCADForm() {
 					/>
 				</div>
 			) : (
-				<CollaborateForm />
+				<ContactUsForm fileInputIsDisabled={true} />
 			)}
 		</div>
 	);

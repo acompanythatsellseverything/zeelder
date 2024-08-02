@@ -42,7 +42,10 @@ export default function NinthArticle() {
 							</ArticleTitle>
 						</div>
 						<div className='mt-36 md:mt-6 max-w-none md:max-w-[420px] lg:max-w-[540px] grow'>
-							<ContactUsForm />
+							<div className='bg-white rounded-sm p-10'>
+
+							<ContactUsForm  />
+							</div>
 						</div>
 					</div>
 				</article>

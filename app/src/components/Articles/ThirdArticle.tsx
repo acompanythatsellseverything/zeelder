@@ -5,6 +5,7 @@ import ArticleScroll from '../ArticleScroll/ArticleScroll';
 import { useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
 import CollaborateForm from '../CollaborateForm/CollaborateForm';
+import ContactUsForm from '../ContactUsForm/ContactUsForm';
 
 const gridData = [
 	{
@@ -54,7 +55,7 @@ function InstantQuote() {
 					<p className='mt-4 w-full text-center'>
 						Get in touch with our engineering team and discuss your order{' '}
 					</p>
-					<CollaborateForm />
+					<ContactUsForm />
 				</div>
 			</ModalContent>
 		</Modal>

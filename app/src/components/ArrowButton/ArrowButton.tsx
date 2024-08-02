@@ -2,6 +2,7 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import { useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
 import CollaborateForm from '../CollaborateForm/CollaborateForm';
+import ContactUsForm from '../ContactUsForm/ContactUsForm';
 interface IProps {
 	to?: string;
 	text: string;
@@ -46,7 +47,7 @@ export default function ArrowButton({ to, text }: IProps) {
 						<p className='mt-4 w-full text-center'>
 							Get in touch with our engineering team and discuss your order{' '}
 						</p>
-						<CollaborateForm />
+						<ContactUsForm />
 					</div>
 				</ModalContent>
 			</Modal>

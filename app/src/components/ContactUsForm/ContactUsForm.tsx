@@ -93,7 +93,7 @@ export default function ContactUsForm({ fileInputIsDisabled }: IProps) {
 	});
 
 	return (
-		<div className={'p-10 bg-white rounded-sm'}>
+		<div className={''}>
 			<form onSubmit={action} className={'flex flex-col gap-7'}>
 				<Input
 					type='string'
