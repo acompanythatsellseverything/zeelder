@@ -5,10 +5,11 @@ import { useState } from 'react';
 
 interface IProps {
 	multiple: boolean;
+	register?: any;
 	[x: string]: any;
 }
 
-export default function InputFile({multiple, ...props}: IProps) {
+export default function InputFile({multiple, register, ...props}: IProps) {
 	const [selectedFile, setSelectedFile] = useState('');
 
 	return (
@@ -18,6 +19,7 @@ export default function InputFile({multiple, ...props}: IProps) {
 				<div>{selectedFile || 'Add file'}</div>
 			</div>
 			<input
+			 	{...register}
 				{...props}
 				onChange={(e) => setSelectedFile(e.target.value.split('\\')[2])}
 				type='file'

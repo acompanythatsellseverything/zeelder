@@ -2,8 +2,9 @@
 import { RadioGroup, Radio, cn } from '@nextui-org/react';
 import Image from 'next/image';
 import uploadImage from '@/images/utils/upload-cloud.png';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import CollaborateForm from '../CollaborateForm/CollaborateForm';
+import { uploadPoster } from '@/actions/uploadFile';
 
 const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
@@ -28,7 +29,15 @@ const CustomRadio = (props: any) => {
 
 export default function UploadCADForm() {
 	const [selected, setSelected] = useState('1');
-
+	const handleChange =async (e: ChangeEvent<HTMLInputElement>) => {
+		if(!e.target.files) {
+			return
+		}
+		let formData = new FormData();
+		const timestamp = Date.now();
+		formData.append('image', e.target.files[0], `${timestamp}.webp`);
+		return await uploadPoster(formData);
+	};
 	return (
 		<div className={'text-base py'}>
 			<RadioGroup
@@ -70,6 +79,7 @@ export default function UploadCADForm() {
 						<span className='text-[10px] mt-2'>Read our design guides</span>
 					</div>
 					<input
+						onChange={(e) => handleChange(e)}
 						type='file'
 						className='block w-full h-full absolute top-0 opacity-0 cursor-pointer'
 					/>

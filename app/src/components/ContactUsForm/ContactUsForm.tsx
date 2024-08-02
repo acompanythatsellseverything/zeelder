@@ -7,13 +7,14 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { GTM_ID } from '@/constants/analytics';
 import InputFile from '../InputFile/InputFile';
+import { uploadPoster } from '../../actions/uploadFile';
 
 interface IFormData {
 	name: string;
 	email: string;
 	phoneNumber: string;
 	comment: string;
-	// file?: File[];
+	fileList?: File[];
 }
 
 const schema: ZodType<IFormData> = z.object({
@@ -21,7 +22,7 @@ const schema: ZodType<IFormData> = z.object({
 	email: z.string().email('Incorrect email'),
 	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number'),
 	comment: z.string(),
-	// file: z.any(),
+	fileList: z.any(),
 });
 
 export default function ContactUsForm() {
@@ -29,38 +30,52 @@ export default function ContactUsForm() {
 		register,
 		getValues,
 		handleSubmit,
+		reset,
 		setError,
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
-	const action: () => void = handleSubmit((data: IFormData) => {
-		// const formData = new FormData();
-		// if (data.file) {
-		// 	formData.append('file', data.file[0]);
-		// }
-		// formData.append('name', data.name);
-		// formData.append('email', data.email);
-		// formData.append('phoneNumber', data.phoneNumber);
-		// formData.append('comment', data.comment);
-		const {...rest} = data;
-		fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(rest),
-		}).then((res) => {
-			const tagManagerArgs: TagManagerArgs = {
-				gtmId: GTM_ID,
-				events: {
-					event: 'Contact_Us',
-					userData: rest,
+	
+	const action: () => void = handleSubmit(async (data: IFormData) => {
+		const { fileList, ...rest } = data;
+		const linkLists: string[] = [];
+		if (fileList) {
+			for (const file of fileList) {
+				const formData = new FormData();
+				const timestamp = Date.now();
+				formData.append('file', file, `${timestamp}-${file.name}`);
+				const link = await uploadPoster(formData);
+				linkLists.push(link)
+			}
+		}
+		
+		try {
+			await fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 				},
-			};
+				body: JSON.stringify({
+					...rest,
+					linkLists
+				}),
+			})
+			const tagManagerArgs: TagManagerArgs = {
+			gtmId: GTM_ID,
+			events: {
+				event: 'Contact_Us',
+				userData: {
+					...rest,
+				},
+			},
+		};
+		
+		TagManager.initialize(tagManagerArgs);
+		reset()
+		} catch {
 
-			TagManager.initialize(tagManagerArgs);
-		});
+		}
 	});
-
+	
 	return (
 		<div className={'p-10 bg-white rounded-sm'}>
 			<form onSubmit={action} className={'flex flex-col gap-7'}>
@@ -101,7 +116,7 @@ export default function ContactUsForm() {
 					errorMessage={errors.comment?.message}
 					{...register('comment')}
 				/>
-				<InputFile multiple={true}/>
+				<InputFile register={register('fileList')} multiple={true} />
 				<button type='submit' className={'w-full relative'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div
