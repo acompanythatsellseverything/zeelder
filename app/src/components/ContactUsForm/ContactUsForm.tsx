@@ -1,19 +1,28 @@
 import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { isMobilePhone } from 'validator';
-import { Input } from '@nextui-org/react';
+import { Checkbox, CheckboxGroup, Input } from '@nextui-org/react';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { GTM_ID } from '@/constants/analytics';
 import InputFile from '../InputFile/InputFile';
 import { uploadPoster } from '../../actions/uploadFile';
 
+const communicationCheckBox = [
+	'Phone call',
+	'WhatsApp',
+	'Viber',
+	'Telegram',
+	'Email',
+];
+
 interface IFormData {
 	name: string;
 	email: string;
 	phoneNumber: string;
-	comment: string;
+	orderDetails: string;
+	preferredCommunication?: string[];
 	fileList?: File[];
 }
 
@@ -21,20 +30,26 @@ const schema: ZodType<IFormData> = z.object({
 	name: z.string(),
 	email: z.string().email('Incorrect email'),
 	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number'),
-	comment: z.string(),
+	orderDetails: z.string(),
+	preferredCommunication: z.any(),
 	fileList: z.any(),
 });
 
-export default function ContactUsForm() {
+interface IProps {
+	fileInputIsDisabled?: boolean;
+}
+
+export default function ContactUsForm({ fileInputIsDisabled }: IProps) {
 	const {
 		register,
 		getValues,
 		handleSubmit,
 		reset,
 		setError,
+		control,
 		formState: { errors },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
-	
+
 	const action: () => void = handleSubmit(async (data: IFormData) => {
 		const { fileList, ...rest } = data;
 		const linkLists: string[] = [];
@@ -44,38 +59,39 @@ export default function ContactUsForm() {
 				const timestamp = Date.now();
 				formData.append('file', file, `${timestamp}-${file.name}`);
 				const link = await uploadPoster(formData);
-				linkLists.push(link)
+				linkLists.push(link);
 			}
 		}
-		
-		try {
-			await fetch('https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					...rest,
-					linkLists
-				}),
-			})
-			const tagManagerArgs: TagManagerArgs = {
-			gtmId: GTM_ID,
-			events: {
-				event: 'Contact_Us',
-				userData: {
-					...rest,
-				},
-			},
-		};
-		
-		TagManager.initialize(tagManagerArgs);
-		reset()
-		} catch {
 
-		}
+		try {
+			await fetch(
+				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						...rest,
+						linkLists,
+					}),
+				}
+			);
+			const tagManagerArgs: TagManagerArgs = {
+				gtmId: GTM_ID,
+				events: {
+					event: 'Contact_Us',
+					userData: {
+						...rest,
+					},
+				},
+			};
+
+			TagManager.initialize(tagManagerArgs);
+			reset();
+		} catch {}
 	});
-	
+
 	return (
 		<div className={'p-10 bg-white rounded-sm'}>
 			<form onSubmit={action} className={'flex flex-col gap-7'}>
@@ -110,13 +126,39 @@ export default function ContactUsForm() {
 				<Input
 					type='string'
 					variant={'underlined'}
-					label='Comment'
+					label='Order details'
 					className='text-white'
 					required
-					errorMessage={errors.comment?.message}
-					{...register('comment')}
+					errorMessage={errors.orderDetails?.message}
+					{...register('orderDetails')}
 				/>
-				<InputFile register={register('fileList')} multiple={true} />
+				<Controller
+					control={control}
+					name='preferredCommunication'
+					render={({ field: { onChange, value } }) => (
+						<CheckboxGroup
+							label='Preferred communication method'
+							orientation='horizontal'
+							color='primary'
+							onChange={onChange}
+						>
+							{communicationCheckBox.map((e) => (
+								<Checkbox
+									key={e}
+									value={e}
+									classNames={{
+										icon: 'text-white',
+									}}
+								>
+									{e}
+								</Checkbox>
+							))}
+						</CheckboxGroup>
+					)}
+				/>
+				{!fileInputIsDisabled && (
+					<InputFile register={register('fileList')} multiple={true} />
+				)}
 				<button type='submit' className={'w-full relative'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div

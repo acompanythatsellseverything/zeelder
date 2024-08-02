@@ -9,7 +9,7 @@ interface IProps {
 	[x: string]: any;
 }
 
-export default function InputFile({multiple, register, ...props}: IProps) {
+export default function InputFile({ multiple, register, ...props }: IProps) {
 	const [selectedFile, setSelectedFile] = useState('');
 
 	return (
@@ -19,9 +19,15 @@ export default function InputFile({multiple, register, ...props}: IProps) {
 				<div>{selectedFile || 'Add file'}</div>
 			</div>
 			<input
-			 	{...register}
+				{...register}
 				{...props}
-				onChange={(e) => setSelectedFile(e.target.value.split('\\')[2])}
+				onChange={(e) =>
+					setSelectedFile(
+						Array.from(e.target.files || [])
+							.map((e) => e.name)
+							.join(', ')
+					)
+				}
 				type='file'
 				accept='image/*,.pdf'
 				multiple={multiple}
