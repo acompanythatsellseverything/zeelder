@@ -28,7 +28,7 @@ const communicationCheckBox = [
 	},
 	{
 		name: 'Email',
-		id: '1207945306146030' 
+		id: '"1207945306146030"' 
 	},
 ];
 
