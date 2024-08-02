@@ -37,10 +37,13 @@ const schema: ZodType<IFormData> = z.object({
 
 interface IProps {
 	fileInputIsDisabled?: boolean;
-	preUploadLinks?: string[]
+	preUploadLinks?: string[];
 }
 
-export default function ContactUsForm({ fileInputIsDisabled, preUploadLinks }: IProps) {
+export default function ContactUsForm({
+	fileInputIsDisabled,
+	preUploadLinks,
+}: IProps) {
 	const {
 		register,
 		getValues,
@@ -48,7 +51,7 @@ export default function ContactUsForm({ fileInputIsDisabled, preUploadLinks }: I
 		reset,
 		setError,
 		control,
-		formState: { errors },
+		formState: { errors, isSubmitted, isSubmitSuccessful },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
@@ -65,7 +68,7 @@ export default function ContactUsForm({ fileInputIsDisabled, preUploadLinks }: I
 		} else {
 			linkLists = preUploadLinks || []
 		}
-		
+
 		try {
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
@@ -160,7 +163,16 @@ export default function ContactUsForm({ fileInputIsDisabled, preUploadLinks }: I
 					)}
 				/>
 				{!fileInputIsDisabled && (
-					<InputFile register={register('fileList')} multiple={true} />
+					<InputFile
+						register={register('fileList')}
+						multiple={true}
+						isSubmitted={isSubmitted}
+					/>
+				)}
+				{isSubmitSuccessful && (
+					<div className='text-center'>
+						You successfully submitted form. We will reach you i a moment
+					</div>
 				)}
 				<button type='submit' className={'w-full relative'}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>

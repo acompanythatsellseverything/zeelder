@@ -1,17 +1,22 @@
 'use client';
 import Image from 'next/image';
 import addFileIcon from '@/images/utils/add-file.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface IProps {
 	multiple: boolean;
 	register?: any;
+	isSubmitted?: boolean;
 	[x: string]: any;
 }
 
-export default function InputFile({ multiple, register, ...props }: IProps) {
+export default function InputFile({ multiple, register, isSubmitted, ...props }: IProps) {
 	const [selectedFile, setSelectedFile] = useState('');
-
+	useEffect(() => {
+		if(isSubmitted) {
+			setSelectedFile('');
+		}
+	}, [isSubmitted])
 	return (
 		<div className='relative'>
 			<div className='flex gap-3 cursor-pointer'>
