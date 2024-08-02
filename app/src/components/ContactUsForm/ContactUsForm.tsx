@@ -10,11 +10,26 @@ import InputFile from '../InputFile/InputFile';
 import { uploadPoster } from '../../actions/uploadFile';
 
 const communicationCheckBox = [
-	'Phone call',
-	'WhatsApp',
-	'Viber',
-	'Telegram',
-	'Email',
+	{
+		name: 'Phone call',
+		id: '1207945306146029' 
+	},
+	{
+		name: 'WhatsApp',
+		id: '1207945306146031' 
+	},
+	{
+		name: 'Viber',
+		id: '1207945306146033' 
+	},
+	{
+		name: 'Telegram',
+		id: '1207945306146032' 
+	},
+	{
+		name: 'Email',
+		id: '1207945306146030' 
+	},
 ];
 
 interface IFormData {
@@ -150,13 +165,13 @@ export default function ContactUsForm({
 						>
 							{communicationCheckBox.map((e) => (
 								<Checkbox
-									key={e}
-									value={e}
+									key={e.id}
+									value={e.id}
 									classNames={{
 										icon: 'text-white',
 									}}
 								>
-									{e}
+									{e.name}
 								</Checkbox>
 							))}
 						</CheckboxGroup>
