@@ -64,7 +64,7 @@ export default function NavBar() {
 				/>
 			</div>
 
-			<NavbarMenu className='gap-0'>
+			<NavbarMenu className='gap-0 z-50'>
 				{navList.map((item, index) => (
 					<NavbarMenuItem key={`${item}-${index}`} className={`py-4 ${ index != navList.length - 1 && 'border-b-1 border-gray-light'}`}>
 						<Link className='w-full hover:text-red-500' href={`/${item.href}`}>
