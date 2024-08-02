@@ -24,7 +24,7 @@ const listData = [
 
 export default function FourthArticle() {
 	return (
-		<Container className={'relative bg-[#181818] bg-slide-4-bg bg-no-repeat overflow-hidden bg-[50%_100%]'}>
+		<Container className={'relative bg-[#181818] bg-slide-4-bg bg-no-repeat overflow-hidden bg-[5%_0%] lg:bg-[50%_100%]'}>
 			<>
 				{/* <div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
 					<div className={'w-0.5 h-[13vh] bg-dark-light rounded-b-md'}></div>
