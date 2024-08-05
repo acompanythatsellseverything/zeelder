@@ -49,21 +49,30 @@ export default function SixthArticle() {
 								</div>
 							</button>
 						</div>
-						<Modal isOpen={isOpen} size='5xl' onOpenChange={onOpenChange}>
-							<ModalContent className='py-10'>
+						<Modal
+							isOpen={isOpen}
+							size='5xl'
+							classNames={{
+								base: 'py-0 bg-transparent',
+								closeButton: 'hidden'
+							}}
+							placement='center'
+							onOpenChange={onOpenChange}
+						>
+							<ModalContent className='py-10 w-full'>
 								{(onClose) => (
 									<>
-										<ModalBody>
-											<video
-												src={require('../../../public/video.mp4')}
-												playsInline
-												controls
-												autoPlay
-												muted
-												loop
-												className='object-fill w-full'
-											></video>
-										</ModalBody>
+										{/* <ModalBody className='w-full flex justify-center'> */}
+											<iframe
+												src='https://player.vimeo.com/video/994941403?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
+												width='100%'
+												height='500'
+												// className='w-full h-full min-h-[500px]'
+												frameBorder='0'
+												allow='autoplay; fullscreen; picture-in-picture; clipboard-write'
+												title='video'
+											></iframe>
+										{/* </ModalBody> */}
 									</>
 								)}
 							</ModalContent>
