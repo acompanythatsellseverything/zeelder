@@ -157,7 +157,7 @@ export default function EighthArticle() {
 							<div className={'grid gap-2.5'}>
 								<Link
 									href={'https://instagram.com/zeelder.machinery'}
-									className='relative'
+									className='relative hidden lg:block'
 								>
 									<Image
 										src={img6}
@@ -175,7 +175,7 @@ export default function EighthArticle() {
 								</Link>
 								<Link
 									href={'https://instagram.com/zeelder.machinery'}
-									className='hidden md:block relative'
+									className='hidden lg:block relative'
 								>
 									<Image
 										src={img7}

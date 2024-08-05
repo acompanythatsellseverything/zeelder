@@ -41,7 +41,7 @@ export default function NavBar() {
 					<div className={'bg-logo h-[30px] w-[180px] bg-no-repeat'} />
 				</Link>
 			</NavbarBrand>
-			<NavbarContent className={'max-[768px]:hidden'}>
+			<NavbarContent className={'max-[880px]:hidden'}>
 				<div className='w-full flex items-center justify-end gap-5 lg:gap-16'>
 					<ul className={'basis-full flex justify-center gap-3 lg:gap-6 px-2'}>
 						{navList.map((e) => (
@@ -57,7 +57,7 @@ export default function NavBar() {
 					</div>
 				</div>
 			</NavbarContent>
-			<div className='md:hidden'>
+			<div className='max-[880px]:block hidden'>
 				<Burger
 					isOpen={isMenuOpen}
 					toggleOpen={() => setIsMenuOpen((prev) => !prev)}

@@ -52,8 +52,12 @@ const config: Config = {
         }],
       }
     },
+    screens: {
+      'lg': '1025px',
+      'md': '768px'
+    }
   },
-  darkMode: "class",
+  darkMode: "selector",
   plugins: [
     nextui({
       themes: {
