@@ -27,7 +27,7 @@ export default function SixthArticle() {
 					</div>
 					<div
 						className={
-							'mt-[30px] w-full max-h-[500px] relative overflow-hidden'
+							'mt-[30px] w-full max-h-[500px] lg:max-h-[600px] relative overflow-hidden'
 						}
 					>
 						<div>
@@ -37,7 +37,7 @@ export default function SixthArticle() {
 								autoPlay
 								muted
 								loop
-								className='object-fill w-full relative top-0 bottom-40'
+								className='object-fill w-full relative top-0 bottom-60'
 							></video>
 							<button
 								onClick={onOpen}
