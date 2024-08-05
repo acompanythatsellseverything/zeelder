@@ -47,7 +47,7 @@ export default function Footer() {
 						</div>
 					</div>
 
-					<div className='col-span-2 lg:col-span-3 lg:row-span-2 flex justify-between md:justify-end'>
+					<div className='col-span-2 lg:col-span-3 lg:row-span-2 flex justify-between gap-4 md:justify-end'>
 						<div>
 							<div className={'text-lg font-semibold'}>Navigation</div>
 							<div className='mt-5 grid sm:grid-cols-2 gap-1 lg:gap-4'>
