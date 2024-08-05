@@ -25,7 +25,7 @@ export default function page() {
 									Terms of Use
 								</p>
 								<p className='s4'>
-									<Link href='www.zeelder.com' className='s5' target='_blank'>
+									<Link href='/' className='s5' target='_blank'>
 										Welcome to{' '}
 									</Link>
 									www.zeelder.com
@@ -40,7 +40,7 @@ export default function page() {
 										and certain other information submitted by you are subject
 										to our applicable Privacy Policy, the terms and
 										<Link
-											href='www.zeelder.com/privacy-policy'
+											href='/privacy-policy'
 											className='s5'
 											target='_blank'
 										>
@@ -1136,7 +1136,7 @@ export default function page() {
 							complaints about
 							<Link href='mailto:order@zeelder.com' className='s5' target='_blank'>
 								these Terms of Use or the Site, please contact us at
-								info@Quantula Spółka Z Ograniczoną Odpowiedzialnością.com.
+								order@zeelder.com
 							</Link>
 						</p>
 					</div>
