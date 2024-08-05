@@ -37,7 +37,7 @@ export default function SixthArticle() {
 								autoPlay
 								muted
 								loop
-								className='object-fill w-full relative top-0 bottom-60'
+								className='object-fill w-full relative bottom-0 lg:bottom-36'
 							></video>
 							<button
 								onClick={onOpen}
