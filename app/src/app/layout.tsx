@@ -36,7 +36,7 @@ export default function RootLayout({
             `,
 					}}
 				/>
-				<Script strategy='lazyOnload' id='data-layer'>
+				{/* <Script strategy='lazyOnload' id='data-layer'>
 					{`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -48,7 +48,7 @@ export default function RootLayout({
 				<Script
 					strategy='afterInteractive'
 					src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-				/>
+				/> */}
 				<Script
 					strategy='afterInteractive'
 					id='clarity-script'
