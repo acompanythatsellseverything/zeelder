@@ -114,7 +114,7 @@ export default function ContactUsForm({
 	});
 
 	return (
-		<div className={''}>
+		<div className={'bg-white'}>
 			<form onSubmit={action} className={'flex flex-col gap-7'}>
 				<Input
 					type='string'
@@ -169,6 +169,7 @@ export default function ContactUsForm({
 									value={e.id}
 									classNames={{
 										icon: 'text-white',
+										label: 'text-sm'
 									}}
 								>
 									{e.name}

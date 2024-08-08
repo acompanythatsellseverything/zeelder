@@ -36,13 +36,15 @@ const config: Config = {
         '80': '80%',
         '70': '70%',
         '60': '60%',
+        '55': '55%',
         '50': '50%',
         '20': '20%',
         '16': '4rem',
       },
 
       backgroundPosition: {
-        'mob-right-center' : 'right 250px'
+        'mob-right-center' : '120% 30%',
+        'lap-right-center' : 'right 250px'
       },
 
       fontSize: {

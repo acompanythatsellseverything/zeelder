@@ -61,6 +61,8 @@ export default function QuickFileDrop() {
 	}
 
 	return (
-		<ContactUsForm fileInputIsDisabled={true} preUploadLinks={fileLinks} />
+		<div className='px-4 bg-white border-l-2 border-r-2 border-light'>
+			<ContactUsForm fileInputIsDisabled={true} preUploadLinks={fileLinks} />
+		</div>
 	);
 }

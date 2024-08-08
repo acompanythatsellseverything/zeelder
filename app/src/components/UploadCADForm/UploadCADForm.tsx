@@ -27,7 +27,7 @@ const CustomRadio = (props: any) => {
 
 export default function UploadCADForm() {
 	const [selected, setSelected] = useState('1');
-	
+
 	return (
 		<div className={'text-base py'}>
 			<RadioGroup
@@ -35,7 +35,7 @@ export default function UploadCADForm() {
 				onValueChange={setSelected}
 				color='primary'
 				classNames={{
-					wrapper: cn('grid sm:grid-cols-2 '),
+					wrapper: cn('grid grid-cols-1 md:grid-cols-2 '),
 				}}
 			>
 				<CustomRadio
@@ -52,9 +52,11 @@ export default function UploadCADForm() {
 				</CustomRadio>
 			</RadioGroup>
 			{selected === '1' ? (
-				<QuickFileDrop/>
+				<QuickFileDrop />
 			) : (
-				<ContactUsForm fileInputIsDisabled={true} />
+				<div className='px-4 bg-white border-l-2 border-r-2 border-light'>
+					<ContactUsForm fileInputIsDisabled={true} />
+				</div>
 			)}
 		</div>
 	);
