@@ -115,7 +115,7 @@ export default function ContactUsForm({
 
 	return (
 		<div className={'bg-white'}>
-			<form onSubmit={action} className={'flex flex-col gap-3 md:gap-7'}>
+			<form onSubmit={action} className={'flex flex-col gap-4 md:gap-7'}>
 				<Input
 					type='string'
 					variant={'underlined'}
