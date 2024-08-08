@@ -4,6 +4,7 @@ import Image from 'next/image';
 import lightningIcon from '@/images/utils/lightning.svg';
 import slideImage from '@/images/slide-04-image.png'
 import ArticleScroll from '../ArticleScroll/ArticleScroll';
+
 const listData = [
 	{
 		title: 'Automatic IP protection',
@@ -43,7 +44,7 @@ export default function FourthArticle() {
 						repair shops, and startups.
 					</ArticleTitle>
 					<div className='mt-6'>
-						<ul className='flex flex-col text-white gap-4 max-w-[60%]'>
+						<ul className='flex flex-col text-white gap-4 md:max-w-[60%]'>
 							{listData.map((e) => (
 								<li key={e.title} className='flex items-start gap-[5px]'>
 									<Image src={lightningIcon} alt='' className='mt-1' />
