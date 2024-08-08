@@ -1,7 +1,6 @@
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import { useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
-import CollaborateForm from '../CollaborateForm/CollaborateForm';
 import ContactUsForm from '../ContactUsForm/ContactUsForm';
 interface IProps {
 	to?: string;
@@ -39,12 +38,12 @@ export default function ArrowButton({ to, text }: IProps) {
 				isOpen={isOpen}
 				size='xl'
 				onOpenChange={setIsOpen}
-				className='rounded-sm lg:min-w-[560px]'
+				className='rounded-sm w-full lg:min-w-[560px]'
 			>
 				<ModalContent>
 					<div className='py-10 px-12'>
-						<p className='w-full text-center text-2xl font-semibold'>Collaborate with an engineer</p>
-						<p className='mt-4 w-full text-center'>
+						<p className='w-full text-center text-lg md:text-2xl font-semibold'>Collaborate with an engineer</p>
+						<p className='md:mt-4 w-full text-center'>
 							Get in touch with our engineering team and discuss your order{' '}
 						</p>
 						<ContactUsForm />
