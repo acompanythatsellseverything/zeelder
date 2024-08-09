@@ -34,8 +34,8 @@ export default function FourthArticle() {
 					<div className={'w-0.5 h-full bg-dark-light rounded-b-md'}></div>
 				</div> */}
 				<ArticleScroll title='04' color='white' topLineHeight='[13vh]'/>
-				<div className={'hidden md:block absolute md:right-[-20px] lg:right-0 bottom-0'}>
-					<Image src={slideImage} alt='' className='md:max-w-64 lg:max-w-[580px]'/>
+				<div className={'hidden md:block absolute md:right-[-20px] lg:right-0 bottom-0 overflow-visible lg:w-[440px]'}>
+					<Image src={slideImage} alt='' className='w-full h-auto object-fill relative'/>
 				</div>
 
 				<article className={'relative py-16 lg:py-20 z-30'}>
