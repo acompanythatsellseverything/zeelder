@@ -30,7 +30,7 @@ export default function NavBar() {
 				wrapper: 'max-w-none px-4 sm:px-5 md:px-6 lg:px-10 xl:px-32',
 				brand: 'basis-[180px] shrink grow-0',
 				toggle: 'w-10 h-10 rounded-sm bg-accent cursor-pointer',
-			}} 
+			}}
 			isBlurred={false}
 		>
 			<NavbarBrand>
@@ -41,8 +41,8 @@ export default function NavBar() {
 				</Link>
 			</NavbarBrand>
 			<NavbarContent className={'max-[880px]:hidden'}>
-				<div className='w-full flex items-center justify-end gap-[22%]'>
-					<ul className={'max-w-1/2 flex justify-center gap-3 lg:gap-4 px-2'}>
+				<div className='w-full flex items-center justify-end gap-32'>
+					<ul className={'basis-5/8 flex justify-center gap-3 lg:gap-4 px-2'}>
 						{navList.map((e) => (
 							<li key={e.title} className={'text-xs min-[1025px]:text-base'}>
 								<Link href={`/${e.href}`} className='hover:text-red-500'>
@@ -65,8 +65,17 @@ export default function NavBar() {
 
 			<NavbarMenu className='gap-0 z-50'>
 				{navList.map((item, index) => (
-					<NavbarMenuItem key={`${item}-${index}`} className={`py-4 ${ index != navList.length - 1 && 'border-b-2 border-gray-light'}`}>
-						<Link className='w-full hover:text-red-500' href={`/${item.href}`} onClick={() => setIsMenuOpen(false)}>
+					<NavbarMenuItem
+						key={`${item}-${index}`}
+						className={`py-4 ${
+							index != navList.length - 1 && 'border-b-2 border-gray-light'
+						}`}
+					>
+						<Link
+							className='w-full hover:text-red-500'
+							href={`/${item.href}`}
+							onClick={() => setIsMenuOpen(false)}
+						>
 							{item.title}
 						</Link>
 					</NavbarMenuItem>
