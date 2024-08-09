@@ -54,10 +54,10 @@ const config: Config = {
         }],
       }
     },
-    screens: {
-      'lg': '1025px',
-      'md': '768px'
-    }
+    // screens: {
+    //   'lg': '1025px',
+    //   'md': '768px'
+    // }
   },
   darkMode: "selector",
   plugins: [

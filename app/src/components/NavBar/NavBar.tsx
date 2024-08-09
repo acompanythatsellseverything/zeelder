@@ -42,10 +42,10 @@ export default function NavBar() {
 				</Link>
 			</NavbarBrand>
 			<NavbarContent className={'max-[880px]:hidden'}>
-				<div className='w-full flex items-center justify-end gap-5 lg:gap-16'>
-					<ul className={'basis-full flex justify-center gap-3 lg:gap-6 px-2'}>
+				<div className='w-full flex items-center justify-end gap-5'>
+					<ul className={'basis-full flex justify-center gap-3 lg:gap-4 px-2'}>
 						{navList.map((e) => (
-							<li key={e.title} className={'text-xs lg:text-base'}>
+							<li key={e.title} className={'text-xs min-[1025px]:text-base'}>
 								<Link href={`/${e.href}`} className='hover:text-red-500'>
 									{e.title}
 								</Link>
