@@ -16,7 +16,6 @@ const navList = [
 	{ title: 'Hardware build', href: '#hardware-build' },
 	{ title: 'Stages of work', href: '#stage-of-work' },
 	{ title: 'Quality record', href: '#quality' },
-	{ title: 'Founders', href: '#founder' },
 	{ title: 'Contact us', href: '#contact-us' },
 ];
 
@@ -42,8 +41,8 @@ export default function NavBar() {
 				</Link>
 			</NavbarBrand>
 			<NavbarContent className={'max-[880px]:hidden'}>
-				<div className='w-full flex items-center justify-end gap-5'>
-					<ul className={'basis-full flex justify-center gap-3 lg:gap-4 px-2'}>
+				<div className='w-full flex items-center justify-end gap-[22%]'>
+					<ul className={'max-w-1/2 flex justify-center gap-3 lg:gap-4 px-2'}>
 						{navList.map((e) => (
 							<li key={e.title} className={'text-xs min-[1025px]:text-base'}>
 								<Link href={`/${e.href}`} className='hover:text-red-500'>
@@ -66,7 +65,7 @@ export default function NavBar() {
 
 			<NavbarMenu className='gap-0 z-50'>
 				{navList.map((item, index) => (
-					<NavbarMenuItem key={`${item}-${index}`} className={`py-4 ${ index != navList.length - 1 && 'border-b-1 border-gray-light'}`}>
+					<NavbarMenuItem key={`${item}-${index}`} className={`py-4 ${ index != navList.length - 1 && 'border-b-2 border-gray-light'}`}>
 						<Link className='w-full hover:text-red-500' href={`/${item.href}`} onClick={() => setIsMenuOpen(false)}>
 							{item.title}
 						</Link>
