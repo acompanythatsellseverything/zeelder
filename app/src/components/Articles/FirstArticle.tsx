@@ -13,7 +13,7 @@ export default function FirstArticle() {
 			className={
 				`relative mt-[50px] pb-[80px] bg-article-1-bg bg-no-repeat 
 				bg-mob-right-center md:bg-lap-right-center md:bg-center-right 
-				lg:bg-right bg-55 md:bg-60 lg:bg-70 `
+				lg:bg-right-top bg-55 md:bg-60 min-[1424px]:bg-70 `
 			}
 		>
 			<article>
