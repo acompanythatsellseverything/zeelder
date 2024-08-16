@@ -53,7 +53,7 @@ export default function AutoPlaySlider() {
 					<div className='embla__container'>
 						{slides.map((value, index) => (
 							<div className='embla__slide' key={index}>
-									<Image src={value} alt='img' />
+									<Image src={value} alt='img' className='max-h-12 md:max-h-none object-contain' />
 							</div>
 						))}
 					</div>
