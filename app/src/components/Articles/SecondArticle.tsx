@@ -1,13 +1,13 @@
-import React from 'react';
+'use client';
 import Container from '../Container/Container';
 import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import ArticleSubTitle from '../ArticleSubTitle/ArticleSubTitle';
-import Link from 'next/link';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import Image from 'next/image';
 import slideImage from '@/images/slide-02-image.png';
 import FaceplateForm from '../FaceplateForm/FaceplateForm';
 import ArticleScroll from '../ArticleScroll/ArticleScroll';
+import { useMemo, useState } from 'react';
 
 const fabricationStats = [
 	{ title: 'Dimensional accuracy', preciseInfo: '±0.13mm' },
@@ -16,16 +16,91 @@ const fabricationStats = [
 	{ title: 'Min feature size', preciseInfo: 'ISO-9001, ITAR' },
 	{ title: 'Min lead time', preciseInfo: 'Same day' },
 ];
+
+type TProductionStats = {
+	title: string;
+	preciseInfo: string;
+};
+
+type TProductionTypes =
+	| 'Laser cutting'
+	| 'Laser engraving'
+	| 'Metal bending'
+	| 'Powder coating'
+	| 'Welding'
+	| '3D printing';
+
+type TProductionTypesMap = {
+	[prop in TProductionTypes]: TProductionStats[];
+};
+
 export default function SecondArticle() {
+	const [type, setType] = useState<TProductionTypes>('Laser cutting');
+
+	const productionTypesMap = useMemo(() => {
+		const map: TProductionTypesMap = {
+			'Laser cutting': [
+				{ title: 'Dimensional accuracy', preciseInfo: '± 0.1-0.2 mm' },
+				{ title: 'Table size', preciseInfo: '3000x1500' },
+				{
+					title: 'Carbon steel max cutting thickness',
+					preciseInfo: '10 mm',
+				},
+				{
+					title: 'Stainless steel max cutting thickness',
+					preciseInfo: '6 mm',
+				},
+			],
+			'Laser engraving': [
+				{ title: 'Table size', preciseInfo: '3000x1500' },
+				{ title: 'Marking depth', preciseInfo: '≤ 0.2 mm' },
+				{ title: 'Repeatability accuracy', preciseInfo: '± 0.001 mm' },
+				{ title: 'Minimum line thickness', preciseInfo: '0.01 mm' },
+				{ title: 'Minimum character size', preciseInfo: ' 0.2 mm' },
+			],
+			'Metal bending': [
+				{ title: 'Maximum product length', preciseInfo: '1300 mm' },
+				{
+					title: 'Maximum sheet thickness',
+					preciseInfo: ' 4 mm (for carbon steel and stainless steel)',
+				},
+			],
+			'Powder coating': [
+				{ title: 'Maximum product size', preciseInfo: '?? mm' },
+				{ title: 'Dimensional variation', preciseInfo: 'within ± 0.005 mm' },
+				{ title: 'Coating thickness', preciseInfo: 'from 0.016 microns' },
+				{ title: 'Color', preciseInfo: 'upon request' },
+			],
+			Welding: [
+				{ title: 'Welding types', preciseInfo: 'TIG, MIG' },
+				{
+					title: 'Weldable materials',
+					preciseInfo: 'carbon steel, stainless steel, aluminum',
+				},
+			],
+			'3D printing': [
+				{ title: 'Printing technology', preciseInfo: 'FDM' },
+				{ title: 'Maximum part size', preciseInfo: '256x256x256 mm' },
+				{ title: 'Minimum layer thickness', preciseInfo: '0.08 mm' },
+				{
+					title: 'Materials',
+					preciseInfo:
+						'PLA, PETG, TPU, ABS, ASA, PVA, PET, PA, PC, Carbon/Glass fiber.',
+				},
+			],
+		};
+		return map;
+	}, []);
+
 	return (
 		<Container className={'mt-16 relative'} id='hardware-build'>
 			<>
-			{/* <div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
+				{/* <div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
 					<span className={'text-accent text-center text-xs'}>02</span>
 					<div className={'w-0.5 h-40 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div> */}
-				<ArticleScroll title='02' coloredLineHeight='32'/>
+				<ArticleScroll title='02' coloredLineHeight='32' />
 				<article className={'relative md:grid md:grid-cols-5'}>
 					<div
 						className={
@@ -55,12 +130,12 @@ export default function SecondArticle() {
 							'mt-3.5 flex flex-wrap gap-5 md:col-span-3 md:row-span-1'
 						}
 					>
-						{fabricationStats.map((e) => (
+						{productionTypesMap[type].map((e) => (
 							<li key={e.title}>
 								<span className={'text-sm md:text-base'}>{e.title}</span>
 								<div
 									className={
-										'mt-2 w-40 h-7.5 rounded-sm flex gap-3  overflow-hidden'
+										'mt-2 w-full h-7.5 rounded-sm flex gap-3  overflow-hidden'
 									}
 								>
 									<div className={'w-1.5 h-7.5 bg-accent'}></div>
@@ -77,42 +152,52 @@ export default function SecondArticle() {
 							'mt-4 max-w-80 md:grid md:grid-cols-2 md:row-start-4 md:row-span-1 md:col-span-3 lg:col-span-2'
 						}
 					>
-						<div className={'flex items-center gap-2.5'}>
-							<Link href={'#'} className={'text-[14px] font-semibold'}>
+						{Object.keys(productionTypesMap).map((e, index) => (
+							<div
+								key={index}
+								onClick={() => setType(e as TProductionTypes)}
+								className={'flex items-center gap-2.5 cursor-pointer'}
+							>
+								<div className={'text-[14px] font-semibold'}>{e}</div>
+								<ArrowIcon />
+							</div>
+						))}
+						{/* <div onClick={() => setType('Laser cutting')} className={'flex items-center gap-2.5'}>
+							<div className={'text-[14px] font-semibold'}>
 								Laser cutting
-							</Link>
+							</div>
 							<ArrowIcon />
 						</div>
-						<div className={'flex items-center gap-2.5'}>
-							<Link href={'#'} className={'text-[14px] font-semibold'}>
+						<div onClick={() => setType('Laser engraving')} className={'flex items-center gap-2.5'}>
+							<div className={'text-[14px] font-semibold'}>
 								Laser engraving
-							</Link>
+							</div>
 							<ArrowIcon />
 						</div>
-						<div className={'flex items-center gap-2.5'}>
-							<Link href={'#'} className={'text-[14px] font-semibold'}>
+						<div onClick={() => setType('Metal bending')} className={'flex items-center gap-2.5'}>
+							<div className={'text-[14px] font-semibold'}>
 								Metal bending
-							</Link>
+							</div>
 							<ArrowIcon />
 						</div>
-						<div className={'flex items-center gap-2.5'}>
-							<Link href={'#'} className={'text-[14px] font-semibold'}>
+						<div onClick={() => setType('Powder coating')} className={'flex items-center gap-2.5'}>
+							<div className={'text-[14px] font-semibold'}>
 								Powder coating
-							</Link>
+							</div>
 							<ArrowIcon />
 						</div>
-						<div className={'flex items-center gap-2.5'}>
-							<Link href={'#'} className={'text-[14px] font-semibold'}>
+						<div onClick={() => setType('Welding')} className={'flex items-center gap-2.5'}>
+							<div className={'text-[14px] font-semibold'}>
 								Welding
-							</Link>
+							</div>
 							<ArrowIcon />
 						</div>
 						<div className={'flex items-center gap-2.5'}>
-							<Link href={'#'} className={'text-[14px] font-semibold'}>
+							<div className={'text-[14px] font-semibold'}>
 								3D printing
-							</Link>
+							</div>
 							<ArrowIcon />
-						</div>
+						</div> */}
 					</div>
 
 					<div
