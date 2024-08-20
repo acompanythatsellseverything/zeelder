@@ -6,6 +6,7 @@ interface IProps {
 	color?: 'accent' | 'white';
 	coloredLineHeight?: string;
 	topLineHeight?: string;
+	className?: string;
 }
 
 export default function ArticleScroll({
@@ -13,11 +14,12 @@ export default function ArticleScroll({
 	title,
 	coloredLineHeight,
 	topLineHeight,
+	className
 }: IProps) {
 	const tColor = color || 'accent';
 
 	return (
-		<div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
+		<div className={`hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center ${className}`}>
 			{topLineHeight && (
 				<div
 					className={`

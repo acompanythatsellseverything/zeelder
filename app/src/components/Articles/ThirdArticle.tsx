@@ -66,14 +66,14 @@ function InstantQuote() {
 
 export default function ThirdArticle() {
 	return (
-		<Container className={'mt-16 pb-16 relative'} id='stage-of-work'>
+		<Container className={'pt-20 pb-16 relative'} id='stage-of-work'>
 			<>
 				{/* <div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
 					<span className={'text-accent text-center text-xs'}>03</span>
 					<div className={'w-0.5 h-20 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div> */}
-				<ArticleScroll title='03' coloredLineHeight='8' />
+				<ArticleScroll title='03' coloredLineHeight='8' className='mt-20' />
 				<article className={'relative md:grid md:grid-cols-5'}>
 					<div
 						className={

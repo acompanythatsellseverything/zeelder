@@ -93,14 +93,14 @@ export default function SecondArticle() {
 	}, []);
 
 	return (
-		<Container className={'mt-16 relative'} id='hardware-build'>
+		<Container className={'pt-20 relative'} id='hardware-build'>
 			<>
 				{/* <div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
 					<span className={'text-accent text-center text-xs'}>02</span>
 					<div className={'w-0.5 h-40 bg-accent mt-2.5 rounded-t-md'}></div>
 					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
 				</div> */}
-				<ArticleScroll title='02' coloredLineHeight='32' />
+				<ArticleScroll title='02' className='mt-20' coloredLineHeight='32' />
 				<article className={'relative md:grid md:grid-cols-5'}>
 					<div
 						className={
