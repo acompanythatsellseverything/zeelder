@@ -28,7 +28,7 @@ export default function Home() {
 				<EighthArticle />
 				<NinthArticle />
 			</main>
-			<Footer />
+			<Footer /> 
 		</>
 	);
 }
