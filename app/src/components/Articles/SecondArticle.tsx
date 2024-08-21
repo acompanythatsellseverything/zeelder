@@ -1,21 +1,13 @@
 'use client';
-import Container from '../Container/Container';
-import ArticleTitle from '../ArticleTitle/ArticleTitle';
-import ArticleSubTitle from '../ArticleSubTitle/ArticleSubTitle';
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import Image from 'next/image';
-import slideImage from '@/images/slide-02-image.png';
-import FaceplateForm from '../FaceplateForm/FaceplateForm';
-import ArticleScroll from '../ArticleScroll/ArticleScroll';
 import { useMemo, useState } from 'react';
-
-const fabricationStats = [
-	{ title: 'Dimensional accuracy', preciseInfo: '±0.13mm' },
-	{ title: 'Max part size', preciseInfo: '3000x1500x25mm' },
-	{ title: 'Min part size', preciseInfo: '15x15x0.4mm' },
-	{ title: 'Min feature size', preciseInfo: 'ISO-9001, ITAR' },
-	{ title: 'Min lead time', preciseInfo: 'Same day' },
-];
+import Container from '@/components/Container/Container';
+import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
+import ArticleSubTitle from '@/components/ArticleSubTitle/ArticleSubTitle';
+import ArrowIcon from '@/components/ArrowIcon/ArrowIcon';
+import slideImage from '@/images/slide-02-image.png';
+import FaceplateForm from '@/components/FaceplateForm/FaceplateForm';
+import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
 
 type TProductionStats = {
 	title: string;
@@ -93,14 +85,8 @@ export default function SecondArticle() {
 	}, []);
 
 	return (
-		<Container className={'pt-20 relative'} id='hardware-build'>
-			<>
-				{/* <div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
-					<span className={'text-accent text-center text-xs'}>02</span>
-					<div className={'w-0.5 h-40 bg-accent mt-2.5 rounded-t-md'}></div>
-					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div> */}
-				<ArticleScroll title='02' className='mt-20' coloredLineHeight='32' />
+		<Container className={'pt-20 mb-20 relative'} id='hardware-build'>
+				<ArticleScroll title='02' className='mt-20' coloredLineHeight='8.5rem' />
 				<article className={'relative md:grid md:grid-cols-5'}>
 					<div
 						className={
@@ -162,44 +148,7 @@ export default function SecondArticle() {
 								<ArrowIcon />
 							</div>
 						))}
-						{/* <div onClick={() => setType('Laser cutting')} className={'flex items-center gap-2.5'}>
-							<div className={'text-[14px] font-semibold'}>
-								Laser cutting
-							</div>
-							<ArrowIcon />
-						</div>
-						<div onClick={() => setType('Laser engraving')} className={'flex items-center gap-2.5'}>
-							<div className={'text-[14px] font-semibold'}>
-								Laser engraving
-							</div>
-							<ArrowIcon />
-						</div>
-						<div onClick={() => setType('Metal bending')} className={'flex items-center gap-2.5'}>
-							<div className={'text-[14px] font-semibold'}>
-								Metal bending
-							</div>
-							<ArrowIcon />
-						</div>
-						<div onClick={() => setType('Powder coating')} className={'flex items-center gap-2.5'}>
-							<div className={'text-[14px] font-semibold'}>
-								Powder coating
-							</div>
-							<ArrowIcon />
-						</div>
-						<div onClick={() => setType('Welding')} className={'flex items-center gap-2.5'}>
-							<div className={'text-[14px] font-semibold'}>
-								Welding
-							</div>
-							<ArrowIcon />
-						</div>
-						<div className={'flex items-center gap-2.5'}>
-							<div className={'text-[14px] font-semibold'}>
-								3D printing
-							</div>
-							<ArrowIcon />
-						</div> */}
 					</div>
-
 					<div
 						className={
 							'mt-5 max-w-96 md:row-span-1 md:col-span-3 lg:row-start-4 lg:col-start-3'
@@ -207,7 +156,6 @@ export default function SecondArticle() {
 					>
 						<Image src={slideImage} alt='' />
 					</div>
-
 					<div
 						className={
 							'mt-2.5 md:row-start-3 md:row-span-3 md:col-start-4 md:col-span-3 lg:row-start-1 lg:row-span-3'
@@ -216,7 +164,6 @@ export default function SecondArticle() {
 						<FaceplateForm />
 					</div>
 				</article>
-			</>
 		</Container>
 	);
 }

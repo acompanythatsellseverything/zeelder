@@ -1,11 +1,10 @@
-import React from 'react';
-import Container from '../Container/Container';
-import ArticleTitle from '../ArticleTitle/ArticleTitle';
 import Image from 'next/image';
+import Container from '@/components/Container/Container';
+import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
 import checkIcon from '@/images/utils/check-square.svg';
-import UploadCADForm from '../UploadCADForm/UploadCADForm';
-import ArticleSubTitle from '../ArticleSubTitle/ArticleSubTitle';
-import ArticleScroll from '../ArticleScroll/ArticleScroll';
+import UploadCADForm from '@/components/UploadCADForm/UploadCADForm';
+import ArticleSubTitle from '@/components/ArticleSubTitle/ArticleSubTitle';
+import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
 
 export default function FirstArticle() {
 	return (
@@ -17,7 +16,7 @@ export default function FirstArticle() {
 			}
 		>
 			<article>
-				<ArticleScroll title='01' coloredLineHeight='32' />
+				<ArticleScroll title='01' coloredLineHeight='8rem' />
 				<div className=''>
 					<ArticleTitle className='max-w-xl'>
 						Order custom parts online, get them manufactured and shipped the

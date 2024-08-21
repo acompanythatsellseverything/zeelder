@@ -24,10 +24,12 @@ export default function ArticleScroll({
 				<div
 					className={`
 						w-0.5
-						rounded-b-md 
-						h-${topLineHeight} 
+						rounded-b-md  
 						${color == 'white' ? 'bg-dark-light' : 'bg-light'}
 				`}
+				style={{
+					height: topLineHeight
+				}}
 				></div>
 			)}
 			<motion.div
@@ -48,9 +50,10 @@ export default function ArticleScroll({
 				transition={{ delay: 0.35 }}
 			>
 				<div
-					className={`w-0.5 h-${
-						coloredLineHeight || '40'
-					} bg-${tColor} mt-2.5 rounded-t-md`}
+					className={`w-0.5 bg-${tColor} mt-2.5 rounded-t-md`}
+					style={{
+						height: coloredLineHeight
+					}}
 				></div>
 			</motion.div>
 			<div

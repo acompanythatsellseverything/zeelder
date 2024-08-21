@@ -1,11 +1,10 @@
-import ArticleTitle from '../ArticleTitle/ArticleTitle';
-import Container from '../Container/Container';
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import ArticleScroll from '../ArticleScroll/ArticleScroll';
 import { useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
-import CollaborateForm from '../CollaborateForm/CollaborateForm';
-import ContactUsForm from '../ContactUsForm/ContactUsForm';
+import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
+import Container from '@/components/Container/Container';
+import ArrowIcon from '@/components/ArrowIcon/ArrowIcon';
+import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
+import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
 
 const gridData = [
 	{
@@ -66,14 +65,9 @@ function InstantQuote() {
 
 export default function ThirdArticle() {
 	return (
-		<Container className={'pt-20 pb-16 relative'} id='stage-of-work'>
+		<Container className={'lg:pt-20 pb-16 relative'} id='stage-of-work'>
 			<>
-				{/* <div className='hidden xl:flex absolute h-full top-2 left-16 flex-col justify-center items-center'>
-					<span className={'text-accent text-center text-xs'}>03</span>
-					<div className={'w-0.5 h-20 bg-accent mt-2.5 rounded-t-md'}></div>
-					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div> */}
-				<ArticleScroll title='03' coloredLineHeight='8' className='mt-20' />
+				<ArticleScroll title='03' coloredLineHeight='2rem' className='mt-20' />
 				<article className={'relative md:grid md:grid-cols-5'}>
 					<div
 						className={

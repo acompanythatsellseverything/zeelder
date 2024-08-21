@@ -1,18 +1,19 @@
 'use client';
+import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
 import { uploadPoster } from '@/actions/uploadFile';
-import Image from 'next/image';
 import uploadImage from '@/images/utils/upload-cloud.png';
-import ContactUsForm from '../ContactUsForm/ContactUsForm';
+import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
 import { Spinner } from '@nextui-org/react';
 
 export default function QuickFileDrop() {
 	const [fileLinks, setFileLinks] = useState<string[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>();
+
 	const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
-		if (!e.target.files) {
+		if (!e.target.files) 
 			return;
-		}
+
 		setIsLoading(true);
 		const files = Array.from(e.target.files);
 		for (const file of files) {

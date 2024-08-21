@@ -1,9 +1,9 @@
-import ArticleTitle from '../ArticleTitle/ArticleTitle';
-import Container from '../Container/Container';
 import Image from 'next/image';
+import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
+import Container from '@/components/Container/Container';
 import lightningIcon from '@/images/utils/lightning.svg';
 import slideImage from '@/images/slide-04-image.png'
-import ArticleScroll from '../ArticleScroll/ArticleScroll';
+import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
 
 const listData = [
 	{
@@ -26,14 +26,7 @@ const listData = [
 export default function FourthArticle() {
 	return (
 		<Container className={'relative bg-[#181818] bg-slide-4-bg bg-no-repeat overflow-hidden bg-[5%_0%] lg:bg-[50%_100%]'}>
-			<>
-				{/* <div className='hidden xl:flex absolute h-full top-0 left-16 flex-col justify-center items-center'>
-					<div className={'w-0.5 h-[13vh] bg-dark-light rounded-b-md'}></div>
-					<span className={'text-white text-center text-xs mt-2.5'}>04</span>
-					<div className={'w-0.5 h-40 bg-white mt-2.5 rounded-t-md'}></div>
-					<div className={'w-0.5 h-full bg-dark-light rounded-b-md'}></div>
-				</div> */}
-				<ArticleScroll title='04' color='white' topLineHeight='[13vh]'/>
+				<ArticleScroll title='04' color='white' topLineHeight='8rem' coloredLineHeight='8rem'/>
 				<div className={'hidden md:block absolute md:right-[-20px] lg:right-0 bottom-0 overflow-visible lg:w-[440px]'}>
 					<Image src={slideImage} alt='' className='w-full h-auto object-fill relative'/>
 				</div>
@@ -61,7 +54,6 @@ export default function FourthArticle() {
 						</ul>
 					</div>
 				</article>
-			</>
 		</Container>
 	);
 }

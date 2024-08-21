@@ -31,13 +31,7 @@ export default function FifthArticle() {
 	return (
 		<Container className={'relative overflow-visible lg:pt-8'} id='quality'>
 			<>
-				{/* <div className='hidden xl:flex absolute h-full top-[-80px] left-16 flex-col justify-center items-center'>
-					<div className={'w-0.5 h-[11vh] bg-light rounded-b-md'}></div>
-					<span className={'mt-2.5 text-accent text-center text-xs'}>05</span>
-					<div className={'w-0.5 h-44 bg-accent mt-2.5 rounded-t-md'}></div>
-					<div className={'w-0.5 h-full bg-light rounded-b-md'}></div>
-				</div> */}
-				<ArticleScroll title='05' coloredLineHeight='44' className='mt-28'/>
+				<ArticleScroll title='05' coloredLineHeight='10rem' topLineHeight='9rem'/>
 				<article className='mt-20'>
 					<div>
 						<ArticleTitle className=''>

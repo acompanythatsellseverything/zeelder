@@ -1,8 +1,8 @@
 'use client';
-import { RadioGroup, Radio, cn } from '@nextui-org/react';
-import ContactUsForm from '../ContactUsForm/ContactUsForm';
 import { useState } from 'react';
-import QuickFileDrop from '../QuickFileDrop/QuickFileDrop';
+import { RadioGroup, Radio, cn } from '@nextui-org/react';
+import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
+import QuickFileDrop from '@/components/QuickFileDrop/QuickFileDrop';
 
 const CustomRadio = (props: any) => {
 	const { children, ...otherProps } = props;
