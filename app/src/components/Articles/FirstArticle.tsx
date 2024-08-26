@@ -17,7 +17,7 @@ export default function FirstArticle() {
 		>
 			<article>
 				<ArticleScroll title='01' coloredLineHeight='8rem' />
-				<div className=''>
+				<div>
 					<ArticleTitle className='max-w-xl'>
 						Order custom parts online, get them manufactured and shipped the
 						next day.*
