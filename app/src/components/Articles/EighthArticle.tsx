@@ -12,6 +12,9 @@ import img4 from '@/images/masonry/4.png';
 import img5 from '@/images/masonry/5.png';
 import img6 from '@/images/masonry/6.png';
 import img7 from '@/images/masonry/7.png';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+
+const images = [img0, img2, img4, img6, img1, img3, img5, img7];
 
 export default function EighthArticle() {
 	return (
@@ -22,132 +25,40 @@ export default function EighthArticle() {
 					<ArticleTitle>Our Instagram</ArticleTitle>
 				</div>
 				<div className='mt-[30px]'>
-					<div
-						className={'grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-4'}
+					<ResponsiveMasonry
+						columnsCountBreakPoints={{
+							350: 2,
+							768: 3,
+							1400: 4
+						}}
 					>
-						<div className={'grid gap-2.5'}>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='relative'
-							>
-								<Image src={img0} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
+						<Masonry
+						gutter='0.5rem'
+						>
+							{images.map((image, index) => (
+								<Link
+									key={`masonry-${index}`}
+									href={'https://instagram.com/zeelder.machinery'}
+									className='relative '
 								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='relative'
-							>
-								<Image src={img1} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-						</div>
-
-						<div className={'grid gap-2.5'}>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='relative'
-							>
-								<Image src={img2} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='relative'
-							>
-								<Image src={img3} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-						</div>
-
-						<div className={'grid gap-2.5'}>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='hidden md:block  relative'
-							>
-								<Image src={img4} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='relative'
-							>
-								<Image src={img5} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-						</div>
-						<div className={'grid gap-2.5'}>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='relative md:hidden lg:block'
-							>
-								<Image src={img6} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-							<Link
-								href={'https://instagram.com/zeelder.machinery'}
-								className='hidden lg:block relative'
-							>
-								<Image src={img7} alt='' className='h-auto w-full rounded-sm' />
-								<div
-									className={
-										'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
-									}
-								>
-									<div className='text-white'>zeelder.inst</div>
-									<Image src={insIcon} alt='' />
-								</div>
-							</Link>
-						</div>
-					</div>
+									<Image
+										src={image}
+										alt=''
+										className='w-full rounded-sm object-fill'
+										loading={'lazy'}
+									/>
+									<div
+										className={
+											'absolute bottom-4 left-0 flex justify-between w-full px-2.5'
+										}
+									>
+										<div className='text-white'>zeelder.inst</div>
+										<Image src={insIcon} alt='' />
+									</div>
+								</Link>
+							))}
+						</Masonry>
+					</ResponsiveMasonry>
 				</div>
 			</article>
 		</Container>
