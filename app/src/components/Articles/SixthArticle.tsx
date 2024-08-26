@@ -26,6 +26,7 @@ export default function SixthArticle() {
 							autoPlay
 							muted
 							loop
+							preload='none'
 							className='object-fill w-full relative bottom-0 lg:bottom-36'
 						></video>
 						<button
