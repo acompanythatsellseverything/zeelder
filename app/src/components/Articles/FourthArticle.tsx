@@ -28,7 +28,7 @@ export default function FourthArticle() {
 		<Container className={'relative bg-[#181818] bg-slide-4-bg bg-no-repeat overflow-hidden bg-[5%_0%] lg:bg-[50%_100%]'}>
 				<ArticleScroll title='04' color='white' topLineHeight='8rem' coloredLineHeight='8rem'/>
 				<div className={'hidden md:block absolute md:right-[-20px] lg:right-0 bottom-0 overflow-visible lg:w-[440px]'}>
-					<Image src={slideImage} alt='' className='w-full h-auto object-fill relative'/>
+					<Image src={slideImage} alt='' className='w-full h-auto object-fill relative' loading={'lazy'}/>
 				</div>
 
 				<article className={'relative py-16 lg:py-20 z-30'}>
