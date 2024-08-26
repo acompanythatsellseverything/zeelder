@@ -40,7 +40,7 @@ export default function FourthArticle() {
 						<ul className='flex flex-col text-white gap-4 md:max-w-[60%]'>
 							{listData.map((e) => (
 								<li key={e.title} className='flex items-start gap-[5px]'>
-									<Image src={lightningIcon} alt='' className='mt-1' />
+									<Image src={lightningIcon} alt='' className='mt-1' loading='lazy' />
 									<div>
 										<h3 className={'text-base font-bold md:text-[17px]'}>
 											{e.title}
