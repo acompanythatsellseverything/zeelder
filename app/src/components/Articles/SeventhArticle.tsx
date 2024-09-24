@@ -35,12 +35,12 @@ export default function SeventhArticle() {
 					<ArticleTitle className={'text-white'}>
 						<span>
 							Order custom parts online and get them <br /> manufactured and
-							shipped the next day. <span className={'text-accent'}>*</span>
+							shipped within 48 hours. <span className={'text-accent'}>*</span>
 						</span>
 					</ArticleTitle>
 					<div className={'w-64 md:w-full'}>
 						<ArticleSubTitle className={'text-white'}>
-							*Next-day shipping (or money back) is available for orders using a
+							*Shipping within 48 hours (or money back) is available for orders using a
 							limited selection of materials, placed by 11:00 CET Monday -
 							Friday for 1-100 parts.
 						</ArticleSubTitle>

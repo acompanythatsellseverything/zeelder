@@ -19,8 +19,7 @@ export default function FirstArticle() {
 				<ArticleScroll title='01' coloredLineHeight='8rem' />
 				<div>
 					<ArticleTitle className='max-w-xl'>
-						Order custom parts online, get them manufactured and shipped the
-						next day.*
+						Order custom parts online, get them manufactured and shipped within 48 hours.*
 					</ArticleTitle>
 					<ArticleSubTitle>
 						The fastest provider of online custom laser cutting, bending,
