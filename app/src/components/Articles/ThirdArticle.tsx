@@ -17,7 +17,7 @@ const gridData = [
 	},
 	{
 		title: 'Choose the materials online',
-		description: 'From €50 for 1 part manufactured and shipped the next day*',
+		description: 'From €50 for 1 part manufactured and shipped within 48 hours*',
 	},
 	{
 		title: 'Robotized manufacturing line does the work',
@@ -26,7 +26,7 @@ const gridData = [
 	{
 		title: 'Track your shipment online',
 		description:
-			'Next-day shipping for all orders <100 parts. Free shipping across Europe.',
+			'Shipping within 48 hours for all orders <100 parts. Free shipping across Europe.',
 	},
 ];
 
