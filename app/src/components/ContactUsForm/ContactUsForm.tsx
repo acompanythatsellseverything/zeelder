@@ -12,23 +12,23 @@ import { uploadPoster } from '../../actions/uploadFile';
 const communicationCheckBox = [
 	{
 		name: 'Phone call',
-		id: 'с1207945306146029с' 
+		id: 'с1208400620394413с' 
 	},
 	{
 		name: 'WhatsApp',
-		id: 'с1207945306146031с' 
+		id: 'с1208400620394415с' 
 	},
 	{
 		name: 'Viber',
-		id: 'с1207945306146033с' 
+		id: 'с1208400620394417с' 
 	},
 	{
 		name: 'Telegram',
-		id: 'с1207945306146032с' 
+		id: 'с1208400620394416с' 
 	},
 	{
 		name: 'Email',
-		id: 'с1207945306146030с' 
+		id: 'с1208400620394414с' 
 	},
 ];
 
