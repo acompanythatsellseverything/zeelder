@@ -3,6 +3,10 @@
 	padding: 0;
 	text-indent: 0;
 }
+
+ul::before {
+	content: none;
+}
 .s1 {
 	color: #152025;
 	font-style: normal;

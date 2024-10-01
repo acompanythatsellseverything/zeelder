@@ -4,6 +4,8 @@ import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
 import Container from '@/components/Container/Container';
 import playIcon from '@/images/utils/play.svg';
 import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
+import closeIcon from '@/images/utils/close.svg'
+import React from 'react';
 
 export default function SixthArticle() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -47,11 +49,11 @@ export default function SixthArticle() {
 							closeButton: 'hidden',
 						}}
 						placement='center'
-						onOpenChange={onOpenChange}
+						onOpenChange={onOpenChange}	
 					>
-						<ModalContent className='py-10 w-full'>
+						<ModalContent className='py-10 w-full shadow-none'>
 							{(onClose) => (
-								<>
+								<div className='flex flex-col items-center shadow-none md:gap-4'>
 									<iframe
 										src='https://player.vimeo.com/video/994941403?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
 										width='100%'
@@ -60,7 +62,8 @@ export default function SixthArticle() {
 										allow='autoplay; fullscreen; picture-in-picture; clipboard-write'
 										title='video'
 									/>
-								</>
+									<Image onClick={onOpenChange} src={closeIcon} alt='' className='bg-white rounded-full p-2 cursor-pointer' />
+								</div>
 							)}
 						</ModalContent>
 					</Modal>

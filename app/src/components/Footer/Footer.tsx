@@ -2,7 +2,6 @@ import Container from '../Container/Container';
 import Image from 'next/image';
 import instIcon from '@/images/utils/instagram-red.svg';
 import faceBookIcon from '@/images/utils/facebook.svg';
-import youTubeIcon from '@/images/utils/youTube.svg';
 import Link from 'next/link';
 import phoneIcon from '@/images/utils/phone.svg';
 import mailIcon from '@/images/utils/mail.svg';
@@ -37,12 +36,12 @@ export default function Footer() {
 								<Image src={instIcon} alt='' />
 							</Link>
 							<Link
-								href={'#'}
+								href={'mailto:order@zeelder.com'}
 								className={
 									'flex w-10 h-10 justify-center items-center border-1 border-light border-b-2 border-b-accent'
 								}
 							>
-								<Image src={youTubeIcon} alt='' />
+								<Image src={mailIcon} alt='' className='w-6 h-6' />
 							</Link>
 						</div>
 					</div>
@@ -51,11 +50,11 @@ export default function Footer() {
 						<div>
 							<div className={'text-lg font-semibold'}>Navigation</div>
 							<div className='mt-5 grid sm:grid-cols-2 gap-1 lg:gap-4'>
-								<Link href={''}>Hardware build</Link>
-								<Link href={''}>Founders</Link>
-								<Link href={''}>Stages of work</Link>
-								<Link href={''}>Contact us</Link>
-								<Link href={''}>Quality record</Link>
+								<Link href={'#hardware-build'}>Hardware build</Link>
+								{/* <Link href={''}>Founders</Link> */}
+								<Link href={'#stage-of-work'}>Stages of work</Link>
+								<Link href={'#contact-us'}>Contact us</Link>
+								<Link href={'#quality'}>Quality record</Link>
 							</div>
 						</div>
 						<div>
