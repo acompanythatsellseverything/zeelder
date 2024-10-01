@@ -17,7 +17,7 @@ const gridData = [
 	},
 	{
 		title: 'Choose the materials online',
-		description: 'From €50 for 1 part manufactured and shipped within 48 hours*',
+		description: 'From €50 for 1 part manufactured and shipped after 24 hours*',
 	},
 	{
 		title: 'Robotized manufacturing line does the work',
@@ -26,7 +26,7 @@ const gridData = [
 	{
 		title: 'Track your shipment online',
 		description:
-			'Shipping within 48 hours for all orders <100 parts. Free shipping across Europe.',
+			'Shipping after 24 hours for all orders <100 parts. Free shipping across Europe.',
 	},
 ];
 
@@ -84,7 +84,7 @@ export default function ThirdArticle() {
 						{gridData.map((element, index) => (
 							<li key={index} className='py-6 px-5 border-1 border-light'>
 								<span className={'text-accent text-xl font-bold'}>
-									/{index > 10 ? index : `0${index}`}
+									/{index > 10 ? index : `0${index+1}`}
 								</span>
 								<h3 className={'mt-2.5 text-xl font-bold'}>{element.title}</h3>
 								<span className={'mt-2.5 text-[14px] font-bold'}>
