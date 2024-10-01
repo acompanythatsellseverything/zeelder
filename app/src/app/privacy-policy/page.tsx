@@ -20,6 +20,7 @@ export default function page() {
 							Privacy Policy Quantula Spółka Z Ograniczoną Odpowiedzialnością,
 							Inc.
 						</p>
+						<br />
 						<p>Last Updated: 8/1/2024</p>
 						<p>
 							Quantula Spółka Z Ograniczoną Odpowiedzialnością offers a range of
@@ -784,13 +785,17 @@ export default function page() {
 									<br />
 								</p>
 								<p>
-									<Link href='mailto:order@zeelder.com' className='a' target='_blank'>
-										If you want to exercise any of the rights described above,
-										please contact us by e-mail at{' '}
+									If you want to exercise any of the rights described above,
+									please contact us by e-mail at{' '}
+									<Link
+										href='mailto:order@zeelder.com'
+										className='a'
+										target='_blank'
+									>
+										order@zeelder.com {'.'}
 									</Link>
-									order@zeelder.com or you can reach us by telephone at
 								</p>
-								<p>+4(465)565-96-25.</p>
+
 								<p>
 									<br />
 								</p>
@@ -844,14 +849,16 @@ export default function page() {
 								</p>
 								<h1>Complaints</h1>
 								<p>
-									<Link href='mailto:order@zeelder.com' className='a' target='_blank'>
-										If you would like to make a complaint regarding this Privacy
-										Policy or our practices in relation to your Personal Data,
-										please contact us at:{' '}
+									If you would like to make a complaint regarding this Privacy
+									Policy or our practices in relation to your Personal Data,
+									please contact us at:{' '}
+									<Link
+										href='mailto:order@zeelder.com'
+										className='s2'
+										target='_blank'
+									>
+										order@zeelder.com {''}
 									</Link>
-									<a href='mailto:order@zeelder.com' className='s2' target='_blank'>
-										order@zeelder.com
-									</a>
 									. We will reply to your complaint as soon as we can.
 								</p>
 								<p>
@@ -956,11 +963,16 @@ export default function page() {
 							<br />
 						</p>
 						<p>
-							<Link href='mailto:order@zeelder.com' className='a' target='_blank'>
-								You can submit a copy, deletion, or right-to-know request by
-								sending an email to{' '}
+							You can submit a copy, deletion, or right-to-know request by
+							sending an email to{' '}
+							<Link
+								href='mailto:order@zeelder.com'
+								className='a'
+								target='_blank'
+							>
+								order@zeelder.com
 							</Link>
-							order@zeelder.com or by contacting us at +4(465)565-96-25.
+							.
 						</p>
 					</div>
 				</Container>

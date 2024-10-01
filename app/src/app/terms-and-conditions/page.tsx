@@ -1133,9 +1133,8 @@ export default function page() {
 							or other documents incorporated by reference, set forth the entire
 							understanding and agreement between us with respect to the subject
 							matter hereof. If you have any problems, questions, suggestions or
-							complaints about
+							complaints about these Terms of Use or the Site, please contact us at
 							<Link href='mailto:order@zeelder.com' className='s5' target='_blank'>
-								these Terms of Use or the Site, please contact us at
 								order@zeelder.com
 							</Link>
 						</p>
