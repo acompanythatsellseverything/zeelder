@@ -1,13 +1,13 @@
-import { z, ZodType } from 'zod';
+import { GTM_ID } from '@/constants/analytics';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Checkbox, CheckboxGroup, Input, Textarea } from '@nextui-org/react';
+import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { Controller, useForm } from 'react-hook-form';
 import { isMobilePhone } from 'validator';
-import { Checkbox, CheckboxGroup, Input } from '@nextui-org/react';
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import TagManager, { TagManagerArgs } from 'react-gtm-module';
-import { GTM_ID } from '@/constants/analytics';
-import InputFile from '../InputFile/InputFile';
+import { z, ZodType } from 'zod';
 import { uploadPoster } from '../../actions/uploadFile';
+import ArrowIcon from '../ArrowIcon/ArrowIcon';
+import InputFile from '../custom-inputs/InputFile/InputFile';
 
 const communicationCheckBox = [
 	{
@@ -146,11 +146,12 @@ export default function ContactUsForm({
 					errorMessage={errors.phoneNumber?.message}
 					{...register('phoneNumber')}
 				/>
-				<Input
+				<Textarea
 					type='string'
 					variant={'underlined'}
 					label='Order details'
 					className='text-white'
+					maxLength={500}
 					required
 					errorMessage={errors.orderDetails?.message}
 					{...register('orderDetails')}
@@ -190,7 +191,8 @@ export default function ContactUsForm({
 				)}
 				{isSubmitSuccessful && (
 					<div className='text-center font-bold'>
-						You have successfully submitted the form. We will reach you in a moment !
+						You have successfully submitted the form. We will reach you in a
+						moment !
 					</div>
 				)}
 				<button type='submit' className={'w-full relative'}>
