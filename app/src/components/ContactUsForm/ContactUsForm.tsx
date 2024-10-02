@@ -12,23 +12,23 @@ import { uploadPoster } from '../../actions/uploadFile';
 const communicationCheckBox = [
 	{
 		name: 'Phone call',
-		id: 'с1208400620394413с' 
+		id: 'с1208400620394413с',
 	},
 	{
 		name: 'WhatsApp',
-		id: 'с1208400620394415с' 
+		id: 'с1208400620394415с',
 	},
 	{
 		name: 'Viber',
-		id: 'с1208400620394417с' 
+		id: 'с1208400620394417с',
 	},
 	{
 		name: 'Telegram',
-		id: 'с1208400620394416с' 
+		id: 'с1208400620394416с',
 	},
 	{
 		name: 'Email',
-		id: 'с1208400620394414с' 
+		id: 'с1208400620394414с',
 	},
 ];
 
@@ -53,11 +53,13 @@ const schema: ZodType<IFormData> = z.object({
 interface IProps {
 	fileInputIsDisabled?: boolean;
 	preUploadLinks?: string[];
+	fileNames?: string[];
 }
 
 export default function ContactUsForm({
 	fileInputIsDisabled,
 	preUploadLinks,
+	fileNames,
 }: IProps) {
 	const {
 		register,
@@ -81,7 +83,7 @@ export default function ContactUsForm({
 				linkLists.push(link);
 			}
 		} else {
-			linkLists = preUploadLinks || []
+			linkLists = preUploadLinks || [];
 		}
 
 		try {
@@ -169,7 +171,7 @@ export default function ContactUsForm({
 									value={e.id}
 									classNames={{
 										icon: 'text-white',
-										label: 'text-sm'
+										label: 'text-sm',
 									}}
 								>
 									{e.name}
@@ -182,12 +184,13 @@ export default function ContactUsForm({
 					<InputFile
 						register={register('fileList')}
 						multiple={true}
+						selectedFiles={fileNames?.join(', ')}
 						isSubmitted={isSubmitted}
 					/>
 				)}
 				{isSubmitSuccessful && (
-					<div className='text-center'>
-						You successfully submitted form. We will reach you i a moment
+					<div className='text-center font-bold'>
+						You have successfully submitted the form. We will reach you in a moment !
 					</div>
 				)}
 				<button type='submit' className={'w-full relative'}>
