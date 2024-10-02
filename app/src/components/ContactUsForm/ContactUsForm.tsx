@@ -74,7 +74,7 @@ export default function ContactUsForm({
 	const action: () => void = handleSubmit(async (data: IFormData) => {
 		const { fileList, ...rest } = data;
 		let linkLists: string[] = [];
-		if (fileList) {
+		if (fileList && fileList.length) {
 			for (const file of fileList) {
 				const formData = new FormData();
 				const timestamp = Date.now();

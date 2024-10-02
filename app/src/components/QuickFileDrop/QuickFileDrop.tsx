@@ -21,7 +21,7 @@ export default function QuickFileDrop() {
 		for (const file of files) {
 			let formData = new FormData();
 			const timestamp = Date.now();
-			formData.append('file', file, `${timestamp}.webp`);
+			formData.append('file', file, `${timestamp}-${file.name}`);
 			const link = await uploadPoster(formData);
 			setFileLinks((prev) => [...prev, link]);
 			setFileNames((prev) => [...prev, file.name])
