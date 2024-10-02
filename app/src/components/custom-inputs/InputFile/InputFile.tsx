@@ -1,8 +1,8 @@
 'use client';
-import Image from 'next/image';
 import addFileIcon from '@/images/utils/add-file.svg';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import TrashCanIcon from '../TrashCanIcon/TrashCanIcon';
+import TrashCanIcon from '../../TrashCanIcon/TrashCanIcon';
 
 interface IProps {
 	multiple: boolean;
@@ -20,7 +20,7 @@ export default function InputFile({
 	...props
 }: IProps) {
 	const [selectedFile, setSelectedFile] = useState(selectedFiles);
-	const handleDelete = () => setSelectedFile('')
+	const handleDelete = () => setSelectedFile('');
 	useEffect(() => {
 		if (isSubmitted) {
 			setSelectedFile('');
@@ -50,7 +50,12 @@ export default function InputFile({
 					className='absolute top-0 opacity-0 cursor-pointer w-full'
 				/>
 			</div>
-			{selectedFile && (<TrashCanIcon className='w-5 h-4 cursor-pointer' onClick={handleDelete} />)}
+			{selectedFile && (
+				<TrashCanIcon
+					className='w-5 h-4 cursor-pointer'
+					onClick={handleDelete}
+				/>
+			)}
 		</div>
 	);
 }
