@@ -50,8 +50,7 @@ export default function InputFile({
 					className='absolute top-0 opacity-0 cursor-pointer w-full'
 				/>
 			</div>
-
-			<TrashCanIcon className='w-5 h-4 cursor-pointer' onClick={handleDelete} />
+			{selectedFile && (<TrashCanIcon className='w-5 h-4 cursor-pointer' onClick={handleDelete} />)}
 		</div>
 	);
 }
