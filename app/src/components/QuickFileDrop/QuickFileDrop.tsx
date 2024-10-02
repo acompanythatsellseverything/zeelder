@@ -5,9 +5,11 @@ import { uploadPoster } from '@/actions/uploadFile';
 import uploadImage from '@/images/utils/upload-cloud.png';
 import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
 import { Spinner } from '@nextui-org/react';
+import React from 'react';
 
 export default function QuickFileDrop() {
 	const [fileLinks, setFileLinks] = useState<string[]>([]);
+	const [fileNames, setFileNames] = useState<string[]>([])
 	const [isLoading, setIsLoading] = useState<boolean>();
 
 	const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,6 +24,7 @@ export default function QuickFileDrop() {
 			formData.append('file', file, `${timestamp}.webp`);
 			const link = await uploadPoster(formData);
 			setFileLinks((prev) => [...prev, link]);
+			setFileNames((prev) => [...prev, file.name])
 		}
 		setIsLoading(false);
 	};
@@ -63,7 +66,7 @@ export default function QuickFileDrop() {
 
 	return (
 		<div className='px-4 bg-white border-l-2 border-r-2 border-light'>
-			<ContactUsForm fileInputIsDisabled={true} preUploadLinks={fileLinks} />
+			<ContactUsForm preUploadLinks={fileLinks} fileNames={fileNames}/>
 		</div>
 	);
 }
