@@ -9,6 +9,7 @@ interface IProps {
 	register?: any;
 	isSubmitted?: boolean;
 	selectedFiles?: string;
+	removeFilesHandler?: () => void;
 	[x: string]: any;
 }
 
@@ -17,10 +18,16 @@ export default function InputFile({
 	register,
 	isSubmitted,
 	selectedFiles,
+	removeFilesHandler,
 	...props
 }: IProps) {
 	const [selectedFile, setSelectedFile] = useState(selectedFiles);
-	const handleDelete = () => setSelectedFile('');
+	const handleDelete = () => {
+		if (removeFilesHandler) {
+			removeFilesHandler();
+		}
+		setSelectedFile('')
+	};
 	useEffect(() => {
 		if (isSubmitted) {
 			setSelectedFile('');
