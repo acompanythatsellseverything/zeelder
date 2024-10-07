@@ -36,7 +36,7 @@ export default function Footer() {
 								<Image src={instIcon} alt='' />
 							</Link>
 							<Link
-								href={'mailto:order@zeelder.com'}
+								href={'mailto:engineering@zeelder.com'}
 								className={
 									'flex w-10 h-10 justify-center items-center border-1 border-light border-b-2 border-b-accent'
 								}
@@ -102,7 +102,7 @@ export default function Footer() {
 							>
 								<Image src={mailIcon} alt='' />
 							</div>
-							<span className='text-xl font-semibold'>order@zeelder.com</span>
+							<span className='text-xl font-semibold'>engineering@zeelder.com</span>
 						</div>
 					</div>
 				</div>

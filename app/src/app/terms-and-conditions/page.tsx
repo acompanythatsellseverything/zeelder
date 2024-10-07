@@ -931,11 +931,11 @@ export default function page() {
 								</p>
 								<p>
 									<Link
-										href='mailto:order@zeelder.com'
+										href='mailto:engineering@zeelder.com'
 										className='s5'
 										target='_blank'
 									>
-										By E-Mail: order@zeelder.com
+										By E-Mail: engineering@zeelder.com
 									</Link>
 								</p>
 								<br/>
@@ -1134,8 +1134,8 @@ export default function page() {
 							understanding and agreement between us with respect to the subject
 							matter hereof. If you have any problems, questions, suggestions or
 							complaints about these Terms of Use or the Site, please contact us at
-							<Link href='mailto:order@zeelder.com' className='s5' target='_blank'>
-								order@zeelder.com
+							<Link href='mailto:engineering@zeelder.com' className='s5' target='_blank'>
+							engineering@zeelder.com
 							</Link>
 						</p>
 					</div>

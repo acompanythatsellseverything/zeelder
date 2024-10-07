@@ -788,11 +788,11 @@ export default function page() {
 									If you want to exercise any of the rights described above,
 									please contact us by e-mail at{' '}
 									<Link
-										href='mailto:order@zeelder.com'
+										href='mailto:engineering@zeelder.com'
 										className='a'
 										target='_blank'
 									>
-										order@zeelder.com {'.'}
+										engineering@zeelder.com {'.'}
 									</Link>
 								</p>
 
@@ -853,11 +853,11 @@ export default function page() {
 									Policy or our practices in relation to your Personal Data,
 									please contact us at:{' '}
 									<Link
-										href='mailto:order@zeelder.com'
+										href='mailto:engineering@zeelder.com'
 										className='s2'
 										target='_blank'
 									>
-										order@zeelder.com {''}
+										engineering@zeelder.com {''}
 									</Link>
 									. We will reply to your complaint as soon as we can.
 								</p>
@@ -966,11 +966,11 @@ export default function page() {
 							You can submit a copy, deletion, or right-to-know request by
 							sending an email to{' '}
 							<Link
-								href='mailto:order@zeelder.com'
+								href='mailto:engineering@zeelder.com'
 								className='a'
 								target='_blank'
 							>
-								order@zeelder.com
+								engineering@zeelder.com
 							</Link>
 							.
 						</p>
