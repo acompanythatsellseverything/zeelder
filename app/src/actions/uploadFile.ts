@@ -28,9 +28,10 @@ export async function uploadPoster(formData: FormData) {
 
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
-        await bucket.file(filePath).save(Buffer.from(buffer));
+        const encodedFilename  = encodeURIComponent(filePath);
+        await bucket.file(encodedFilename).save(Buffer.from(buffer));
         // await bucket.file(filePath).makePublic();
-        return `https://storage.googleapis.com/${bucketName}/${filePath}`;
+        return `https://storage.googleapis.com/${bucketName}/${encodedFilename}`;
     } catch (err) {
         console.log(err);
         return '';
