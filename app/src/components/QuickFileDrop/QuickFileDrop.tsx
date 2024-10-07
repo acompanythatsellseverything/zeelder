@@ -40,6 +40,7 @@ const communicationCheckBox = [
 
 interface IFormData {
 	name: string;
+	companyName: string;
 	email: string;
 	phoneNumber: string;
 	orderDetails: string;
@@ -48,6 +49,7 @@ interface IFormData {
 }
 
 const schema: ZodType<IFormData> = z.object({
+	companyName: z.string(),
 	name: z.string(),
 	email: z.string().email('Incorrect email'),
 	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number'),
@@ -191,6 +193,15 @@ export default function QuickFileDrop() {
 							isInvalid={Boolean(errors.email?.message)}
 							errorMessage={errors.email?.message}
 							{...register('email')}
+						/>
+						<Input
+							type='string'
+							variant={'underlined'}
+							label='Company Name'
+							className='text-white'
+							required
+							errorMessage={errors.companyName?.message}
+							{...register('companyName')}
 						/>
 						<Input
 							type='string'
