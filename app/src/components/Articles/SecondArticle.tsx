@@ -32,7 +32,7 @@ export default function SecondArticle() {
 	const productionTypesMap = useMemo(() => {
 		const map: TProductionTypesMap = {
 			'Laser cutting': [
-				{ title: 'Dimensional accuracy', preciseInfo: '± 0.1-0.2 mm' },
+				{ title: 'Dimensional accuracy', preciseInfo: '± 0.1 mm' },
 				{ title: 'Table size', preciseInfo: '3000x1500' },
 				{
 					title: 'Carbon steel max cutting thickness',
@@ -102,7 +102,7 @@ export default function SecondArticle() {
 							innovative online prototyping & manufacturing service.
 						</ArticleSubTitle>
 						<div className={'mt-4 text-base font-bold'}>
-							Sheet Metal Fabrication
+							Metal Fabrication
 						</div>
 						<div className={'mt-3 text-xs'}>
 							Fiber laser cutting & engraving, bending & tapping, using 250+
