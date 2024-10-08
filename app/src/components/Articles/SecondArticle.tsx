@@ -86,84 +86,89 @@ export default function SecondArticle() {
 
 	return (
 		<Container className={'pt-20 mb-20 relative'} id='hardware-build'>
-				<ArticleScroll title='02' className='mt-20' coloredLineHeight='8.5rem' />
-				<article className={'relative md:grid md:grid-cols-5'}>
-					<div
-						className={
-							'md:row-start-1 md:col-start-1 md:col-span-6 md:row-span-2 lg:col-span-3'
-						}
-					>
-						<ArticleTitle className='max-w-xl'>
-							Effortless cloud production technology accelerating your hardware
-							build.
-						</ArticleTitle>
-						<ArticleSubTitle>
-							Enterprises, startups, maintenance, and repair shops rely on our
-							innovative online prototyping & manufacturing service.
-						</ArticleSubTitle>
-						<div className={'mt-4 text-base font-bold'}>
-							Metal Fabrication
-						</div>
-						<div className={'mt-3 text-xs'}>
-							Fiber laser cutting & engraving, bending & tapping, using 250+
-							metals.
-						</div>
+			<ArticleScroll title='02' className='mt-20' coloredLineHeight='8.5rem' />
+			<article className={'relative md:grid md:grid-cols-5'}>
+				<div
+					className={
+						'md:row-start-1 md:col-start-1 md:col-span-6 md:row-span-2 lg:col-span-3'
+					}
+				>
+					<ArticleTitle className='max-w-xl'>
+						Effortless cloud production technology accelerating your hardware
+						build.
+					</ArticleTitle>
+					<ArticleSubTitle>
+						Enterprises, startups, maintenance, and repair shops rely on our
+						innovative online prototyping & manufacturing service.
+					</ArticleSubTitle>
+					<div className={'mt-4 text-base font-bold'}>Metal Fabrication</div>
+					<div className={'mt-3 text-xs'}>
+						Fiber laser cutting & engraving, bending & tapping, using 250+
+						metals.
 					</div>
-					<span className={'mt-4 block w-full h-0.5 bg-light md:hidden'} />
+				</div>
+				<span className={'mt-4 block w-full h-0.5 bg-light md:hidden'} />
 
-					<ul
-						className={
-							'mt-3.5 flex flex-wrap gap-5 md:col-span-3 md:row-span-1'
-						}
-					>
-						{productionTypesMap[type].map((e) => (
-							<li key={e.title}>
-								<span className={'text-sm md:text-base'}>{e.title}</span>
-								<div
-									className={
-										'mt-2 w-full h-7.5 rounded-sm flex gap-3  overflow-hidden'
-									}
-								>
-									<div className={'w-1.5 h-7.5 bg-accent'}></div>
-									<div className={'border-1 grow border-light border-l-0'}>
-										{e.preciseInfo}
-									</div>
-								</div>
-							</li>
-						))}
-					</ul>
-
-					<div
-						className={
-							'mt-4 max-w-80 md:grid md:grid-cols-2 md:row-start-4 md:row-span-1 md:col-span-3 lg:col-span-2'
-						}
-					>
-						{Object.keys(productionTypesMap).map((e, index) => (
+				<ul
+					className={'mt-3.5 flex flex-wrap gap-5 md:col-span-3 md:row-span-1'}
+				>
+					{productionTypesMap[type].map((e) => (
+						<li key={e.title}>
+							<span className={'text-sm md:text-base'}>{e.title}</span>
 							<div
-								key={index}
-								onClick={() => setType(e as TProductionTypes)}
-								className={'flex items-center gap-2.5 cursor-pointer'}
+								className={
+									'mt-2 w-full h-7.5 rounded-sm flex gap-3  overflow-hidden'
+								}
 							>
-								<div className={'text-[14px] font-semibold'}>{e}</div>
-								<ArrowIcon />
+								<div className={'w-1.5 h-7.5 bg-accent'}></div>
+								<div className={'border-1 grow border-light border-l-0'}>
+									{e.preciseInfo}
+								</div>
 							</div>
-						))}
+						</li>
+					))}
+				</ul>
+
+				<div
+					className={
+						'mt-4 max-w-80 grid gap-2 grid-cols-1 md:grid-cols-2 md:row-start-4 md:row-span-1 md:col-span-3 lg:col-span-2'
+					}
+				>
+					{Object.keys(productionTypesMap).map((e, index) => (
+						<div
+							key={index}
+							onClick={() => setType(e as TProductionTypes)}
+							className={'flex items-center gap-2.5 cursor-pointer'}
+						>
+							<div className={'text-[14px] font-semibold'}>{e}</div>
+							<ArrowIcon />
+						</div>
+					))}
+					<div className={'flex items-center gap-2.5'}>
+						<div className={'text-[14px] font-semibold'}>CNC lathe</div>
+						<ArrowIcon />
 					</div>
-					<div
-						className={
-							'mt-5 max-w-96 md:row-span-1 md:col-span-3 lg:row-start-4 lg:col-start-3'
-						}
-					>
-						<Image src={slideImage} alt='' />
+					
+					<div className={'flex items-center gap-2.5'}>
+						<div className={'text-[14px] font-semibold'}>CNC milling</div>
+						<ArrowIcon />
 					</div>
-					<div
-						className={
-							'mt-2.5 md:row-start-3 md:row-span-3 md:col-start-4 md:col-span-3 lg:row-start-1 lg:row-span-3'
-						}
-					>
-						<FaceplateForm />
-					</div>
-				</article>
+				</div>
+				<div
+					className={
+						'mt-5 max-w-96 md:row-span-1 md:col-span-3 lg:row-start-4 lg:col-start-3'
+					}
+				>
+					<Image src={slideImage} alt='' />
+				</div>
+				<div
+					className={
+						'mt-2.5 md:row-start-3 md:row-span-3 md:col-start-4 md:col-span-3 lg:row-start-1 lg:row-span-3'
+					}
+				>
+					<FaceplateForm />
+				</div>
+			</article>
 		</Container>
 	);
 }
