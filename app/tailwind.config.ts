@@ -35,6 +35,7 @@ const config: Config = {
       backgroundSize: {
         '80': '80%',
         '70': '70%',
+        '65': '65%',
         '60': '60%',
         '55': '55%',
         '50': '50%',
@@ -43,7 +44,7 @@ const config: Config = {
       },
 
       backgroundPosition: {
-        'mob-right-center' : '120% 30%',
+        'mob-right-center' : '120% 80%',
         'lap-right-center' : 'right 250px'
       },
 
