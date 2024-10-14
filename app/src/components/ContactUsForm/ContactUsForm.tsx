@@ -66,11 +66,12 @@ export default function ContactUsForm({
 	const {
 		register,
 		getValues,
+		setValue,
 		handleSubmit,
 		reset,
 		setError,
 		control,
-		formState: { errors, isSubmitted, isSubmitSuccessful },
+		formState: { errors, isSubmitted, isSubmitSuccessful, ...rest  },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
@@ -117,6 +118,10 @@ export default function ContactUsForm({
 			reset();
 		} catch {}
 	});
+
+	const handleAddFiles = (files: File[]) => {
+		setValue('fileList', files)
+	}	
 
 	return (
 		<div className={'bg-white'}>
@@ -197,8 +202,8 @@ export default function ContactUsForm({
 					<InputFile
 						register={register('fileList')}
 						multiple={true}
-						selectedFiles={fileNames?.join(', ')}
 						isSubmitted={isSubmitted}
+						setFiles={handleAddFiles}
 					/>
 				)}
 				{isSubmitSuccessful && (
