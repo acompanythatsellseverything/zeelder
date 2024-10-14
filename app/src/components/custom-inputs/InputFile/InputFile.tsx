@@ -1,68 +1,87 @@
 'use client';
 import addFileIcon from '@/images/utils/add-file.svg';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import TrashCanIcon from '../../TrashCanIcon/TrashCanIcon';
 
 interface IProps {
 	multiple: boolean;
-	register?: any;
 	isSubmitted?: boolean;
-	selectedFiles?: string;
+	selectedFiles?: File[];
+	setFiles: (files: File[]) => void;
 	removeFilesHandler?: () => void;
 	[x: string]: any;
 }
 
 export default function InputFile({
 	multiple,
-	register,
 	isSubmitted,
 	selectedFiles,
 	removeFilesHandler,
+	setFiles,
 	...props
 }: IProps) {
-	const [selectedFile, setSelectedFile] = useState(selectedFiles);
-	const handleDelete = () => {
-		if (removeFilesHandler) {
-			removeFilesHandler();
+	const [fileList, setFileList] = useState<File[]>(selectedFiles || []);
+
+	useEffect(() => {
+		setFiles(fileList);
+		if(removeFilesHandler && fileList.length === 0) {
+			removeFilesHandler()
 		}
-		setSelectedFile('')
-	};
+	}, [fileList]);
+
 	useEffect(() => {
 		if (isSubmitted) {
-			setSelectedFile('');
+			setFileList([]);
 		}
 	}, [isSubmitted]);
 
+	const handleOnAdd = (event: ChangeEvent<HTMLInputElement>) => {
+		if (!event.target.files) {
+			return;
+		}
+		const files = Array.from(event.target.files);
+		if (files) {
+			setFileList((prev) => {
+				if (!prev) {
+					return [...files];
+				}
+				return [...prev, ...files];
+			});
+		}
+		//@ts-ignore
+		event.target.value = null;
+	};
+
+	const handleDelete = (index: number) => {
+		setFileList((prev) => prev.filter((_, i) => i != index));
+	};
+
 	return (
-		<div className='flex justify-between'>
+		<div className='flex flex-col gap-2'>
 			<div className='relative cursor-pointer'>
 				<div className='flex gap-3 items-center'>
 					<Image src={addFileIcon} alt={''} />
-					<div>{selectedFile || 'Add file'}</div>
+					<div>Add file</div>
 				</div>
 				<input
-					{...register}
 					{...props}
-					onChange={(e) =>
-						setSelectedFile(
-							Array.from(e.target.files || [])
-								.map((e) => e.name)
-								.join(', ')
-						)
-					}
+					onChange={handleOnAdd}
 					type='file'
-					accept='image/*,.pdf'
 					multiple={multiple}
 					className='absolute top-0 opacity-0 cursor-pointer w-full'
 				/>
 			</div>
-			{selectedFile && (
-				<TrashCanIcon
-					className='w-5 h-4 cursor-pointer'
-					onClick={handleDelete}
-				/>
-			)}
+			{fileList &&
+				fileList.map((file, index) => (
+					<div key={`${file.name}-${index}`} className='flex gap-2'>
+						<div>{file.name}</div>
+						<TrashCanIcon
+							className='w-5 h-4 cursor-pointer'
+							onClick={() => handleDelete(index)}
+						/>
+					</div>
+				))}
 		</div>
 	);
 }

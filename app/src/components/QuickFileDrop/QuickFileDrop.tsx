@@ -61,7 +61,7 @@ const schema: ZodType<IFormData> = z.object({
 export default function QuickFileDrop() {
 	const {
 		register,
-		getValues,
+		setValue,
 		handleSubmit,
 		reset,
 		setError,
@@ -69,27 +69,19 @@ export default function QuickFileDrop() {
 		formState: { errors, isSubmitted, isSubmitSuccessful },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
-	const [fileLinks, setFileLinks] = useState<string[]>([]);
-	const [fileNames, setFileNames] = useState<string[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>();
+	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
 	const handlePrevStep = () => {
-		setFileLinks([]);
-		setFileNames([]);
 		setIsLoading(undefined);
 	};
 
 	const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (!e.target.files) return;
 		setIsLoading(true);
-		const files = Array.from(e.target.files);
-		for (const file of files) {
-			let formData = new FormData();
-			const timestamp = Date.now();
-			formData.append('file', file, `${timestamp}-${file.name}`);
-			const link = await uploadPoster(formData);
-			setFileLinks((prev) => [...prev, link]);
-			setFileNames((prev) => [...prev, file.name]);
-		}
+		setSelectedFiles(Array.from(e.target.files));
+		// @ts-ignore
+		e.target.value = null;
 		setIsLoading(false);
 	};
 
@@ -104,10 +96,8 @@ export default function QuickFileDrop() {
 				const link = await uploadPoster(formData);
 				linkLists.push(link);
 			}
-		} else {
-			linkLists = fileLinks || [];
 		}
-
+		
 		try {
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
@@ -136,6 +126,10 @@ export default function QuickFileDrop() {
 			reset();
 		} catch {}
 	});
+
+	const handleAddFiles = (files: File[]) => {
+		setValue('fileList', files)
+	}	
 
 	return (
 		<>
@@ -252,8 +246,9 @@ export default function QuickFileDrop() {
 						<InputFile
 							register={register('fileList')}
 							multiple={true}
-							selectedFiles={fileNames?.join(', ')}
+							selectedFiles={selectedFiles}
 							isSubmitted={isSubmitted}
+							setFiles={handleAddFiles}
 							removeFilesHandler={handlePrevStep}
 						/>
 
