@@ -4,6 +4,7 @@ import Container from '@/components/Container/Container';
 import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
 import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
 import slideImage from '@/images/slide-10-image.png';
+import { Suspense } from 'react';
 
 export default function NinthArticle() {
 	return (
@@ -36,7 +37,9 @@ export default function NinthArticle() {
 					</div>
 					<div className='mt-36 md:mt-6 max-w-none md:max-w-[420px] lg:max-w-[540px] grow'>
 						<div className='bg-white rounded-sm p-10'>
-							<ContactUsForm />
+						<Suspense>
+								<ContactUsForm />
+						</Suspense>
 						</div>
 					</div>
 				</div>

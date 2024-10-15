@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { RadioGroup, Radio, cn } from '@nextui-org/react';
 import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
 import QuickFileDrop from '@/components/QuickFileDrop/QuickFileDrop';
@@ -27,7 +27,7 @@ const CustomRadio = (props: any) => {
 
 export default function UploadCADForm() {
 	const [selected, setSelected] = useState('1');
-	
+
 	return (
 		<div className={'text-base py'}>
 			<RadioGroup
@@ -52,10 +52,14 @@ export default function UploadCADForm() {
 				</CustomRadio>
 			</RadioGroup>
 			{selected === '1' ? (
-				<QuickFileDrop />
+				<Suspense>
+					<QuickFileDrop />
+				</Suspense>
 			) : (
 				<div className='px-4 bg-white border-l-2 border-r-2 border-light'>
-					<ContactUsForm fileInputIsDisabled={true} />
+					<Suspense>
+						<ContactUsForm fileInputIsDisabled={true} />
+					</Suspense>
 				</div>
 			)}
 		</div>
