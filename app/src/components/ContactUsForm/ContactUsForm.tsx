@@ -1,3 +1,4 @@
+"use client"
 import { GTM_ID } from '@/constants/analytics';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox, CheckboxGroup, Input, Textarea } from '@nextui-org/react';
@@ -8,6 +9,8 @@ import { z, ZodType } from 'zod';
 import { uploadPoster } from '../../actions/uploadFile';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import InputFile from '../custom-inputs/InputFile/InputFile';
+import { useState } from 'react';
+import LoadingDots from '../LoadingDots/LoadingDots';
 
 const communicationCheckBox = [
 	{
@@ -74,7 +77,10 @@ export default function ContactUsForm({
 		formState: { errors, isSubmitted, isSubmitSuccessful, ...rest  },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
+	const [isLoading, setIsLoading] = useState<boolean>();
+
 	const action: () => void = handleSubmit(async (data: IFormData) => {
+		setIsLoading(true);
 		const { fileList, ...rest } = data;
 		let linkLists: string[] = [];
 		if (fileList && fileList.length) {
@@ -89,7 +95,6 @@ export default function ContactUsForm({
 			linkLists = preUploadLinks || [];
 		}	
 		
-
 		try {
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
@@ -115,6 +120,7 @@ export default function ContactUsForm({
 			};
 
 			TagManager.initialize(tagManagerArgs);
+			setIsLoading(false);
 			reset();
 		} catch {}
 	});
@@ -212,15 +218,15 @@ export default function ContactUsForm({
 						moment !
 					</div>
 				)}
-				<button type='submit' className={'w-full relative'}>
+				<button type='submit' className={`w-full relative ${isLoading && 'cursor-wait'}`} disabled={isLoading}>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div
 							className={
 								'py-[16px] text-white text-sm flex gap-3.5 justify-center items-center '
 							}
 						>
-							<span className={'font-medium'}>Get an instant</span>
-							<ArrowIcon color={'#FFFFFF'} />
+							<span className={'font-medium'}>{isLoading ? <LoadingDots/>: 'Get an instant'}</span>
+							{!isLoading && <ArrowIcon color={'#FFFFFF'} />}
 						</div>
 					</div>
 					<div
