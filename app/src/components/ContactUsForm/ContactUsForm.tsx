@@ -11,6 +11,7 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import InputFile from '../custom-inputs/InputFile/InputFile';
 import { useState } from 'react';
 import LoadingDots from '../LoadingDots/LoadingDots';
+import { useSearchParams } from 'next/navigation';
 
 const communicationCheckBox = [
 	{
@@ -78,6 +79,8 @@ export default function ContactUsForm({
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const [isLoading, setIsLoading] = useState<boolean>();
+	const searchparams = useSearchParams();
+	
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
 		setIsLoading(true);
@@ -96,6 +99,7 @@ export default function ContactUsForm({
 		}	
 		
 		try {
+			const params = Object.fromEntries(searchparams.entries());
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
 				{
@@ -106,6 +110,7 @@ export default function ContactUsForm({
 					body: JSON.stringify({
 						...rest,
 						linkLists,
+						utm: params
 					}),
 				}
 			);

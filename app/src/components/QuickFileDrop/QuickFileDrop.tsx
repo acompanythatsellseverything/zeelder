@@ -15,6 +15,7 @@ import { z, ZodType } from 'zod';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import InputFile from '../custom-inputs/InputFile/InputFile';
 import LoadingDots from '../LoadingDots/LoadingDots';
+import { useSearchParams } from 'next/navigation';
 
 const communicationCheckBox = [
 	{
@@ -73,7 +74,7 @@ export default function QuickFileDrop() {
 	const [step, setStep] = useState<number>(0);
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-
+	const searchparams = useSearchParams();
 	const handlePrevStep = () => {
 		setStep(0);
 	};
@@ -101,6 +102,7 @@ export default function QuickFileDrop() {
 		}
 
 		try {
+			const params = Object.fromEntries(searchparams.entries());
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
 				{
@@ -111,6 +113,7 @@ export default function QuickFileDrop() {
 					body: JSON.stringify({
 						...rest,
 						linkLists,
+						utm: params
 					}),
 				}
 			);
