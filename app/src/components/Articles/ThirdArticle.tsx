@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
 import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
 import Container from '@/components/Container/Container';
@@ -31,34 +31,38 @@ const gridData = [
 ];
 
 function InstantQuote() {
-	'use client'
+	'use client';
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	return (
 		<>
-		<div className='py-6 px-5 cursor-pointer' onClick={() => setIsOpen(true)}>
-			<div className='py-8 flex items-center justify-center gap-4 text-white font-semibold text-xl text-center'>
-				<span>Get an instant quote</span>
-				<ArrowIcon color='white' />
-			</div>
-		</div>
-		{isOpen && (
-			<Modal
-			isOpen={isOpen}
-			size='xl'
-			onOpenChange={setIsOpen}
-			className='rounded-sm lg:min-w-[560px]'
-		>
-			<ModalContent>
-				<div className='py-10 px-12'>
-					<p className='w-full text-center text-2xl font-semibold'>Collaborate with an engineer</p>
-					<p className='mt-4 w-full text-center'>
-						Get in touch with our engineering team and discuss your order{' '}
-					</p>
-					<ContactUsForm />
+			<div className='py-6 px-5 cursor-pointer' onClick={() => setIsOpen(true)}>
+				<div className='py-8 flex items-center justify-center gap-4 text-white font-semibold text-xl text-center'>
+					<span>Get an instant quote</span>
+					<ArrowIcon color='white' />
 				</div>
-			</ModalContent>
-		</Modal>
-		)}
+			</div>
+			{isOpen && (
+				<Modal
+					isOpen={isOpen}
+					size='xl'
+					onOpenChange={setIsOpen}
+					className='rounded-sm lg:min-w-[560px]'
+				>
+					<ModalContent>
+						<div className='py-10 px-12'>
+							<p className='w-full text-center text-2xl font-semibold'>
+								Collaborate with an engineer
+							</p>
+							<p className='mt-4 w-full text-center'>
+								Get in touch with our engineering team and discuss your order{' '}
+							</p>
+							<Suspense>
+								<ContactUsForm />
+							</Suspense>
+						</div>
+					</ModalContent>
+				</Modal>
+			)}
 		</>
 	);
 }
@@ -84,7 +88,7 @@ export default function ThirdArticle() {
 						{gridData.map((element, index) => (
 							<li key={index} className='py-6 px-5 border-1 border-light'>
 								<span className={'text-accent text-xl font-bold'}>
-									/{index > 10 ? index : `0${index+1}`}
+									/{index > 10 ? index : `0${index + 1}`}
 								</span>
 								<h3 className={'mt-2.5 text-xl font-bold'}>{element.title}</h3>
 								<span className={'mt-2.5 text-[14px] font-bold'}>
@@ -97,7 +101,7 @@ export default function ThirdArticle() {
 								'bg-accent place-content-center border-1 border-accent'
 							}
 						>
-							<InstantQuote/>
+							<InstantQuote />
 						</li>
 					</ul>
 				</div>

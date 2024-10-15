@@ -1,5 +1,5 @@
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
 import ContactUsForm from '../ContactUsForm/ContactUsForm';
 interface IProps {
@@ -42,11 +42,15 @@ export default function ArrowButton({ to, text }: IProps) {
 			>
 				<ModalContent>
 					<div className='py-5 md:py-10 px-6 md:px-12'>
-						<p className='w-full text-center text-lg md:text-2xl font-semibold'>Collaborate with an engineer</p>
+						<p className='w-full text-center text-lg md:text-2xl font-semibold'>
+							Collaborate with an engineer
+						</p>
 						<p className='md:mt-4 w-full text-center'>
 							Get in touch with our engineering team and discuss your order{' '}
 						</p>
-						<ContactUsForm />
+						<Suspense>
+							<ContactUsForm />
+						</Suspense>
 					</div>
 				</ModalContent>
 			</Modal>
