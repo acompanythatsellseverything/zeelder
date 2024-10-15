@@ -14,6 +14,7 @@ import { isMobilePhone } from 'validator';
 import { z, ZodType } from 'zod';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import InputFile from '../custom-inputs/InputFile/InputFile';
+import LoadingDots from '../LoadingDots/LoadingDots';
 
 const communicationCheckBox = [
 	{
@@ -69,23 +70,24 @@ export default function QuickFileDrop() {
 		formState: { errors, isSubmitted, isSubmitSuccessful },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
+	const [step, setStep] = useState<number>(0);
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
 	const handlePrevStep = () => {
-		setIsLoading(undefined);
+		setStep(0);
 	};
 
 	const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (!e.target.files) return;
-		setIsLoading(true);
 		setSelectedFiles(Array.from(e.target.files));
 		// @ts-ignore
 		e.target.value = null;
-		setIsLoading(false);
+		setStep(1);
 	};
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
+		setIsLoading(true);
 		const { fileList, ...rest } = data;
 		let linkLists: string[] = [];
 		if (fileList && fileList.length) {
@@ -97,7 +99,7 @@ export default function QuickFileDrop() {
 				linkLists.push(link);
 			}
 		}
-		
+
 		try {
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
@@ -123,40 +125,34 @@ export default function QuickFileDrop() {
 			};
 
 			TagManager.initialize(tagManagerArgs);
+			setIsLoading(false);
 			reset();
 		} catch {}
 	});
 
 	const handleAddFiles = (files: File[]) => {
-		setValue('fileList', files)
-	}	
+		setValue('fileList', files);
+	};
 
 	return (
 		<>
-			{(isLoading === undefined || isLoading) && (
+			{step === 0 && (
 				<div className='w-full mt-2.5 py-3 bg-light rounded-sm relative cursor-pointer'>
 					<div className='flex flex-col justify-center items-center text-center'>
-						{isLoading ? <Spinner /> : <Image src={uploadImage} alt='' />}
-						{isLoading ? (
+						<>
 							<span className='text-lg mt-1 font-semibold'>
-								Uploading  files
+								Upload or drop CAD files here
 							</span>
-						) : (
-							<>
-								<span className='text-lg mt-1 font-semibold'>
-									Upload or drop CAD files here
-								</span>
-								<span className='text-xs mt-2'>
-									File types: 3DM, 3DXML, 3MF, AI, DXF, EPS, IGES, IGS, IPT,
-									OBJ, PDF,
-									<br /> PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T.
-								</span>
-								<span className='text-[10px] mt-2 text-[rgba(203, 203, 203, 1)]'>
-									All uploads are secure and confidential
-								</span>
-								<span className='text-[10px] mt-2'>Read our design guides</span>
-							</>
-						)}
+							<span className='text-xs mt-2'>
+								File types: 3DM, 3DXML, 3MF, AI, DXF, EPS, IGES, IGS, IPT, OBJ,
+								PDF,
+								<br /> PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T.
+							</span>
+							<span className='text-[10px] mt-2 text-[rgba(203, 203, 203, 1)]'>
+								All uploads are secure and confidential
+							</span>
+							<span className='text-[10px] mt-2'>Read our design guides</span>
+						</>
 					</div>
 					<input
 						onChange={(e) => handleChange(e)}
@@ -167,7 +163,7 @@ export default function QuickFileDrop() {
 					/>
 				</div>
 			)}
-			{isLoading === false && (
+			{step === 1 && (
 				<div className='px-4 bg-white border-l-2 border-r-2 border-light'>
 					<form onSubmit={action} className={'flex flex-col gap-4 md:gap-7'}>
 						<Input
@@ -258,15 +254,21 @@ export default function QuickFileDrop() {
 								moment !
 							</div>
 						)}
-						<button type='submit' className={'w-full relative'}>
+						<button
+							type='submit'
+							className={`w-full relative ${isLoading && 'cursor-wait'}`}
+							disabled={isLoading}
+						>
 							<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 								<div
 									className={
 										'py-[16px] text-white text-sm flex gap-3.5 justify-center items-center '
 									}
 								>
-									<span className={'font-medium'}>Get an instant</span>
-									<ArrowIcon color={'#FFFFFF'} />
+									<span className={'font-medium'}>
+										{isLoading ? <LoadingDots /> : 'Get an instant'}
+									</span>
+									{!isLoading && <ArrowIcon color={'#FFFFFF'} />}
 								</div>
 							</div>
 							<div
