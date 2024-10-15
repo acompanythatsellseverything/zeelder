@@ -35,7 +35,7 @@ export default function UploadCADForm() {
 				onValueChange={setSelected}
 				color='primary'
 				classNames={{
-					wrapper: cn('grid grid-cols-1 md:grid-cols-2 '),
+					wrapper: cn('grid grid-cols-1 sm:grid-cols-2 '),
 				}}
 			>
 				<CustomRadio
