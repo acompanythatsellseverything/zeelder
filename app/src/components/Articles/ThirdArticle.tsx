@@ -1,10 +1,10 @@
-import { Suspense, useState } from 'react';
-import { Modal, ModalContent } from '@nextui-org/react';
-import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
-import Container from '@/components/Container/Container';
-import ArrowIcon from '@/components/ArrowIcon/ArrowIcon';
 import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
+import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
 import ContactUsForm from '@/components/ContactUsForm/ContactUsForm';
+import Container from '@/components/Container/Container';
+import ArrowIcon from '@/components/icons/ArrowIcon/ArrowIcon';
+import { Modal, ModalContent } from '@nextui-org/react';
+import { Suspense, useState } from 'react';
 
 const gridData = [
 	{

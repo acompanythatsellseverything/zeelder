@@ -1,17 +1,18 @@
-"use client"
+'use client';
 import { GTM_ID } from '@/constants/analytics';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox, CheckboxGroup, Input, Textarea } from '@nextui-org/react';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { Controller, useForm } from 'react-hook-form';
 import { isMobilePhone } from 'validator';
 import { z, ZodType } from 'zod';
 import { uploadPoster } from '../../actions/uploadFile';
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import InputFile from '../custom-inputs/InputFile/InputFile';
-import { useState } from 'react';
+import ArrowIcon from '../icons/ArrowIcon/ArrowIcon';
 import LoadingDots from '../LoadingDots/LoadingDots';
-import { useSearchParams } from 'next/navigation';
+import SuccessSubmitPopUp from '../SuccessSubmitPopUp/SuccessSubmitPopUp';
 
 const communicationCheckBox = [
 	{
@@ -69,18 +70,15 @@ export default function ContactUsForm({
 }: IProps) {
 	const {
 		register,
-		getValues,
 		setValue,
 		handleSubmit,
 		reset,
-		setError,
 		control,
-		formState: { errors, isSubmitted, isSubmitSuccessful, ...rest  },
+		formState: { errors, isSubmitted, isSubmitSuccessful, ...rest },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const searchparams = useSearchParams();
-	
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
 		setIsLoading(true);
@@ -96,8 +94,8 @@ export default function ContactUsForm({
 			}
 		} else {
 			linkLists = preUploadLinks || [];
-		}	
-		
+		}
+
 		try {
 			const params = Object.fromEntries(searchparams.entries());
 			await fetch(
@@ -110,7 +108,7 @@ export default function ContactUsForm({
 					body: JSON.stringify({
 						...rest,
 						linkLists,
-						utm: params
+						utm: params,
 					}),
 				}
 			);
@@ -131,8 +129,8 @@ export default function ContactUsForm({
 	});
 
 	const handleAddFiles = (files: File[]) => {
-		setValue('fileList', files)
-	}	
+		setValue('fileList', files);
+	};
 
 	return (
 		<div className={'bg-white'}>
@@ -223,14 +221,20 @@ export default function ContactUsForm({
 						moment !
 					</div>
 				)}
-				<button type='submit' className={`w-full relative ${isLoading && 'cursor-wait'}`} disabled={isLoading}>
+				<button
+					type='submit'
+					className={`w-full relative ${isLoading && 'cursor-wait'}`}
+					disabled={isLoading}
+				>
 					<div className={'relative z-10 bg-accent px-12 rounded-sm'}>
 						<div
 							className={
 								'py-[16px] text-white text-sm flex gap-3.5 justify-center items-center '
 							}
 						>
-							<span className={'font-medium'}>{isLoading ? <LoadingDots/>: 'Get an instant'}</span>
+							<span className={'font-medium'}>
+								{isLoading ? <LoadingDots /> : 'Get an instant'}
+							</span>
 							{!isLoading && <ArrowIcon color={'#FFFFFF'} />}
 						</div>
 					</div>
@@ -241,6 +245,7 @@ export default function ContactUsForm({
 					></div>
 				</button>
 			</form>
+			<SuccessSubmitPopUp isSuccessSubmit={isSubmitSuccessful} />
 		</div>
 	);
 }

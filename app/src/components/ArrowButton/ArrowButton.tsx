@@ -1,7 +1,7 @@
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
-import { Suspense, useState } from 'react';
 import { Modal, ModalContent } from '@nextui-org/react';
+import { Suspense, useState } from 'react';
 import ContactUsForm from '../ContactUsForm/ContactUsForm';
+import ArrowIcon from '../icons/ArrowIcon/ArrowIcon';
 interface IProps {
 	to?: string;
 	text: string;
