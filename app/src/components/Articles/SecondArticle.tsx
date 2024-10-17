@@ -1,13 +1,13 @@
 'use client';
+import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
+import ArticleSubTitle from '@/components/ArticleSubTitle/ArticleSubTitle';
+import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
+import Container from '@/components/Container/Container';
+import FaceplateForm from '@/components/FaceplateForm/FaceplateForm';
+import ArrowIcon from '@/components/icons/ArrowIcon/ArrowIcon';
+import slideImage from '@/images/slide-02-image.png';
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
-import Container from '@/components/Container/Container';
-import ArticleTitle from '@/components/ArticleTitle/ArticleTitle';
-import ArticleSubTitle from '@/components/ArticleSubTitle/ArticleSubTitle';
-import ArrowIcon from '@/components/ArrowIcon/ArrowIcon';
-import slideImage from '@/images/slide-02-image.png';
-import FaceplateForm from '@/components/FaceplateForm/FaceplateForm';
-import ArticleScroll from '@/components/ArticleScroll/ArticleScroll';
 
 type TProductionStats = {
 	title: string;
@@ -148,7 +148,7 @@ export default function SecondArticle() {
 						<div className={'text-[14px] font-semibold'}>CNC lathe</div>
 						<ArrowIcon />
 					</div>
-					
+
 					<div className={'flex items-center gap-2.5'}>
 						<div className={'text-[14px] font-semibold'}>CNC milling</div>
 						<ArrowIcon />
