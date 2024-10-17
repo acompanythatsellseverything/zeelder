@@ -1,21 +1,18 @@
 'use client';
-import React from 'react';
-import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
 import { uploadPoster } from '@/actions/uploadFile';
-import uploadImage from '@/images/utils/upload-cloud.png';
-import { Spinner } from '@nextui-org/react';
 import { GTM_ID } from '@/constants/analytics';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Checkbox, CheckboxGroup, Input, Textarea } from '@nextui-org/react';
+import { useSearchParams } from 'next/navigation';
+import { ChangeEvent, useState } from 'react';
 import TagManager, { TagManagerArgs } from 'react-gtm-module';
 import { Controller, useForm } from 'react-hook-form';
 import { isMobilePhone } from 'validator';
 import { z, ZodType } from 'zod';
-import ArrowIcon from '../ArrowIcon/ArrowIcon';
 import InputFile from '../custom-inputs/InputFile/InputFile';
+import ArrowIcon from '../icons/ArrowIcon/ArrowIcon';
 import LoadingDots from '../LoadingDots/LoadingDots';
-import { useSearchParams } from 'next/navigation';
+import SuccessSubmitPopUp from '../SuccessSubmitPopUp/SuccessSubmitPopUp';
 
 const communicationCheckBox = [
 	{
@@ -66,7 +63,6 @@ export default function QuickFileDrop() {
 		setValue,
 		handleSubmit,
 		reset,
-		setError,
 		control,
 		formState: { errors, isSubmitted, isSubmitSuccessful },
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
@@ -163,7 +159,8 @@ export default function QuickFileDrop() {
 							</span>
 							{unsuitableFiles.length ? (
 								<div className='text-base mt-2 text-red-500'>
-									Failed to upload: {unsuitableFiles.map((e) => e.name).join(', ')} exceed the
+									Failed to upload:{' '}
+									{unsuitableFiles.map((e) => e.name).join(', ')} exceed the
 									size limit
 								</div>
 							) : (
@@ -177,7 +174,7 @@ export default function QuickFileDrop() {
 						onChange={(e) => handleChange(e)}
 						type='file'
 						multiple={true}
-						accept=".3dm,.3dxml,.3mf,.ai,.dxf,.eps,.iges,.igs,.ipt,.obj,.pdf,.prt,.sat,.sldprt,.step,.stl,.stp,.svg,.x_t"
+						accept='.3dm,.3dxml,.3mf,.ai,.dxf,.eps,.iges,.igs,.ipt,.obj,.pdf,.prt,.sat,.sldprt,.step,.stl,.stp,.svg,.x_t'
 						className='block w-full h-full absolute top-0 opacity-0 cursor-pointer'
 					/>
 				</div>
@@ -299,6 +296,7 @@ export default function QuickFileDrop() {
 					</form>
 				</div>
 			)}
+			<SuccessSubmitPopUp isSuccessSubmit={isSubmitSuccessful} />
 		</>
 	);
 }

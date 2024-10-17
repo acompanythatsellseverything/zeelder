@@ -2,7 +2,7 @@
 import addFileIcon from '@/images/utils/add-file.svg';
 import Image from 'next/image';
 import { ChangeEvent, useEffect, useState } from 'react';
-import TrashCanIcon from '../../TrashCanIcon/TrashCanIcon';
+import TrashCanIcon from '../../icons/TrashCanIcon/TrashCanIcon';
 
 interface IProps {
 	multiple: boolean;
@@ -33,7 +33,9 @@ export default function InputFile({
 
 	useEffect(() => {
 		if (isSubmitted) {
-			setFileList([]);
+			setTimeout(() => {
+				setFileList([]);
+			}, 1000);
 		}
 	}, [isSubmitted]);
 
