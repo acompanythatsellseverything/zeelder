@@ -74,6 +74,7 @@ export default function QuickFileDrop() {
 	const [step, setStep] = useState<number>(0);
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+	const [unsuitableFiles, setUnsuitableFiles] = useState<File[]>([]);
 	const searchparams = useSearchParams();
 	const handlePrevStep = () => {
 		setStep(0);
@@ -81,9 +82,18 @@ export default function QuickFileDrop() {
 
 	const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
 		if (!e.target.files) return;
-		setSelectedFiles(Array.from(e.target.files));
+		setUnsuitableFiles([]);
+
+		const files = Array.from(e.target.files);
 		// @ts-ignore
 		e.target.value = null;
+		const maximumSize = 30 * 1024 * 1024;
+		const unsuitableFiles = files.filter((file) => file.size > maximumSize);
+		if (unsuitableFiles.length) {
+			setUnsuitableFiles(unsuitableFiles);
+			return;
+		}
+		setSelectedFiles(files);
 		setStep(1);
 	};
 
@@ -113,7 +123,7 @@ export default function QuickFileDrop() {
 					body: JSON.stringify({
 						...rest,
 						linkLists,
-						utm: params
+						utm: params,
 					}),
 				}
 			);
@@ -151,17 +161,23 @@ export default function QuickFileDrop() {
 								PDF,
 								<br /> PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T.
 							</span>
-							<span className='text-[10px] mt-2 text-[rgba(203, 203, 203, 1)]'>
-								All uploads are secure and confidential
-							</span>
-							<span className='text-[10px] mt-2'>Read our design guides</span>
+							{unsuitableFiles.length ? (
+								<div className='text-base mt-2 text-red-500'>
+									Failed to upload: {unsuitableFiles.map((e) => e.name).join(', ')} exceed the
+									size limit
+								</div>
+							) : (
+								<span className='text-[14px] mt-2 text-[rgba(203, 203, 203, 1)]'>
+									Max file size 30Mb
+								</span>
+							)}
 						</>
 					</div>
 					<input
 						onChange={(e) => handleChange(e)}
 						type='file'
 						multiple={true}
-						accept='image/*,.pdf'
+						accept=".3dm,.3dxml,.3mf,.ai,.dxf,.eps,.iges,.igs,.ipt,.obj,.pdf,.prt,.sat,.sldprt,.step,.stl,.stp,.svg,.x_t"
 						className='block w-full h-full absolute top-0 opacity-0 cursor-pointer'
 					/>
 				</div>
