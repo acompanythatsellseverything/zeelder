@@ -13,6 +13,7 @@ import InputFile from '../custom-inputs/InputFile/InputFile';
 import ArrowIcon from '../icons/ArrowIcon/ArrowIcon';
 import LoadingDots from '../LoadingDots/LoadingDots';
 import SuccessSubmitPopUp from '../SuccessSubmitPopUp/SuccessSubmitPopUp';
+import FilesNotSelectedModal from '../FilesNotSelectedModal/FilesNotSelectedModal';
 
 const communicationCheckBox = [
 	{
@@ -78,11 +79,23 @@ export default function ContactUsForm({
 	} = useForm<IFormData>({ resolver: zodResolver(schema) });
 
 	const [isLoading, setIsLoading] = useState<boolean>();
+	const [isFileModalNotShowed, setIsFileModalNotShowed] = useState<boolean>();
 	const searchparams = useSearchParams();
+	const handleOpenFileReminderModal = () => setIsFileModalNotShowed(true);
+	const handleCloseFileReminderModal = () => setIsFileModalNotShowed(false);
 
-	const action: () => void = handleSubmit(async (data: IFormData) => {
-		setIsLoading(true);
+	const onSubmit = async (data: IFormData) => {
 		const { fileList, ...rest } = data;
+		if (
+			!fileList?.length &&
+			!fileInputIsDisabled &&
+			isFileModalNotShowed !== false
+		) {
+			handleOpenFileReminderModal();
+			throw Error('File is not selected');
+		}
+		setIsLoading(true);
+
 		let linkLists: string[] = [];
 		if (fileList && fileList.length) {
 			for (const file of fileList) {
@@ -126,7 +139,7 @@ export default function ContactUsForm({
 			setIsLoading(false);
 			reset();
 		} catch {}
-	});
+	};
 
 	const handleAddFiles = (files: File[]) => {
 		setValue('fileList', files);
@@ -134,7 +147,10 @@ export default function ContactUsForm({
 
 	return (
 		<div className={'bg-white'}>
-			<form onSubmit={action} className={'flex flex-col gap-4 md:gap-7'}>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className={'flex flex-col gap-4 md:gap-7'}
+			>
 				<Input
 					type='string'
 					variant={'underlined'}
@@ -246,6 +262,9 @@ export default function ContactUsForm({
 				</button>
 			</form>
 			<SuccessSubmitPopUp isSuccessSubmit={isSubmitSuccessful} />
+			{isFileModalNotShowed === true && (
+				<FilesNotSelectedModal onChange={handleCloseFileReminderModal} />
+			)}
 		</div>
 	);
 }
