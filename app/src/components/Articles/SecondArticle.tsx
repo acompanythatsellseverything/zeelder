@@ -23,7 +23,10 @@ type TProductionTypes =
 	| '3D printing';
 
 type TProductionTypesMap = {
-	[prop in TProductionTypes]: TProductionStats[];
+	[prop in TProductionTypes]: {
+		textData: TProductionStats[];
+		imageUrl?: string;
+	};
 };
 
 export default function SecondArticle() {
@@ -31,7 +34,8 @@ export default function SecondArticle() {
 
 	const productionTypesMap = useMemo(() => {
 		const map: TProductionTypesMap = {
-			'Laser cutting': [
+			'Laser cutting': {
+				textData: 	[
 				{ title: 'Dimensional accuracy', preciseInfo: '± 0.1 mm' },
 				{ title: 'Table size', preciseInfo: '3000x1500' },
 				{
@@ -43,43 +47,59 @@ export default function SecondArticle() {
 					preciseInfo: '6 mm',
 				},
 			],
-			'Laser engraving': [
-				{ title: 'Table size', preciseInfo: '3000x1500' },
-				{ title: 'Marking depth', preciseInfo: '≤ 0.2 mm' },
-				{ title: 'Repeatability accuracy', preciseInfo: '± 0.001 mm' },
-				{ title: 'Minimum line thickness', preciseInfo: '0.01 mm' },
-				{ title: 'Minimum character size', preciseInfo: ' 0.2 mm' },
-			],
-			'Metal bending': [
-				{ title: 'Maximum product length', preciseInfo: '1300 mm' },
-				{
-					title: 'Maximum sheet thickness',
-					preciseInfo: ' 4 mm (for carbon steel and stainless steel)',
-				},
-			],
-			'Powder coating': [
-				{ title: 'Maximum product size', preciseInfo: '?? mm' },
-				{ title: 'Dimensional variation', preciseInfo: 'within ± 0.005 mm' },
-				{ title: 'Coating thickness', preciseInfo: 'from 0.016 microns' },
-				{ title: 'Color', preciseInfo: 'upon request' },
-			],
-			Welding: [
-				{ title: 'Welding types', preciseInfo: 'TIG, MIG' },
-				{
-					title: 'Weldable materials',
-					preciseInfo: 'carbon steel, stainless steel, aluminum',
-				},
-			],
-			'3D printing': [
-				{ title: 'Printing technology', preciseInfo: 'FDM' },
-				{ title: 'Maximum part size', preciseInfo: '256x256x256 mm' },
-				{ title: 'Minimum layer thickness', preciseInfo: '0.08 mm' },
-				{
-					title: 'Materials',
-					preciseInfo:
-						'PLA, PETG, TPU, ABS, ASA, PVA, PET, PA, PC, Carbon/Glass fiber.',
-				},
-			],
+			imageUrl: '/productionTypes/2.png'
+		},
+			'Laser engraving': {
+				textData: [
+					{ title: 'Table size', preciseInfo: '3000x1500' },
+					{ title: 'Marking depth', preciseInfo: '≤ 0.2 mm' },
+					{ title: 'Repeatability accuracy', preciseInfo: '± 0.001 mm' },
+					{ title: 'Minimum line thickness', preciseInfo: '0.01 mm' },
+					{ title: 'Minimum character size', preciseInfo: ' 0.2 mm' },
+				],
+			},
+			'Metal bending': {
+				textData: [
+					{ title: 'Maximum product length', preciseInfo: '1300 mm' },
+					{
+						title: 'Maximum sheet thickness',
+						preciseInfo: ' 4 mm (for carbon steel and stainless steel)',
+					},
+				],
+				imageUrl: '/productionTypes/3.png'
+			},
+			'Powder coating': {
+				textData: [
+					{ title: 'Maximum product size', preciseInfo: '?? mm' },
+					{ title: 'Dimensional variation', preciseInfo: 'within ± 0.005 mm' },
+					{ title: 'Coating thickness', preciseInfo: 'from 0.016 microns' },
+					{ title: 'Color', preciseInfo: 'upon request' },
+				],
+				imageUrl: '/productionTypes/1.png'
+			},
+			Welding: {
+				textData: [
+					{ title: 'Welding types', preciseInfo: 'TIG, MIG' },
+					{
+						title: 'Weldable materials',
+						preciseInfo: 'carbon steel, stainless steel, aluminum',
+					},
+				],
+				imageUrl: '/productionTypes/5.png'
+			},
+			'3D printing': {
+				textData: [
+					{ title: 'Printing technology', preciseInfo: 'FDM' },
+					{ title: 'Maximum part size', preciseInfo: '256x256x256 mm' },
+					{ title: 'Minimum layer thickness', preciseInfo: '0.08 mm' },
+					{
+						title: 'Materials',
+						preciseInfo:
+							'PLA, PETG, TPU, ABS, ASA, PVA, PET, PA, PC, Carbon/Glass fiber.',
+					},
+				],
+				imageUrl: '/productionTypes/4.png'
+			}
 		};
 		return map;
 	}, []);
@@ -112,7 +132,7 @@ export default function SecondArticle() {
 				<ul
 					className={'mt-3.5 flex flex-wrap gap-5 md:col-span-3 md:row-span-1'}
 				>
-					{productionTypesMap[type].map((e) => (
+					{productionTypesMap[type].textData.map((e) => (
 						<li key={e.title}>
 							<span className={'text-sm md:text-base'}>{e.title}</span>
 							<div
@@ -156,10 +176,10 @@ export default function SecondArticle() {
 				</div>
 				<div
 					className={
-						'mt-5 max-w-96 md:row-span-1 md:col-span-3 lg:row-start-4 lg:col-start-3'
+						'flex items-center justify-center mt-5 max-w-96 md:row-span-1 md:col-span-3 lg:row-start-4 lg:col-start-3 w-full md:w-[300px] h-[300px] '
 					}
 				>
-					<Image src={slideImage} alt='' />
+					<Image src={productionTypesMap[type].imageUrl|| slideImage} alt='' width={300} height={300} className='object-contain'/>
 				</div>
 				<div
 					className={
