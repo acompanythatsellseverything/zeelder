@@ -6,13 +6,13 @@ interface IProps {
 	onChange: () => void;
 }
 
-export default function FilesNotSelectedModal({onChange}: IProps) {
+export default function FilesNotSelectedModal({ onChange }: IProps) {
 	const [isOpen, setIsOpen] = useState<boolean>(true);
 
 	const handleChange = (value: boolean) => {
 		onChange();
 		setIsOpen(value);
-	}
+	};
 	return (
 		<Modal
 			isOpen={isOpen}
@@ -23,10 +23,10 @@ export default function FilesNotSelectedModal({onChange}: IProps) {
 			<ModalContent>
 				<div className='flex flex-col justify-center items-center py-5 md:py-10 px-6 md:px-12'>
 					<p className='w-full mt-4 text-center text-lg md:text-xl font-semibold'>
-						Are you sure
+						Are you sure you want to send the form without uploaded files ?
 					</p>
 				</div>
 			</ModalContent>
 		</Modal>
-	)
+	);
 }
