@@ -81,9 +81,10 @@ export default function ContactUsForm({
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const [isFileModalNotShowed, setIsFileModalNotShowed] = useState<boolean>();
 	const searchparams = useSearchParams();
+	const pathname = window.location.href;
+	
 	const handleOpenFileReminderModal = () => setIsFileModalNotShowed(true);
 	const handleCloseFileReminderModal = () => setIsFileModalNotShowed(false);
-
 	const onSubmit = async (data: IFormData) => {
 		const { fileList, ...rest } = data;
 		if (
@@ -121,6 +122,7 @@ export default function ContactUsForm({
 					body: JSON.stringify({
 						...rest,
 						linkLists,
+						pathname,
 						utm: params,
 					}),
 				}

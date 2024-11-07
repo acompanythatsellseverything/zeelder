@@ -72,6 +72,7 @@ export default function QuickFileDrop() {
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const [unsuitableFiles, setUnsuitableFiles] = useState<File[]>([]);
 	const searchparams = useSearchParams();
+	const pathname = window.location.href;
 	const handlePrevStep = () => {
 		setStep(0);
 	};
@@ -119,6 +120,7 @@ export default function QuickFileDrop() {
 					body: JSON.stringify({
 						...rest,
 						linkLists,
+						pathname,
 						utm: params,
 					}),
 				}
