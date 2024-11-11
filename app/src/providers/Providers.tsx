@@ -2,11 +2,14 @@
 
 import { NextUIProvider } from '@nextui-org/react';
 import { QueryParamsProvider } from './QueryParamsProvider';
+import { Suspense } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
 	return (
 		<NextUIProvider>
-			<QueryParamsProvider>{children}</QueryParamsProvider>
+			<Suspense>
+				<QueryParamsProvider>{children}</QueryParamsProvider>
+			</Suspense>
 		</NextUIProvider>
 	);
 }
