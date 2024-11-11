@@ -72,7 +72,7 @@ export default function QuickFileDrop() {
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const [unsuitableFiles, setUnsuitableFiles] = useState<File[]>([]);
 	const searchparams = useSearchParams();
-	const pathname = window.location.href;
+	
 	const handlePrevStep = () => {
 		setStep(0);
 	};
@@ -110,6 +110,7 @@ export default function QuickFileDrop() {
 
 		try {
 			const params = Object.fromEntries(searchparams.entries());
+			const pathname = window.location.href;
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
 				{

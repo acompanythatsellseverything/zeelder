@@ -11,6 +11,7 @@ import {
 	NavbarMenuToggle,
 } from '@nextui-org/react';
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const navList = [
 	{ title: 'Hardware build', href: '#hardware-build' },
@@ -21,6 +22,9 @@ const navList = [
 
 export default function NavBar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const searchParams = useSearchParams();
+
+	const queryString = searchParams.toString();
 	return (
 		<Navbar
 			isMenuOpen={isMenuOpen}
@@ -34,7 +38,7 @@ export default function NavBar() {
 			isBlurred={false}
 		>
 			<NavbarBrand>
-				<Link href={'/'} className={'flex items-center'}>
+				<Link href={`/?${queryString}`} className={'flex items-center'}>
 					{/* <div className={'md:hidden bg-logo-icon w-10 h-10'}/>
 					<div className={'md:hidden bg-accent w-[1px] h-10 mx-2.5'}/> */}
 					<div className={'bg-logo h-[30px] w-[180px] bg-no-repeat'} />
@@ -45,7 +49,10 @@ export default function NavBar() {
 					<ul className={'basis-5/8 flex justify-center gap-3 lg:gap-4 px-2'}>
 						{navList.map((e) => (
 							<li key={e.title} className={'text-xs min-[1025px]:text-base'}>
-								<Link href={`/${e.href}`} className='hover:text-red-500'>
+								<Link
+									href={`${queryString ? `/?${queryString}${e.href}` : e.href}`}
+									className='hover:text-red-500'
+								>
 									{e.title}
 								</Link>
 							</li>
@@ -73,7 +80,9 @@ export default function NavBar() {
 					>
 						<Link
 							className='w-full hover:text-red-500'
-							href={`/${item.href}`}
+							href={`${
+								queryString ? `/?${queryString}${item.href}` : item.href
+							}`}
 							onClick={() => setIsMenuOpen(false)}
 						>
 							{item.title}

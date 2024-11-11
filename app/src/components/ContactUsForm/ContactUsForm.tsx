@@ -81,7 +81,6 @@ export default function ContactUsForm({
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const [isFileModalNotShowed, setIsFileModalNotShowed] = useState<boolean>();
 	const searchparams = useSearchParams();
-	const pathname = window.location.href;
 	
 	const handleOpenFileReminderModal = () => setIsFileModalNotShowed(true);
 	const handleCloseFileReminderModal = () => setIsFileModalNotShowed(false);
@@ -112,6 +111,8 @@ export default function ContactUsForm({
 
 		try {
 			const params = Object.fromEntries(searchparams.entries());
+			const pathname = window.location.href;
+
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',
 				{
