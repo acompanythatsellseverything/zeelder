@@ -13,6 +13,7 @@ import InputFile from '../custom-inputs/InputFile/InputFile';
 import ArrowIcon from '../icons/ArrowIcon/ArrowIcon';
 import LoadingDots from '../LoadingDots/LoadingDots';
 import SuccessSubmitPopUp from '../SuccessSubmitPopUp/SuccessSubmitPopUp';
+import { useQueryParams } from '../../providers/QueryParamsProvider';
 
 const communicationCheckBox = [
 	{
@@ -72,6 +73,7 @@ export default function QuickFileDrop() {
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const [unsuitableFiles, setUnsuitableFiles] = useState<File[]>([]);
 	const searchparams = useSearchParams();
+	const queryParams = useQueryParams();
 	
 	const handlePrevStep = () => {
 		setStep(0);
@@ -109,7 +111,13 @@ export default function QuickFileDrop() {
 		}
 
 		try {
-			const params = Object.fromEntries(searchparams.entries());
+			let params;
+			if(!queryParams) {
+				const searchEntries = searchparams.entries();
+				params = Object.fromEntries(searchEntries);
+			} else {
+				params = queryParams;
+			}
 			const pathname = window.location.href;
 			await fetch(
 				'https://hook.us1.make.com/6zj6taxck7n2e18ax3dkkh74ixzzfwae',

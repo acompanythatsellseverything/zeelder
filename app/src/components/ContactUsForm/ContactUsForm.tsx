@@ -14,6 +14,7 @@ import ArrowIcon from '../icons/ArrowIcon/ArrowIcon';
 import LoadingDots from '../LoadingDots/LoadingDots';
 import SuccessSubmitPopUp from '../SuccessSubmitPopUp/SuccessSubmitPopUp';
 import FilesNotSelectedModal from '../FilesNotSelectedModal/FilesNotSelectedModal';
+import { useQueryParams } from '../../providers/QueryParamsProvider';
 
 const communicationCheckBox = [
 	{
@@ -80,8 +81,9 @@ export default function ContactUsForm({
 
 	const [isLoading, setIsLoading] = useState<boolean>();
 	const [isFileModalNotShowed, setIsFileModalNotShowed] = useState<boolean>();
+	const queryParams = useQueryParams();
 	const searchparams = useSearchParams();
-	
+
 	const handleOpenFileReminderModal = () => setIsFileModalNotShowed(true);
 	const handleCloseFileReminderModal = () => setIsFileModalNotShowed(false);
 	const onSubmit = async (data: IFormData) => {
@@ -110,7 +112,14 @@ export default function ContactUsForm({
 		}
 
 		try {
-			const params = Object.fromEntries(searchparams.entries());
+			let params;
+			if (!queryParams) {
+				const searchEntries = searchparams.entries();
+				params = Object.fromEntries(searchEntries);
+			} else {
+				params = queryParams;
+			}
+
 			const pathname = window.location.href;
 
 			await fetch(
