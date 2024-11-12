@@ -52,7 +52,9 @@ const schema: ZodType<IFormData> = z.object({
 	companyName: z.string(),
 	name: z.string(),
 	email: z.string().email('Incorrect email'),
-	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number format. Please try again.'),
+	phoneNumber: z
+		.string()
+		.refine(isMobilePhone, 'Invalid phone number format. Please try again.'),
 	orderDetails: z.string(),
 	preferredCommunication: z.any(),
 	fileList: z.any(),
@@ -74,7 +76,7 @@ export default function QuickFileDrop() {
 	const [unsuitableFiles, setUnsuitableFiles] = useState<File[]>([]);
 	const searchparams = useSearchParams();
 	const queryParams = useQueryParams();
-	
+
 	const handlePrevStep = () => {
 		setStep(0);
 	};
@@ -112,7 +114,7 @@ export default function QuickFileDrop() {
 
 		try {
 			let params;
-			if(!queryParams) {
+			if (!queryParams) {
 				const searchEntries = searchparams.entries();
 				params = Object.fromEntries(searchEntries);
 			} else {
@@ -160,29 +162,41 @@ export default function QuickFileDrop() {
 				<div className='w-full mt-2.5 py-3 bg-light rounded-sm relative cursor-pointer'>
 					<div className='flex flex-col justify-center items-center text-center'>
 						<>
-							<span className='text-lg mt-1 font-semibold'>
-								Upload or drop CAD files here
-							</span>
-							<span className='text-xs mt-2'>
-								File types: 3DM, 3DXML, 3MF, AI, DXF, EPS, IGES, IGS, IPT, OBJ,
-								PDF,
-								<br /> PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T.
-							</span>
-							{unsuitableFiles.length ? (
-								<div className='text-base mt-2 text-red-500'>
-									Failed to upload:{' '}
-									{unsuitableFiles.map((e) => e.name).join(', ')} exceed the
-									size limit
-								</div>
+							{isSubmitSuccessful ? (
+								<>
+									<span className='text-lg mt-1 font-semibold py-4'>
+										You have successfully submitted the form. We will reach you
+										in a moment !
+									</span>
+								</>
 							) : (
-								<span className='text-[14px] mt-2 text-[rgba(203, 203, 203, 1)]'>
-									Max file size 30Mb
-								</span>
+								<>
+									<span className='text-lg mt-1 font-semibold'>
+										Upload or drop CAD files here
+									</span>
+									<span className='text-xs mt-2'>
+										File types: 3DM, 3DXML, 3MF, AI, DXF, EPS, IGES, IGS, IPT,
+										OBJ, PDF,
+										<br /> PRT, SAT, SLDPRT, STEP, STL, STP, SVG, X_T.
+									</span>
+									{unsuitableFiles.length ? (
+										<div className='text-base mt-2 text-red-500'>
+											Failed to upload:{' '}
+											{unsuitableFiles.map((e) => e.name).join(', ')} exceed the
+											size limit
+										</div>
+									) : (
+										<span className='text-[14px] mt-2 text-[rgba(203, 203, 203, 1)]'>
+											Max file size 30Mb
+										</span>
+									)}
+								</>
 							)}
 						</>
 					</div>
 					<input
 						onChange={(e) => handleChange(e)}
+						disabled={isSubmitSuccessful}
 						type='file'
 						multiple={true}
 						accept='.3dm,.3dxml,.3mf,.ai,.dxf,.eps,.iges,.igs,.ipt,.obj,.pdf,.prt,.sat,.sldprt,.step,.stl,.stp,.svg,.x_t'
