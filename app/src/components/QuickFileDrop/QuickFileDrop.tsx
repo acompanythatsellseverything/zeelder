@@ -270,7 +270,7 @@ export default function QuickFileDrop() {
 							register={register('fileList')}
 							multiple={true}
 							selectedFiles={selectedFiles}
-							isSubmitted={isSubmitted}
+							isSubmitted={isSubmitSuccessful}
 							setFiles={handleAddFiles}
 							removeFilesHandler={handlePrevStep}
 						/>
