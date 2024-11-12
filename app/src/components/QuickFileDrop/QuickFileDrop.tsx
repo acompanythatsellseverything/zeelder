@@ -100,7 +100,7 @@ export default function QuickFileDrop() {
 
 	const action: () => void = handleSubmit(async (data: IFormData) => {
 		setIsLoading(true);
-		const { fileList, ...rest } = data;
+		const { fileList, phoneNumber, ...rest } = data;
 		let linkLists: string[] = [];
 		if (fileList && fileList.length) {
 			for (const file of fileList) {
@@ -129,6 +129,7 @@ export default function QuickFileDrop() {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
+						phoneNumber: `+${phoneNumber}`,
 						...rest,
 						linkLists,
 						pathname,
@@ -141,6 +142,7 @@ export default function QuickFileDrop() {
 				events: {
 					event: 'Contact_Us',
 					userData: {
+						phoneNumber: `+${phoneNumber}`,
 						...rest,
 					},
 				},
@@ -156,6 +158,11 @@ export default function QuickFileDrop() {
 		setValue('fileList', files);
 	};
 
+	const handleKeyDown = (event: any) => {
+		if (event.key === '+' || event.key === '-' ) {
+			event.preventDefault();
+		}
+	}
 	return (
 		<>
 			{step === 0 && (
@@ -237,6 +244,7 @@ export default function QuickFileDrop() {
 						<Input
 							type='number'
 							variant={'underlined'}
+							onKeyDown={handleKeyDown}
 							label='Phone number'
 							className='text-white'
 							required

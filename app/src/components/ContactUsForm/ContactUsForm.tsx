@@ -87,7 +87,8 @@ export default function ContactUsForm({
 	const handleOpenFileReminderModal = () => setIsFileModalNotShowed(true);
 	const handleCloseFileReminderModal = () => setIsFileModalNotShowed(false);
 	const onSubmit = async (data: IFormData) => {
-		const { fileList, ...rest } = data;
+		const { fileList, phoneNumber, ...rest } = data;
+
 		if (
 			!fileList?.length &&
 			!fileInputIsDisabled &&
@@ -130,6 +131,7 @@ export default function ContactUsForm({
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({
+						phoneNumber: `+${phoneNumber}`,
 						...rest,
 						linkLists,
 						pathname,
@@ -142,6 +144,7 @@ export default function ContactUsForm({
 				events: {
 					event: 'Contact_Us',
 					userData: {
+						phoneNumber: `+${phoneNumber}`,
 						...rest,
 					},
 				},
@@ -157,6 +160,11 @@ export default function ContactUsForm({
 		setValue('fileList', files);
 	};
 
+	const handleKeyDown = (event: any) => {
+		if (event.key === '+' || event.key === '-' ) {
+			event.preventDefault();
+		}
+	}
 	return (
 		<div className={'bg-white'}>
 			<form
@@ -193,6 +201,7 @@ export default function ContactUsForm({
 				<Input
 					type='number'
 					variant={'underlined'}
+					onKeyDown={handleKeyDown}
 					label='Phone number'
 					className='text-white'
 					required
