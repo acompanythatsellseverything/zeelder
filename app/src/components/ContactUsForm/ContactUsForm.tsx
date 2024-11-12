@@ -239,7 +239,7 @@ export default function ContactUsForm({
 					<InputFile
 						register={register('fileList')}
 						multiple={true}
-						isSubmitted={isSubmitted}
+						isSubmitted={isSubmitSuccessful}
 						setFiles={handleAddFiles}
 					/>
 				)}
