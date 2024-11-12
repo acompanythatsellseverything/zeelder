@@ -52,7 +52,7 @@ const schema: ZodType<IFormData> = z.object({
 	companyName: z.string(),
 	name: z.string(),
 	email: z.string().email('Incorrect email'),
-	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number'),
+	phoneNumber: z.string().refine(isMobilePhone, 'Invalid phone number format. Please try again.'),
 	orderDetails: z.string(),
 	preferredCommunication: z.any(),
 	fileList: z.any(),
@@ -221,13 +221,18 @@ export default function QuickFileDrop() {
 							{...register('companyName')}
 						/>
 						<Input
-							type='string'
+							type='number'
 							variant={'underlined'}
 							label='Phone number'
 							className='text-white'
 							required
 							isInvalid={Boolean(errors.phoneNumber?.message)}
 							errorMessage={errors.phoneNumber?.message}
+							startContent={
+								<div className='flex items-center'>
+									<span className='text-black max-h-[22px]'>+</span>
+								</div>
+							}
 							{...register('phoneNumber')}
 						/>
 						<Textarea
